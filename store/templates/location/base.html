@@ -24,58 +24,116 @@
   <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
+  <style CSS>
+  #topNav {
+    margin-bottom:0;
+  }
+</style>
+  <script>
+  /* affix the 2nd navbar after scroll past first navbar */
+$('#nav2').affix({
+    offset: {
+      top: 50
+    }
+});
+</script>
+
 </head>
 
 <body>
 
   <header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'home' %}">Gygaia</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-          {% if user.is_authenticated %}
+
+<div  class="fixed-top">
+
+    <div class="navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-dark bg-dark" id="topNav">
 
 
-          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
-          <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
-          <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Gygaia</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
 
 
-          <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user pr-2"></i>{{ user.get_username }}
-            </a>
+            <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+            <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
+            <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
 
-            <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user pr-2"></i>{{ user.get_username }}
+              </a>
+
+              <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+              </div>
+
+
             </div>
 
+            {% else %}
+            <a href="{% url 'login'%}?next={{request.path}}">Login</a>
+            <a class="nav-item nav-link " href="#">next</a>
+            {% endif %}
 
           </div>
-
-          {% else %}
-          <a href="{% url 'login'%}?next={{request.path}}">Login</a>
-          <a class="nav-item nav-link " href="#">next</a>
-          {% endif %}
-
         </div>
+
+
+
+
+
+
+
+    </div>
+
+      <div class="navbar navbar-custom navbar-inverse navbar-static-top navbar-dark bg-dark" id="nav2">
+      <div class="navbar-inner">
+
+
+
+
+
+        <a href="{% url 'createlocation' %}">
+          <button  type="button" class="btn btn-success">Add new location</button>
+        </a>
+
+        <a href="{% url 'allcontainer' %}">
+          <button  type="button" class="btn btn-info">Containers</button>
+        </a>
+
+        <a href="{% url 'alllocation' %}">
+          <button  type="button" class="btn btn-outline-info">Locations</button>
+        </a>
+
+        <a href="{% url 'allstorage' %}">
+          <button  type="button" class="btn btn-info">Depots</button>
+        </a>
+
+
+
       </div>
-    </nav>
+    </div>
+  </div>
+<div class="clearfix">...</div>
+
   </header>
 
   <main role="main">
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="pt-3">Gygaia</h1>
+        <h1 class="pt-5">Gygaia</h1>
         <p class="lead text-muted">The Gygaia Archaeological Information System</p>
 
 

@@ -1,29 +1,32 @@
-{% extends 'location/base.html' %}
+{% extends 'storage/base.html' %}
 {% block content%}
-
 
 <div class="container">
 
 
 <div class="album py-5 ">
 
+  
 
 
   <div class="row">
-    {% for location in location.all %}
+    {% for storage in storage.all %}
     <div class="col-md-4">
-      <a href="{% url 'detaillocation' location.location_id %}">
+      <a href="{% url 'detailstorage' storage.store_id %}">
         <div class="card mb-4 box-shadow">
           <img class="card-img-top" src="" />
           <div class="card-body">
-            <p class="card-text text-center">{{ location.location_name }}</p>
+            <p class="card-text text-center">{{ storage.store_name }}</p>
           </div>
         </a>
       </div>
-</div>
-      {% endfor %}
+    </div>
+    {% endfor %}
 
   </div>
+
+
+
 </div>
 </div>
 

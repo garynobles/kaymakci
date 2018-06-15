@@ -7,15 +7,9 @@
 
 <div class="album py-5 ">
 
-  <section>
-    <div class="float-right col-sm-1">
-      <div>
-        <a href="{% url 'createcontainer' %}">
-          <button  type="button" class="btn btn-primary">Add new container</button>
-        </a>
-      </div>
-    </div>
-  </section>
+  <a href="">
+    <button  type="button" class="btn btn-success">Filters</button>
+  </a>
 
   <div class="row">
     {% for container in container.all %}
