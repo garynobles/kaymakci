@@ -5,25 +5,27 @@ from . import views
 
 urlpatterns = [
     #store
-    url('', views.allstore, name='allstore'),
+    path('', views.allstore, name='allstore'),
+
     path('<int:store_id>/', views.detailstore, name='detailstore'),
 
     url(r'^createstore/$', views.createstore, name='createstore'),
-    url(r'^edit/(?P<pk>\d+)/edit/$', views.editstore, name='editstore'),
+    url(r'^editstore/(?P<pk>\d+)/editstore/$', views.editstore, name='editstore'),
 
     #locations
     url(r'^location/$', views.alllocation, name='alllocation'),
-    path('<int:location_id>/', views.detaillocation, name='detaillocation'),
+    path('location/<int:location_id>/', views.detaillocation, name='detaillocation'),
 
     url(r'^createlocation/$', views.createlocation, name='createlocation'),
-    url(r'^edit/(?P<pk>\d+)/edit/$', views.editlocation, name='editlocation'),
+    url(r'^location/edit/(?P<pk>\d+)/edit/$', views.editlocation, name='editlocation'),
 
     #container
     url(r'^container/$', views.allcontainer, name='allcontainer'),
-    path('<int:container_id>/', views.detailcontainer, name='detailcontainer'),
+    path('container/<int:container_id>/', views.detailcontainer, name='detailcontainer'),
 
-    url(r'^createcontainer/$', views.createcontainer, name='createcontainer'),
-    url(r'^edit/(?P<pk>\d+)/edit/$', views.editcontainer, name='editcontainer'),
+    url(r'^container/createcontainer/$', views.createcontainer, name='createcontainer'),
+    url(r'^container/edit/(?P<pk>\d+)/edit/$', views.editcontainer, name='editcontainer'),
+    #url(r'^container/search/edit/(?P<pk>\d+)/edit/$', views.editcontainersearch, name='editcontainersearch'),
 
     #storage
     url(r'^storage/$', views.allstorage, name='allstorage'),
@@ -38,5 +40,6 @@ urlpatterns = [
 
     url(r'^samples/createsample/$', views.createsample, name='createsample'),
     url(r'^samples/edit/(?P<pk>\d+)/edit/$', views.editsample, name='editsample'),
+
 
 ]

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404, render_to_response
-from store.models import Store #, Container, Location,  Samples #Storage,
+from store.models import Store, Container, Location,  Samples, Storage
 import datetime
-from .forms import StoreForm #, ContainerForm, LocationForm #StorageForm,  SamplesForm
+from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesForm
 
 #https://tutorial.djangogirls.org/en/django_forms/
 

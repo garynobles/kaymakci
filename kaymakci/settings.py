@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     #plugings
     'widget_tweaks',
     'django_schemas',
+    #'django_filters',
     #Installed apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,7 +77,7 @@ DATABASES = {
             'OPTIONS': {
                 'options': '-c search_path=default,public'
             },
-        'NAME': 'gygaia',
+        'NAME': 'django',
         'USER':'Gerrit',
         'PASSWORD':'Gnob2009',
     },
@@ -86,7 +87,7 @@ DATABASES = {
             'OPTIONS': {
                 'options': '-c search_path=samples,public'
             },
-        'NAME': 'gygaia',
+        'NAME': 'django',
         'USER':'Gerrit',
         'PASSWORD':'Gnob2009',
     },
