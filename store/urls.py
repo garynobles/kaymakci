@@ -18,4 +18,11 @@ urlpatterns = [
     url(r'^createlocation/$', views.createlocation, name='createlocation'),
     url(r'^edit/(?P<pk>\d+)/edit/$', views.editlocation, name='editlocation'),
 
+    #container
+    url(r'^container/$', views.allcontainer, name='allcontainer'),
+    path('<int:container_id>/', views.detailcontainer, name='detailcontainer'),
+
+    url(r'^createcontainer/$', views.createcontainer, name='createcontainer'),
+    url(r'^edit/(?P<pk>\d+)/edit/$', views.editcontainer, name='editcontainer'),
+
 ]

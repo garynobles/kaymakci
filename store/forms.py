@@ -2,6 +2,23 @@ from django import forms
 
 from .models import Store
 from .models import Location
+from .models import Container
+
+
+
+class StoreForm(forms.ModelForm):
+    class Meta:
+        model = Store
+        fields = (
+        #'id',
+        'store_id',
+        'store_name',
+        'address_1',
+        'address_2',
+        'region',
+        'city',
+        'country',
+        )
 
 class LocationForm(forms.ModelForm):
     class Meta:
@@ -16,16 +33,20 @@ class LocationForm(forms.ModelForm):
         'location_name',
         )
 
-class StoreForm(forms.ModelForm):
+
+
+
+
+
+class ContainerForm(forms.ModelForm):
+
     class Meta:
-        model = Store
+        model = Container
         fields = (
-        #'id',
-        'store_id',
-        'store_name',
-        'address_1',
-        'address_2',
-        'region',
-        'city',
-        'country',
+        'container_id',
+        'container_name',
+        'container_type',
+        'location_id',
+        'sample_id',
+        'current_location_tmp'
         )
