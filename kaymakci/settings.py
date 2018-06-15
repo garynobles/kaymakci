@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     #local apps
     'store.apps.StoreConfig',
     #plugings
+    'widget_tweaks',
     #Installed apps
     'django.contrib.admin',
     'django.contrib.auth',
