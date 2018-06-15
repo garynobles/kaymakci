@@ -19,7 +19,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
+    #local apps
+    'store.apps.StoreConfig',
+    #plugings
+    #Installed apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
