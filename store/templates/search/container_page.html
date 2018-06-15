@@ -1,36 +1,5 @@
-views.py
-from . import filters
-
-def containerfilterpage(request):
-    # BTW you do not need .all() after a .filter()
-    # local_url.objects.filter(global_url__id=1) will do
-
-    #allstorage = Storage.objects
-    #return render(request, 'storage/allstorage.html', {'storage':allstorage})
-    filtered_qs = filters.ContainerFilter(request.GET, queryset=Container.objects.all()).qs
-    paginator = Paginator(filtered_qs, 5)
-
-    page = request.GET.get('page')
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-
-    return render(
-        request,
-        'container_list.html',
-        {'response': response}
-        )
-
-
-
-
 {% extends 'search/base.html' %}
-
 {% load widget_tweaks %}
-
 {% block content %}
 
   <form method="get">

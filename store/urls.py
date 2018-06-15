@@ -48,9 +48,11 @@ urlpatterns = [
     #pagination only
 
     #filtering only
-    url(r'^container/filter/$', views.containersearch, name='containersearch2'),
 
 
+    url(r'^container/filter/$', views.containersearch, name='containersearch'),
 
-    url(r'^container/page1/$', views.containersearch2, name='containersearch'),
+    url(r'^container/page/$', views.containerpage, name='containerpage'),
+
+    #url(r'^container/page/$', views.my_view, name='my_view'),
 ]

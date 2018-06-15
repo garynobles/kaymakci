@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404, render_to_response, redirect
 from store.models import Store, Container, Location,  Samples, Storage
 import datetime
 from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesForm
+#from .filters import ContainerFilter
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from . import filters
 
 #https://tutorial.djangogirls.org/en/django_forms/
 
@@ -207,20 +209,9 @@ def editstorage(request, pk):
     return render(request, 'storage/create_storage.html', {'form': form})
 
 
-#filters
-##from django.contrib.auth.models import User
-#from .filters import ContainerFilter
-#from .filters import  ContainerFilter, SampleFilter #UserFilter,
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import render
-from .filters import ContainerFilter #, SampleFilter
 
-def containersearch2(request):
-    contact_list = Container.objects.all()
-    paginator = Paginator(contact_list, 25) # Show 25 Container per page
-    page = request.GET.get('page')
-    Container = paginator.get_page(page)
-    return render(request, 'base.html', {'Container': Container})
+
+
 
 def containersearch(request):
     container_list = Container.objects.all()
@@ -259,15 +250,32 @@ def editcontainersearch(request, pk):
 
 ##filters and pagination
 
+#filters
+##from django.contrib.auth.models import User
+#from .filters import ContainerFilter
+#from .filters import  ContainerFilter, SampleFilter #UserFilter,
 
 
-
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 #from django.shortcuts import render
+# #, SampleFilter
+
 
 def containerpage(request):
-    contact_list = Container.objects.all()
-    paginator = Paginator(contact_list, 25) # Show 25 Container per page
+    # BTW you do not need .all() after a .filter()
+    # local_url.objects.filter(global_url__id=1) will do
+    filtered_qs = filters.ContainerFilter(request.GET,queryset=Container.objects.all()).qs
+    paginator = Paginator(filtered_qs, 25)
+
     page = request.GET.get('page')
-    Container = paginator.get_page(page)
-    return render(request, 'container_page.html', {'Container': Container})
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        'container_filter.html',
+        {'response': response}
+    )
