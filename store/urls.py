@@ -25,4 +25,18 @@ urlpatterns = [
     url(r'^createcontainer/$', views.createcontainer, name='createcontainer'),
     url(r'^edit/(?P<pk>\d+)/edit/$', views.editcontainer, name='editcontainer'),
 
+    #storage
+    url(r'^storage/$', views.allstorage, name='allstorage'),
+    path('storage/<int:store_id>/', views.detailstorage, name='detailstorage'),
+
+    url(r'^storage/createstorage/$', views.createstorage, name='createstorage'),
+    url(r'^storage/edit/(?P<pk>\d+)/edit/$', views.editstorage, name='editstorage'),
+
+    #samples
+    url(r'^samples/$', views.allsamples, name='allsamples'),
+    path('samples/<int:sample_id>/', views.detailsamples, name='detailsamples'),
+
+    url(r'^samples/createsample/$', views.createsample, name='createsample'),
+    url(r'^samples/edit/(?P<pk>\d+)/edit/$', views.editsample, name='editsample'),
+
 ]

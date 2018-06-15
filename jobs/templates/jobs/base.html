@@ -11,7 +11,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../../../../favicon.ico">
 
-  <title>Gygaia AIS</title>
+  <title>Gygaia AIS: blog</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -41,9 +41,10 @@
           {% if user.is_authenticated %}
 
 
-          <a class="nav-item nav-link" href="allblogs">Blog</a>
+          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
           <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
-          <a class="nav-item nav-link" href="allsamples">Samples</a>
+          <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
+
 
           <div class="dropdown show">
             <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,15 +73,7 @@
 
   <main role="main">
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="pt-3">Gygaia</h1>
-        <p class="lead text-muted">The Gygaia Archaeological Information System</p>
 
-
-        <!--a href="#" class="btn btn-primary my-2">Main call to action</a-->
-      </div>
-    </section>
 
 
     {% block content %}

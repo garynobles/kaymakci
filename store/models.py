@@ -4,6 +4,31 @@ from django.db import models
 
 
 
+# Create your models here.
+class Storage(models.Model):
+    #id = models.IntegerField(default=0)
+    store_id = models.AutoField(primary_key=True)
+    store_name = models.CharField(max_length=200, default='', blank=True, null=True)
+    address_1 = models.CharField(max_length=200, default='', blank=True, null=True)
+    address_2 = models.CharField(max_length=200, default='', blank=True, null=True)
+    region = models.CharField(max_length=200, default='', blank=True, null=True)
+    city = models.CharField(max_length=200, default='', blank=True, null=True)
+    zip = models.CharField(max_length=200, default='', blank=True, null=True)
+    country = models.CharField(max_length=200, default="Turkey")
+    #user = models.CharField(max_length=200, default="Gygaia")
+    #datestamp = models.DateTimeField(auto_now=True)
+
+    #def __unicode__(self):
+        #return self.store_id
+
+    def __str__(self):
+        return self.store_name
+
+    class Meta():
+        managed=False
+        db_table = 'samples\".\"store'
+        #ordering = ["store_name"]
+        verbose_name_plural = "stores"
 
 
 
@@ -140,3 +165,32 @@ class Samples(models.Model):
         managed = False
         verbose_name_plural = "samples"
         #unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
+
+
+
+
+# Create your models here.
+class Storage(models.Model):
+    #id = models.IntegerField(default=0)
+    store_id = models.AutoField(primary_key=True)
+    store_name = models.CharField(max_length=200, default='', blank=True, null=True)
+    address_1 = models.CharField(max_length=200, default='', blank=True, null=True)
+    address_2 = models.CharField(max_length=200, default='', blank=True, null=True)
+    region = models.CharField(max_length=200, default='', blank=True, null=True)
+    city = models.CharField(max_length=200, default='', blank=True, null=True)
+    zip = models.CharField(max_length=200, default='', blank=True, null=True)
+    country = models.CharField(max_length=200, default="Turkey")
+    #user = models.CharField(max_length=200, default="Gygaia")
+    #datestamp = models.DateTimeField(auto_now=True)
+
+    #def __unicode__(self):
+        #return self.store_id
+
+    def __str__(self):
+        return self.store_name
+
+    class Meta():
+        managed=False
+        db_table = 'samples\".\"store'
+        #ordering = ["store_name"]
+        verbose_name_plural = "stores"

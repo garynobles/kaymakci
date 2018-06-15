@@ -1,0 +1,38 @@
+{% extends 'samples/base.html' %}
+{% block content%}
+
+<div class="container">
+<div class="album py-5 ">
+  <section>
+    <div class="float-right col-sm-1">
+      <div>
+        <a href="{% url 'createsample' %}">
+          <button  type="button" class="btn btn-primary">Add new sample</button>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <div class="row">
+    {% for samples in samples.all|slice:":12" %}
+    <div class="col-md-4">
+      <a href="{% url 'detailsamples' samples.sample_id %}">
+        <div class="card mb-4 box-shadow">
+          <img class="card-img-top" src="" />
+          <div class="card-body">
+            <p class="card-text text-center">{{ samples.sample_id }}: {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</p>
+          </div>
+        </a>
+      </div>
+</div>
+      {% endfor %}
+
+  </div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
