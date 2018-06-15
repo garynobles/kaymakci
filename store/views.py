@@ -14,6 +14,53 @@ from .forms import StoreForm #, ContainerForm, LocationForm #StorageForm,  Sampl
 
 # Create your views here.
 
+#locations
+#all locations
+def alllocation(request):
+    alllocation = Location.objects
+    return render(request, 'location/alllocation.html', {'location':alllocation})
+
+def detaillocation(request, location_id):
+    detaillocation = get_object_or_404(Location, pk=location_id)
+    return render(request, 'location/detaillocation.html', {'location':detaillocation})
+
+def createlocation(request):
+    if request.method == "POST":
+        form = LocationForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+
+            post.save()
+            return redirect('alllocation')
+    else:
+        form = LocationForm()
+    return render(request, 'location/create_location.html', {'form': form})
+
+def editlocation(request, pk):
+    post = get_object_or_404(Location, pk=pk)
+    if request.method == "POST":
+        form = LocationForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('alllocation')
+            #, pk=post.pk)
+    else:
+        form = LocationForm(instance=post)
+    return render(request, 'location/create_location.html', {'form': form})
+
+
+
+
+
+
+
+
+
 
 
 #stores

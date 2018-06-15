@@ -1,0 +1,42 @@
+{% extends 'container/base.html' %}
+{% block content%}
+
+
+<div class="container">
+
+
+<div class="album py-5 ">
+
+  <section>
+    <div class="float-right col-sm-1">
+      <div>
+        <a href="{% url 'createcontainer' %}">
+          <button  type="button" class="btn btn-primary">Add new container</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="row">
+    {% for container in container.all %}
+    <div class="col-md-4">
+      <a href="{% url 'detailcontainer' container.container_id %}">
+        <div class="card mb-4 box-shadow">
+          <img class="card-img-top" src="" />
+          <div class="card-body">
+            <p class="card-text text-center">{{ container.container_name }}</p>
+          </div>
+        </a>
+      </div>
+</div>
+      {% endfor %}
+
+  </div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
