@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     #plugings
     'widget_tweaks',
+    'django_schemas',
     #Installed apps
     'django.contrib.admin',
     'django.contrib.auth',

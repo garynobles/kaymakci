@@ -1,6 +1,43 @@
 {% extends 'store/base.html' %}
 {% block content%}
 
+<div class="container">
+  <div class="album py-5 ">
+    <section>
+      <div class="float-right col-sm-1">
+        <div>
+          <a href="{% url 'createstore' %}">
+            <button  type="button" class="btn btn-primary">Add new store</button>
+          </a>
+        </div>
+        <div class="pt-3">
+          <a href="#">
+            <button  type="button" class="btn btn-primary">All containers</button>
+          </a>
+        </div>
+        <div class="pt-3">
+          <a href="#">
+            <button  type="button" class="btn btn-primary">All locations(shelves)</button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      {% for store in store.all %}
+      <div class="col-md-4">
+        <a href="{% url 'detailstore' store.store_id %}">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="" />
+            <div class="card-body">
+              <p class="card-text text-center">{{ store.store_name }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}
