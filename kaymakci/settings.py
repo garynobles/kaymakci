@@ -70,7 +70,7 @@ DATABASES = {
                 'options': '-c search_path=default,public'
             },
         'NAME': 'gygaia',
-        'USER':'postres',
+        'USER':'Gerrit',
         'PASSWORD':'Gnob2009',
     },
 
@@ -80,7 +80,7 @@ DATABASES = {
                 'options': '-c search_path=samples,public'
             },
         'NAME': 'gygaia',
-        'USER':'postgres',
+        'USER':'Gerrit',
         'PASSWORD':'Gnob2009',
     },
 }
