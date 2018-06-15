@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #local apps
     'jobs.apps.JobsConfig',
+    'blog.apps.BlogConfig',
     'store.apps.StoreConfig',
     #plugings
     'widget_tweaks',
