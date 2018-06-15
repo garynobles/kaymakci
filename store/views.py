@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, render_to_response, redi
 from store.models import Store, Container, Location,  Samples, Storage
 import datetime
 from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesForm
-#from .filters import ContainerFilter
+from .filters import ContainerFilter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from . import filters
 
@@ -279,3 +279,14 @@ def containerpage(request):
         'container_filter.html',
         {'response': response}
     )
+
+
+
+
+def listing(request):
+    contact_list = Samples.objects.all()
+    paginator = Paginator(contact_list, 25) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+    return render(request, 'allsamples_paged.html', {'contacts': contacts})

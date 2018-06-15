@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     #store
-    path('', views.allstore, name='allstore'),
+    path('store/', views.allstore, name='allstore'),
 
     path('<int:store_id>/', views.detailstore, name='detailstore'),
 
@@ -54,5 +54,5 @@ urlpatterns = [
 
     url(r'^container/page/$', views.containerpage, name='containerpage'),
 
-    #url(r'^container/page/$', views.my_view, name='my_view'),
+    url(r'^samples/listing/$', views.listing, name='listing'),
 ]
