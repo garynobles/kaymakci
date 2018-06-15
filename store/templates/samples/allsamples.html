@@ -14,7 +14,7 @@
     </div>
   </section>
   <div class="row">
-    {% for samples in samples.all|slice:":12" %}
+    {% for samples in samples.all|slice:"1000:1012" %}
     <div class="col-md-4">
       <a href="{% url 'detailsamples' samples.sample_id %}">
         <div class="card mb-4 box-shadow">

@@ -6,21 +6,6 @@ from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesF
 
 #https://tutorial.djangogirls.org/en/django_forms/
 
-
-#filters
-##from django.contrib.auth.models import User
-#from .filters import ContainerFilter
-#from .filters import  ContainerFilter, SampleFilter #UserFilter,
-
-# Create your views here.
-
-
-
-
-
-
-
-
 #stores
 def allstore(request):
     store = Store.objects
@@ -220,3 +205,69 @@ def editstorage(request, pk):
     else:
         form = StorageForm(instance=post)
     return render(request, 'storage/create_storage.html', {'form': form})
+
+
+#filters
+##from django.contrib.auth.models import User
+#from .filters import ContainerFilter
+#from .filters import  ContainerFilter, SampleFilter #UserFilter,
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import render
+from .filters import ContainerFilter #, SampleFilter
+
+def containersearch2(request):
+    contact_list = Container.objects.all()
+    paginator = Paginator(contact_list, 25) # Show 25 Container per page
+    page = request.GET.get('page')
+    Container = paginator.get_page(page)
+    return render(request, 'base.html', {'Container': Container})
+
+def containersearch(request):
+    container_list = Container.objects.all()
+    container_filter = ContainerFilter(request.GET, queryset=container_list)
+    return render(request, 'search/container_filter.html', {'filter': container_filter})
+
+def editcontainersearch(request, pk):
+    post = get_object_or_404(Container, pk=pk)
+    if request.method == "POST":
+        form = ContainerForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('containersearch')
+            #, pk=post.pk)
+    else:
+        form = ContainerForm(instance=post)
+    return render(request, 'container/create_container.html', {'form': form})
+
+#filter
+#def samplesearch(request):
+#    sample_list = Samples.objects.all()[:10]
+#    sample_filter = SampleFilter(request.GET, queryset=sample_list)
+    #paginate_by = 10
+#    return render(request, 'search/sample_list.html', {'filter': sample_filter})
+
+#pagination
+#def listing(request):
+#    sample_list = Samples.objects.all()
+#    paginator = Paginator(sample_list, 10) # Show 25 Container per page
+#    page = request.GET.get('page')
+#    samples = paginator.get_page(page)
+#    return render(request, 'search/page.html', {'samples': samples})
+
+##filters and pagination
+
+
+
+
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+#from django.shortcuts import render
+
+def containerpage(request):
+    contact_list = Container.objects.all()
+    paginator = Paginator(contact_list, 25) # Show 25 Container per page
+    page = request.GET.get('page')
+    Container = paginator.get_page(page)
+    return render(request, 'container_page.html', {'Container': Container})

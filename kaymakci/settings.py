@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     #plugings
     'widget_tweaks',
     'django_schemas',
-    #'django_filters',
+    'django_filters',
     #Installed apps
     'django.contrib.admin',
     'django.contrib.auth',
