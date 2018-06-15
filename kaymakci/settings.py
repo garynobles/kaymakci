@@ -77,7 +77,7 @@ DATABASES = {
             'OPTIONS': {
                 'options': '-c search_path=default,public'
             },
-        'NAME': 'django',
+        'NAME': 'gygaia',
         'USER':'Gerrit',
         'PASSWORD':'Gnob2009',
     },
@@ -87,7 +87,7 @@ DATABASES = {
             'OPTIONS': {
                 'options': '-c search_path=samples,public'
             },
-        'NAME': 'django',
+        'NAME': 'gygaia',
         'USER':'Gerrit',
         'PASSWORD':'Gnob2009',
     },

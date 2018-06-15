@@ -18,9 +18,6 @@ class Storage(models.Model):
     #user = models.CharField(max_length=200, default="Gygaia")
     #datestamp = models.DateTimeField(auto_now=True)
 
-    #def __unicode__(self):
-        #return self.store_id
-
     def __str__(self):
         return self.store_name
 
@@ -49,11 +46,8 @@ class Store(models.Model):
     #user = models.CharField(max_length=200, default="Gygaia")
     #datestamp = models.DateTimeField(auto_now=True)
 
-    #def __unicode__(self):
-        #return self.store_id
-
-    #def __str__(self):
-        #return self.store_name
+    def __str__(self):
+        return self.store_name
 
     class Meta():
         managed=False
@@ -71,9 +65,6 @@ class Location(models.Model):
     location_name = models.CharField(max_length=100, blank=True, null=True)
 
     #ALTER TABLE samples."location" ADD CONSTRAINT fk_location_store FOREIGN KEY ( store_id ) REFERENCES samples.store( store_id );
-
-    #def __unicode__(self):
-        #return self.location_id
 
     def __str__(self):
         return self.location_name
@@ -101,11 +92,8 @@ class Container(models.Model):
     sample_id = models.IntegerField(blank=True, null=True)
     current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
 
-    #def __unicode__(self):
-        #return self.container_id
-
-    #def __str__(self):
-        #return self.container_name
+    def __str__(self):
+        return self.container_name
 
     class Meta():
         managed=False
@@ -153,11 +141,8 @@ class Samples(models.Model):
 
     #sample_id = models.AutoField(unique=True)
 
-    #def __unicode__(self):
-        #return self.sample_id
-
-    #def __int__(self):
-        #return self.sample_number
+    def __int__(self):
+        return self.sample_number
 
     class Meta:
         db_table = 'samples\".\"samples'
@@ -165,32 +150,3 @@ class Samples(models.Model):
         managed = False
         verbose_name_plural = "samples"
         #unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
-
-
-
-
-# Create your models here.
-class Storage(models.Model):
-    #id = models.IntegerField(default=0)
-    store_id = models.AutoField(primary_key=True)
-    store_name = models.CharField(max_length=200, default='', blank=True, null=True)
-    address_1 = models.CharField(max_length=200, default='', blank=True, null=True)
-    address_2 = models.CharField(max_length=200, default='', blank=True, null=True)
-    region = models.CharField(max_length=200, default='', blank=True, null=True)
-    city = models.CharField(max_length=200, default='', blank=True, null=True)
-    zip = models.CharField(max_length=200, default='', blank=True, null=True)
-    country = models.CharField(max_length=200, default="Turkey")
-    #user = models.CharField(max_length=200, default="Gygaia")
-    #datestamp = models.DateTimeField(auto_now=True)
-
-    #def __unicode__(self):
-        #return self.store_id
-
-    def __str__(self):
-        return self.store_name
-
-    class Meta():
-        managed=False
-        db_table = 'samples\".\"store'
-        #ordering = ["store_name"]
-        verbose_name_plural = "stores"
