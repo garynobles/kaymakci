@@ -49,9 +49,9 @@ class Store(models.Model):
     created_by = models.CharField(max_length=200)
     #created_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     created_timestamp = models.DateTimeField(auto_now_add=True)
-    modified_by = models.CharField(max_length=200, default="user_not_defined")
+    modified_by = models.CharField(max_length=200,editable=True)
     modified_timestamp = models.DateTimeField(auto_now=True)
-
+    #default="user_not_defined"
 
 
 
