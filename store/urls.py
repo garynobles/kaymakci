@@ -46,7 +46,7 @@ urlpatterns = [
     #url(r'^container/search/$', views.containerfilterpage, name='containerfilterpage'),
 
     #pagination only
-
+    url(r'^users/page/$', views.index, name='index'),
     #filtering only
 
 
@@ -55,4 +55,9 @@ urlpatterns = [
     url(r'^container/page/$', views.containerpage, name='containerpage'),
 
     url(r'^samples/listing/$', views.listing, name='listing'),
+
+
+
+
+    url(r'^create/$', views.createstore, name='createstore'),
 ]

@@ -8,6 +8,11 @@ from . import filters
 
 #https://tutorial.djangogirls.org/en/django_forms/
 
+#https://tutorial.djangogirls.org/en/django_forms/
+from django.contrib.auth.models import User
+
+
+
 #stores
 def allstore(request):
     store = Store.objects
@@ -19,16 +24,17 @@ def detailstore(request, store_id):
 
 def createstore(request):
     if request.method == "POST":
-        form = StoreForm(request.POST)
+        form = StorageForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            #post.user = request.user
-            #post.datetime = datetime.datetime.now()
+            post.created_by = request.user
+            post.datetime = datetime.datetime.now()
+            
 
             post.save()
-            return redirect('allstore')
+            return redirect('allstorage')
     else:
-        form = StoreForm()
+        form = StorageForm()
     return render(request, 'store/create_store.html', {'form': form})
 
 def editstore(request, pk):
@@ -258,6 +264,30 @@ def editcontainersearch(request, pk):
 
 #from django.shortcuts import render
 # #, SampleFilter
+
+
+#from django.core.paginator import Paginator
+
+def index(request):
+    user_list = User.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(user_list, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+    return render(request, 'search/user_list.html', { 'users': users })
+
+
+
+
+
+
+
 
 
 def containerpage(request):
