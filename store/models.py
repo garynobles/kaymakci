@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -15,8 +16,10 @@ class Storage(models.Model):
     city = models.CharField(max_length=200, default='', blank=True, null=True)
     zip = models.CharField(max_length=200, default='', blank=True, null=True)
     country = models.CharField(max_length=200, default="Turkey")
-    #user = models.CharField(max_length=200, default="Gygaia")
-    #datestamp = models.DateTimeField(auto_now=True)
+    created_by = models.CharField(max_length=200, default="user_not_defined")
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+    modified_by = models.CharField(max_length=200, default="user_not_defined")
+    modified_timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.store_name
@@ -43,8 +46,15 @@ class Store(models.Model):
     city = models.CharField(max_length=200, default='')
     zip = models.CharField(max_length=200, default='')
     country = models.CharField(max_length=200, default="Turkey")
-    #user = models.CharField(max_length=200, default="Gygaia")
-    #datestamp = models.DateTimeField(auto_now=True)
+    created_by = models.CharField(max_length=200)
+    #created_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+    modified_by = models.CharField(max_length=200, default="user_not_defined")
+    modified_timestamp = models.DateTimeField(auto_now=True)
+
+
+
+
 
     def __str__(self):
         return self.store_name
@@ -150,3 +160,23 @@ class Samples(models.Model):
         managed = False
         verbose_name_plural = "samples"
         #unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
+
+#to track who does what
+class Tracking(models.Model):
+    #title = models.CharField(max_length=255)
+    #pub_date = models.DateTimeField()
+    #body = models.TextField()
+    #image = models.ImageField(upload_to='images/' )
+    user = models.CharField(max_length=255)
+    create_date = models.DateTimeField()
+    modify_date = models.DateTimeField()
+
+
+    def __str__(self):
+        return self.title
+
+    def summary(self):
+        return self.body[:100]
+
+    def pub_date_pretty(self):
+        return self.create_date.strftime('%b %e %Y')

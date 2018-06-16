@@ -66,8 +66,9 @@ class StorageForm(forms.ModelForm):
         'address_1',
         'address_2',
         'region',
+        'zip',
         'city',
-        'country'
+        'country',
         )
 
 class StoreForm(forms.ModelForm):
@@ -81,6 +82,7 @@ class StoreForm(forms.ModelForm):
         'address_1',
         'address_2',
         'region',
+        'zip',
         'city',
         'country'
         )
