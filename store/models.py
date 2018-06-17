@@ -20,6 +20,8 @@ class Storage(models.Model):
     created_timestamp = models.DateTimeField(auto_now_add=True)
     modified_by = models.CharField(max_length=200, default="user_not_defined")
     modified_timestamp = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='images/' )
+    orderby = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.store_name
@@ -27,7 +29,7 @@ class Storage(models.Model):
     class Meta():
         managed=False
         db_table = 'samples\".\"store'
-        #ordering = ["store_name"]
+        ordering = ["orderby"]
         verbose_name_plural = "stores"
 
 
@@ -52,6 +54,8 @@ class Store(models.Model):
     modified_by = models.CharField(max_length=200,editable=True)
     modified_timestamp = models.DateTimeField(auto_now=True)
     #default="user_not_defined"
+    image = models.ImageField(upload_to='images/' )
+    orderby = models.IntegerField(blank=True, null=True)
 
 
 
@@ -62,7 +66,7 @@ class Store(models.Model):
     class Meta():
         managed=False
         db_table = 'samples\".\"store'
-        #ordering = ["store_name"]
+        ordering = ["orderby"]
         verbose_name_plural = "stores"
 
 class Location(models.Model):

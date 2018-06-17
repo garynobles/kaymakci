@@ -6,7 +6,6 @@ from . import views
 urlpatterns = [
     #store
     path('store/', views.allstore, name='allstore'),
-
     path('<int:store_id>/', views.detailstore, name='detailstore'),
 
     url(r'^createstore/$', views.createstore, name='createstore'),
