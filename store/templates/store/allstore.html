@@ -4,16 +4,18 @@
   <div class="album py-5 ">
     <div class="row">
       {% for store in store.all %}
-      <div class="col-md-4">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-          <!--div class="card-header">{{ store.store_name }}</div-->
-          <div class="card-body"  style="height: 230px;">
-            <h5 class="card-title text-center">{{ store.store_name }}</h5>
-            <img class="card-img-top p-3" src="{{ store.image.url }}" /></a>
-            <p class="card-text" style = "font-size:0.7em;">{{ store.address_1 }} {{ store.address_2 }} {{ store.city }} {{ store.region }} {{ store.zip }} {{ store.country }}</p>
+      <a class="text-light" href="{% url 'detailstore' store.store_id %}">
+        <div class="col-md-4">
+          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <!--div class="card-header">{{ store.store_name }}</div-->
+            <div class="card-body"  style="height: 230px;">
+              <h5 class="card-title text-center">{{ store.store_name }}</h5>
+              <img class="card-img-top p-3" src="{{ store.image.url }}" /></a>
+              <p class="card-text" style = "font-size:0.7em;">{{ store.address_1 }} {{ store.address_2 }} {{ store.city }} {{ store.region }} {{ store.zip }} {{ store.country }}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
   </div>
