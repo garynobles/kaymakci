@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, render_to_response, redi
 from store.models import Store, Container, Location,  Samples, Storage
 import datetime
 from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesForm
-from .filters import ContainerFilter
+from .filters import ContainerFilter, SamplesFilter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from . import filters
 
@@ -223,6 +223,11 @@ def containersearch(request):
     container_filter = ContainerFilter(request.GET, queryset=container_list)
     return render(request, 'search/container_filter.html', {'filter': container_filter})
 
+def samplesearch(request):
+    sample_list = Samples.objects.all()
+    sample_filter = SamplesFilter(request.GET, queryset=sample_list)
+    return render(request, 'search/sample_filter.html', {'filter': sample_filter})
+
 def editcontainersearch(request, pk):
     post = get_object_or_404(Container, pk=pk)
     if request.method == "POST":
@@ -237,6 +242,21 @@ def editcontainersearch(request, pk):
     else:
         form = ContainerForm(instance=post)
     return render(request, 'container/create_container.html', {'form': form})
+
+def editsamplesearch(request, pk):
+    post = get_object_or_404(Samples, pk=pk)
+    if request.method == "POST":
+        form = SamplesForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('samplesearch')
+            #, pk=post.pk)
+    else:
+        form = SamplesForm(instance=post)
+    return render(request, 'samples/create_sample.html', {'form': form})
 
 #filter
 #def samplesearch(request):

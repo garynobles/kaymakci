@@ -12,17 +12,28 @@
   </a>
 
   <div class="row">
+
     {% for container in container.all %}
+    <a class="text-light" href="{% url 'detailcontainer' container.container_id %}">
+
     <div class="col-md-4">
-      <a href="{% url 'detailcontainer' container.container_id %}">
-        <div class="card mb-4 box-shadow">
-          <img class="card-img-top" src="" />
-          <div class="card-body">
-            <p class="card-text text-center">{{ container.container_name }}</p>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <!--div class="card-header">{{ store.store_name }}</div-->
+        <div class="card-body"  style="height: 230px;">
+          <h5 class="card-title text-center">{{ container.container_name }}</h5>
+          <img class="card-img-top p-3" src="{{ store.image.url }}" /></a>
+          <div class="card-text" style = "font-size:0.7em;">
+            <ul>
+            <li>  Container Type: {{ container.container_type }} </li>
+            <li>Container Location?: {{ container.current_location_tmp }}</li>
+            <li>Container Location: {{container.location_id.location_name}}</li>
+          </ul>
           </div>
-        </a>
+        </div>
       </div>
-</div>
+    </div>
+  </a>
+
       {% endfor %}
 
   </div>
