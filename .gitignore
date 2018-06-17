@@ -16,3 +16,5 @@ store/__pycache__/
 jobs/migrations/__pycache__/
 
 store/migrations/__pycache__/
+
+kaymakci/settings\.py
