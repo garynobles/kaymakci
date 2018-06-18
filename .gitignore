@@ -18,3 +18,9 @@ jobs/migrations/__pycache__/
 store/migrations/__pycache__/
 
 kaymakci/settings\.py
+
+blog/migrations/0001_initial\.py
+
+jobs/migrations/
+
+store/migrations/
