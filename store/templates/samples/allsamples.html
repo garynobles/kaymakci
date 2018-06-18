@@ -14,17 +14,29 @@
     </div>
   </section>
   <div class="row">
-    {% for samples in samples.all|slice:"1000:1012" %}
+    {% for samples in samples.all %}
+<!-- |slice:":10" -->
+    <a class="text-light" href="{% url 'detailsamples' samples.sample_id %}">
     <div class="col-md-4">
-      <a href="{% url 'detailsamples' samples.sample_id %}">
-        <div class="card mb-4 box-shadow">
-          <img class="card-img-top" src="" />
-          <div class="card-body">
-            <p class="card-text text-center">{{ samples.sample_id }}: {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</p>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <!--div class="card-header">{{ store.store_name }}</div-->
+        <div class="card-body"  style="height: 230px;">
+          <h5 class="card-title text-center"> {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</h5>
+          <img class="card-img-top p-3" src="{{ store.image.url }}" /></a>
+          <div class="card-text" style = "font-size:0.7em;">
+            <ul>
+
+            <li>Sample Identifier: {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</li>
+
+          </ul>
           </div>
-        </a>
+        </div>
       </div>
-</div>
+    </div>
+  </a>
+
+
+
       {% endfor %}
 
   </div>

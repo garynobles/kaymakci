@@ -15,214 +15,221 @@
         </span></a>
       </div>
     </div>
-<div>
-    {{ samples.sample_id }}: {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}
+    <div>
+      {{ samples.sample_id }}: {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}
     </div>
-<p>sample_id:{{ samples.sample_id }} sample_number:{{ samples.sample_id }} container:{{ samples.container_id.container_id }} container name:{{ samples.container_id.container_name }} container type:{{ samples.container_id.container_type }}</p>
-
-        <div class="row">
-            <div class="col-md-10 mx-auto">
-                <form>
-                    <div class="form-group row">
-                        <div class="col-sm-3">
-                            <label for="inputFirstname">Sample Number</label>
-                            <input type="text" class="form-control" id="inputFirstname" placeholder="{{ samples.sample_number }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputLastname">Area Easting</label>
-                            <input type="text" class="form-control" id="inputLastname" placeholder="{{ samples.area_easting }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputAddressLine1">Area Northing</label>
-                            <input type="text" class="form-control" id="inputAddressLine1" placeholder="{{ samples.area_northing }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputAddressLine2">Context Number</label>
-                            <input type="text" class="form-control" id="inputAddressLine2" placeholder="{{ samples.context_number }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3">
-                            <label for="inputCity">Material</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="{{ samples.material }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputState">Specific Material</label>
-                            <input type="text" class="form-control" id="inputState" placeholder="{{ samples.specific_material }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputPostalCode">Exterior Colour Hue</label>
-                            <input type="text" class="form-control" id="inputPostalCode" placeholder="{{ samples.exterior_color_hue }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Exterior Colour Lightness Value</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.exterior_color_lightness_value }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-sm-3">
-                          <label for="inputWebsite">Exterior Colour Chroma</label>
-                          <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.exterior_color_chroma }}">
-                      </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Interior Colour Hue</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.interior_color_hue }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Interior Colour Lightnes Value</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.interior_color_lightness_value }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Interior Colour Chroma</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.interior_color_chroma }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Weight Kilos</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.weight_kilograms }}">
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Description</label>
-                            <textarea class="form-control" id="inputContactNumber" placeholder="">{{ samples.sample_description }}</textarea>
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Category</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.category }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Subcategory</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.subcategory }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Count</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.count }}">
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Current Location</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.current_location }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Recovery Type</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.recovery_type }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Problems</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.problems }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Image Files</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.image_files }}">
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">3d Files</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.3d_files }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Chronology</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.chronology }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Analysis Request</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.analysis_request }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Detailed Sample Description</label>
-                            <textarea class="form-control" id="inputWebsite" placeholder="">{{ samples.detailed_sample_description }}</textarea>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Bereaucratic Status</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.bureaucratic_status }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Subjective Significance</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.subjective_significance }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Bureaucratic Status</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.bureaucratic_status }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">??Subjective Significance</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.subjective_significance }}">
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="inputContactNumber">Museum Inventory Number</label>
-                            <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.museum_inventory_number }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">?Count?</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.count }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="inputWebsite">Container ID</label>
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.container_id }}">
-                        </div>
-                    </div>
-
-
-
-
-
-                </form>
+    
+    <a href="{% url 'detailcontainer' samples.container_id.container_id %}">
+    <ul>
+      <li>sample_id:{{ samples.sample_id }} sample_number:{{ samples.sample_id }} </li>
+      <li>container:{{ samples.container_id.container_id }} </li>
+      <li>container name:{{ samples.container_id.container_name }} </li>
+      <li>container type:{{ samples.container_id.container_type }}</li>
+    </ul>
+  </a>
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <form>
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="inputFirstname">Sample Number</label>
+              <input type="text" class="form-control" id="inputFirstname" placeholder="{{ samples.sample_number }}">
             </div>
-        </div>
+            <div class="col-sm-3">
+              <label for="inputLastname">Area Easting</label>
+              <input type="text" class="form-control" id="inputLastname" placeholder="{{ samples.area_easting }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputAddressLine1">Area Northing</label>
+              <input type="text" class="form-control" id="inputAddressLine1" placeholder="{{ samples.area_northing }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputAddressLine2">Context Number</label>
+              <input type="text" class="form-control" id="inputAddressLine2" placeholder="{{ samples.context_number }}">
+            </div>
+          </div>
+          <div class="form-group row">
+
+
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="inputCity">Material</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="{{ samples.material }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputState">Specific Material</label>
+              <input type="text" class="form-control" id="inputState" placeholder="{{ samples.specific_material }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputPostalCode">Exterior Colour Hue</label>
+              <input type="text" class="form-control" id="inputPostalCode" placeholder="{{ samples.exterior_color_hue }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Exterior Colour Lightness Value</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.exterior_color_lightness_value }}">
+            </div>
+          </div>
+          <div class="form-group row">
+
+
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="inputWebsite">Exterior Colour Chroma</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.exterior_color_chroma }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Interior Colour Hue</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.interior_color_hue }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">Interior Colour Lightnes Value</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.interior_color_lightness_value }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Interior Colour Chroma</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.interior_color_chroma }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-sm-3">
+              <label for="inputWebsite">Weight Kilos</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.weight_kilograms }}">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Description</label>
+              <textarea class="form-control" id="inputContactNumber" placeholder="">{{ samples.sample_description }}</textarea>
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">Category</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.category }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Subcategory</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.subcategory }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-sm-3">
+              <label for="inputWebsite">Count</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.count }}">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Current Location</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.current_location }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">Recovery Type</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.recovery_type }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Problems</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.problems }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-sm-3">
+              <label for="inputWebsite">Image Files</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.image_files }}">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="inputContactNumber">3d Files</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.3d_files }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">Chronology</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.chronology }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Analysis Request</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.analysis_request }}">
+            </div>
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-sm-3">
+              <label for="inputWebsite">Detailed Sample Description</label>
+              <textarea class="form-control" id="inputWebsite" placeholder="">{{ samples.detailed_sample_description }}</textarea>
+            </div>
+
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Bereaucratic Status</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.bureaucratic_status }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">Subjective Significance</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.subjective_significance }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Bureaucratic Status</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.bureaucratic_status }}">
+            </div>
+          </div>
+          <div class="form-group row">
+
+            <div class="col-sm-3">
+              <label for="inputWebsite">??Subjective Significance</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.subjective_significance }}">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="inputContactNumber">Museum Inventory Number</label>
+              <input type="number" class="form-control" id="inputContactNumber" placeholder="{{ samples.museum_inventory_number }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">?Count?</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.count }}">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputWebsite">Container ID</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="{{ samples.container_id }}">
+            </div>
+          </div>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-      <!--div class="form-group">
-      <label for="area_northing" class="col-sm-3 control-label">Country</label>
-      <div class="col-sm-10">
-      <select class="input-medium bfh-countries" data-country="US"></select>
-    </div-->
-    <div class="col-sm-5">
-      <p>Last updated by {{ samples.user }}  {{ samples.datestamp }}</p>
-      <hr class=""/>
+        </form>
+      </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--div class="form-group">
+    <label for="area_northing" class="col-sm-3 control-label">Country</label>
+    <div class="col-sm-10">
+    <select class="input-medium bfh-countries" data-country="US"></select>
+  </div-->
+  <div class="col-sm-5">
+    <p>Last updated by {{ samples.user }}  {{ samples.datestamp }}</p>
+    <hr class=""/>
   </div>
+</div>
 </div>
 
 

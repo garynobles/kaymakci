@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'^container/edit/(?P<pk>\d+)/edit/$', views.editcontainer, name='editcontainer'),
     url(r'^container/search/edit/(?P<pk>\d+)/edit/$', views.editcontainersearch, name='editcontainersearch'),
 
+
+    url(r'^samples/search/edit/(?P<pk>\d+)/edit/$', views.editsamplesearch, name='editsamplesearch'),
+
     #storage
     url(r'^storage/$', views.allstorage, name='allstorage'),
     path('storage/<int:store_id>/', views.detailstorage, name='detailstorage'),
@@ -48,7 +51,7 @@ urlpatterns = [
     #url(r'^users/page/$', views.index, name='index'),
     #filtering only
 
-
+    url(r'^samples/filter/$', views.samplesearch, name='samplesearch'),
     url(r'^container/filter/$', views.containersearch, name='containersearch'),
 
     url(r'^container/page/$', views.containerpage, name='containerpage'),
