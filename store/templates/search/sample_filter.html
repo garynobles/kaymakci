@@ -7,30 +7,52 @@
           <h4 style="margin-top: 0">Filter</h4>
           <div class="row">
             <div class="form-group col-sm-4 col-md-3">
-              {{ filter.form.sample_number.label_tag }}
-              {% render_field filter.form.sample_number class="form-control" %}
+              {{ filter.form.area_easting.label_tag }}
+              {% render_field filter.form.area_easting class="form-control" %}
             </div>
             <div class="form-group col-sm-4 col-md-3">
-              {{ filter.form.samples_id.label_tag }}
-              {% render_field filter.form.samples_id class="form-control" %}
+              {{ filter.form.area_northing.label_tag }}
+              {% render_field filter.form.area_northing class="form-control" %}
             </div>
             <div class="form-group col-sm-4 col-md-3">
-              {{ filter.form.samples_name.label_tag }}
-              {% render_field filter.form.samples_name class="form-control" %}
-            </div>
-            <div class="form-group col-sm-4 col-md-3">
-              {{ filter.form.samples_type.label_tag }}
-              {% render_field filter.form.samples_type class="form-control" %}
+              {{ filter.form.context_number.label_tag }}
+              {% render_field filter.form.context_number class="form-control" %}
             </div>
             <div class="form-group col-sm-4 col-md-3">
               {{ filter.form.sample_id.label_tag }}
               {% render_field filter.form.sample_id class="form-control" %}
             </div>
-
             <div class="form-group col-sm-4 col-md-3">
-              {{ filter.form.current_location_tmp.label_tag }}
-              {% render_field filter.form.current_location_tmp class="form-control" %}
+              {{ filter.form.material.label_tag }}
+              {% render_field filter.form.material class="form-control" %}
             </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{ filter.form.specific_material.label_tag }}
+              {% render_field filter.form.specific_material class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{ filter.form.weight_kilograms.label_tag }}
+              {% render_field filter.form.weight_kilograms class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{ filter.form.category.label_tag }}
+              {% render_field filter.form.category class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{ filter.form.subcategory.label_tag }}
+              {% render_field filter.form.subcategory class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{ filter.form.count.label_tag }}
+              {% render_field filter.form.count class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{ filter.form.current_location.label_tag }}
+              {% render_field filter.form.current_location class="form-control" %}
+            </div>
+
+          
+
 
           </div>
           <button type="submit" class="btn btn-primary">
@@ -47,33 +69,44 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Location(id)</th>
+            <th>key</th>
+            <th>sample(id)</th>
             <th>Container(id)</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Sample(id)</th>
-            <th>Current Location (tmp)</th>
-            <th>actions</th>
+            <th>Sample Number</th>
+
+            <th>Material</th>
+            <th>Specific Material</th>
+            <th>Weight (kg)</th>
+            <th>Category</th>
+            <th>Sub Category</th>
+            <th>Count</th>
+            <th>Current Location</th>
 
 
 
           </tr>
         </thead>
         <tbody>
-          {% for sample in filter.qs %}
+          {% for samples in filter.qs %}
             <tr>
+              <td>{{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</td>
               <td>{{ samples.sample_id }}</td>
               <td>{{ samples.container_id }}</td>
-              <td>{{ samples.container_name }}</td>
-              <td>{{ samples.samples_type }}</td>
-              <td>{{ samples.sample_id }}</td>
-              <td>{{ samples.current_location_tmp }}</td>
+              <td>{{ samples.sample_number }}</td>
+              <td>{{ samples.material }}</td>
+              <td>{{ samples.specific_material }}</td>
+              <td>{{ samples.weight_kilograms }}</td>
+              <td>{{ samples.category }}</td>
+              <td>{{ samples.subcategory }}</td>
+              <td>{{ samples.count }}</td>
+              <td>{{ samples.current_location }}</td>
+
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
 
-              <a href="{% url 'editsamplesearch' pk=samples.pk %}" class="btn btn-primary" role="button">edit</a>
-              <a href="{% url 'editsamplesearch' pk=sample.spk %}" class="btn btn-secondary" role="button">take out</a>
-              <a href="{% url 'editsamplesearch' pk=samples.pk %}" class="btn btn-secondary" role="button">request</a>
+                  <a href="% url 'editsamplesearch' pk=samples.pk %" class="btn btn-primary" role="button">edit</a>
+                  <a href="% url 'editsamplesearch' pk=sample.pk %" class="btn btn-secondary" role="button">take out</a>
+                  <a href="% url 'editsamplesearch' pk=samples.pk %" class="btn btn-secondary" role="button">request</a>
               </div>
               </td>
 

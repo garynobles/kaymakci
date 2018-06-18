@@ -223,10 +223,7 @@ def containersearch(request):
     container_filter = ContainerFilter(request.GET, queryset=container_list)
     return render(request, 'search/container_filter.html', {'filter': container_filter})
 
-def samplesearch(request):
-    sample_list = Samples.objects.all()
-    sample_filter = SamplesFilter(request.GET, queryset=sample_list)
-    return render(request, 'search/sample_filter.html', {'filter': sample_filter})
+
 
 def editcontainersearch(request, pk):
     post = get_object_or_404(Container, pk=pk)
@@ -242,6 +239,11 @@ def editcontainersearch(request, pk):
     else:
         form = ContainerForm(instance=post)
     return render(request, 'container/create_container.html', {'form': form})
+
+def samplesearch(request):
+    sample_list = Samples.objects.all()
+    sample_filter = SamplesFilter(request.GET, queryset=sample_list)
+    return render(request, 'search/sample_filter.html', {'filter': sample_filter})
 
 def editsamplesearch(request, pk):
     post = get_object_or_404(Samples, pk=pk)
