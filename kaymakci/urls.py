@@ -12,6 +12,7 @@ urlpatterns = [
     path('', jobs.views.home, name='home'),
     path('blog/', include('blog.urls')),
     path('store/', include('store.urls')),
+    path('excavation/', include('excavation.urls')),
     #path('samples/', include('samples.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,4 +1,4 @@
-{% extends 'search/base.html' %}
+{% extends 'excavation/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
 
@@ -9,13 +9,10 @@
   <div class="well container">
     <h4 style="margin-top: 0">Filter</h4>
     <div class="row">
-
       <div class="form-group col-sm-4 col-md-3">
         {{ response.form.container_type.label_tag }}
         {% render_field response.container_type class="form-control" %}
       </div>
-
-
     </div>
     <button type="submit" class="btn btn-primary">
       <span class="glyphicon glyphicon-search"></span> Search
@@ -54,13 +51,16 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Location(id)</th>
-        <th>Container(id)</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Sample(id)</th>
-        <th>Current Location (tmp)</th>
-        <th>actions</th>
+        <th>ID</th>
+        <th>E.N.C</th>
+        <th>Context Type</th>
+        <th>Description</th>
+        <th>Deposition Interpretation</th>
+        <th>Subtable</th>
+        <th>Chronology</th>
+        <th>Chronology Source</th>
+        <th>Stratigraphic Narrative</th>
+        <th>Action</th>
 
 
 
@@ -70,16 +70,20 @@
       {% for paginator in response %}
 
       <tr>
-        <td>{{ paginator.location_id }}</td>
-        <td>{{ paginator.container_id }}</td>
-        <td>{{ paginator.container_name }}</td>
-        <td>{{ paginator.container_type }}</td>
-        <td>{{ paginator.sample_id }}</td>
-        <td>{{ paginator.current_location_tmp }}</td>
+        <td>{{ paginator.context_id }}</td>
+        <td>{{ paginator.area_easting }}.{{ paginator.area_northing}}.{{ paginator.context_number }}</td>
+
+        <td>{{ paginator.context_type }}</td>
+        <td>{{ paginator.description }}</td>
+        <td>{{ paginator.deposition_interpretation }}</td>
+        <td>{{ paginator.subtable }}</td>
+        <td>{{ paginator.chronology }}</td>
+        <td>{{ paginator.chronology_source }}</td>
+        <td>{{ paginator.stratigraphic_narrative }}</td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
 
-            <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-primary" role="button">edit</a>
+            <a href="{% url 'editcontextsearch' pk=paginator.pk %}" class="btn btn-primary" role="button">edit</a>
             <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-secondary" role="button">take out</a>
             <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-secondary" role="button">request</a>
           </div>
