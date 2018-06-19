@@ -20,7 +20,7 @@ class Storage(models.Model):
     created_timestamp = models.DateTimeField(auto_now_add=True)
     modified_by = models.CharField(max_length=200, default="user_not_defined")
     modified_timestamp = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='images/' )
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
     orderby = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
@@ -54,7 +54,7 @@ class Store(models.Model):
     modified_by = models.CharField(max_length=200,editable=True)
     modified_timestamp = models.DateTimeField(auto_now=True)
     #default="user_not_defined"
-    image = models.ImageField(upload_to='images/' )
+    image = models.ImageField(upload_to='images/icons/' )
     orderby = models.IntegerField(blank=True, null=True)
 
 
@@ -77,6 +77,8 @@ class Location(models.Model):
     location_type = models.CharField(max_length=100, blank=True, null=True)
     current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
     location_name = models.CharField(max_length=100, blank=True, null=True)
+    icon = models.ImageField(upload_to='images/icons/', blank=True, null=True) #these should become an individual table outside of the main db
+    orderby = models.IntegerField(blank=True, null=True)
 
     #ALTER TABLE samples."location" ADD CONSTRAINT fk_location_store FOREIGN KEY ( store_id ) REFERENCES samples.store( store_id );
 
@@ -86,7 +88,7 @@ class Location(models.Model):
     class Meta():
         managed=False
         db_table = 'samples\".\"location'
-        ordering = ["location_name"]
+        ordering = ["orderby"]
         verbose_name_plural = "locations"
 
 

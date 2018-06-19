@@ -316,7 +316,8 @@ def samplesearch(request):
 def containerpage(request):
     # BTW you do not need .all() after a .filter()
     # local_url.objects.filter(global_url__id=1) will do
-    filtered_qs = filters.ContainerFilter(request.GET,queryset=Container.objects.all()).qs
+    container_list = Container.objects.all()
+    filtered_qs = filters.ContainerFilter(request.GET, queryset=container_list).qs
     paginator = Paginator(filtered_qs, 10)
 
     page = request.GET.get('page')
@@ -326,7 +327,6 @@ def containerpage(request):
         response = paginator.page(1)
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
-
     return render(request,'search/container_filter.html',{'response': response})
     #store = Store.objects
     #return render(request, 'store/allstore.html', {'containerpage':containerpage})
