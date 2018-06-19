@@ -1,10 +1,10 @@
 
 from django import forms
-from .models import Contexts
+from .models import Context
 
 class ContextForm(forms.ModelForm):
     class Meta:
-        model = contexts
+        model = Context
         fields = (
         'context_id',
         'area_easting',

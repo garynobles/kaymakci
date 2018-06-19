@@ -4,7 +4,7 @@ from .models import Context
 from django.shortcuts import render, get_object_or_404, render_to_response, redirect
 
 import datetime
-#from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesForm
+from .forms import ContextForm
 from .filters import ContextFilter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from . import filters
@@ -39,20 +39,15 @@ def contextpage(request):
     #store = Store.objects
     #return render(request, 'store/allstore.html', {'containerpage':containerpage})
 
-def editcontext(request, pk):
-    post = get_object_or_404(context, pk=pk)
-    if request.method == "POST":
-        form = contextForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            #post.user = request.user
-            #post.datetime = datetime.datetime.now()
-            post.save()
-            return redirect('contextpage')
-            #, pk=post.pk)
-    else:
-        form = contextForm(instance=post)
-    return render(request, 'excavation/create_context.html', {'form': form})
+
+
+def detailcontext(request, context_id):
+    detailcontext = get_object_or_404(context, pk=context_id)
+    return render(request, 'excavation/detailcontext.html', {'context':detailcontext})
+
+#def createcontext(request):
+
+    #return render(request, '')
 
 def editcontextsearch(request, pk):
     post = get_object_or_404(Context, pk=pk)
@@ -67,13 +62,19 @@ def editcontextsearch(request, pk):
             #, pk=post.pk)
     else:
         form = ContextForm(instance=post)
-    return render(request, 'excavation/create_container.html', {'form': form})
+    return render(request, 'excavation/create_context.html', {'form': form})
 
-def detailcontext(request, context_id):
-    detailcontext = get_object_or_404(context, pk=context_id)
-    return render(request, 'excavation/detailcontext.html', {'context':detailcontext})
-
-def createcontext(request):
-
-
-    return render(request, '')
+def editcontext(request, pk):
+    post = get_object_or_404(context, pk=pk)
+    if request.method == "POST":
+        form = contextForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('contextpage')
+            #, pk=post.pk)
+    else:
+        form = contextForm(instance=post)
+    return render(request, 'excavation/create_context.html', {'form': form})
