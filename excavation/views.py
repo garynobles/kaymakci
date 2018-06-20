@@ -35,7 +35,7 @@ def contextpage(request):
         response = paginator.page(1)
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
-    return render(request,'excavation/context_page.html',{'response': response})
+    return render(request,'context/context_page.html',{'response': response})
     #store = Store.objects
     #return render(request, 'store/allstore.html', {'containerpage':containerpage})
 
@@ -43,7 +43,7 @@ def contextpage(request):
 
 def detailcontext(request, context_id):
     detailcontext = get_object_or_404(context, pk=context_id)
-    return render(request, 'excavation/detailcontext.html', {'context':detailcontext})
+    return render(request, 'context/detailcontext.html', {'context':detailcontext})
 
 #def createcontext(request):
 
@@ -62,7 +62,7 @@ def editcontextsearch(request, pk):
             #, pk=post.pk)
     else:
         form = ContextForm(instance=post)
-    return render(request, 'excavation/create_context.html', {'form': form})
+    return render(request, 'context/create_context.html', {'form': form})
 
 def editcontext(request, pk):
     post = get_object_or_404(context, pk=pk)
@@ -77,4 +77,4 @@ def editcontext(request, pk):
             #, pk=post.pk)
     else:
         form = contextForm(instance=post)
-    return render(request, 'excavation/create_context.html', {'form': form})
+    return render(request, 'context/create_context.html', {'form': form})

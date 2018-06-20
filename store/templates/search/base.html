@@ -24,19 +24,6 @@
   <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
-  <style CSS>
-  #topNav {
-    margin-bottom:0;
-  }
-</style>
-  <script>
-  /* affix the 2nd navbar after scroll past first navbar */
-$('#nav2').affix({
-    offset: {
-      top: 50
-    }
-});
-</script>
 
 </head>
 
@@ -65,6 +52,27 @@ $('#nav2').affix({
             <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
             <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
             <a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
+
+
+
+
+
+
+
+
+
+
+            <div class="dropdown show">
+              <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
+              <div class="dropdown-menu " aria-labelledby="samplesdropdown">
+                <a class="dropdown-item" href="{% url 'allsamples' %}">Samples</a>
+                <hr />
+                <a class="dropdown-item" href="#">Faunal</a>
+                <a class="dropdown-item" href="#">Conservation</a>
+                <a class="dropdown-item" href="#">Ceramics</a>
+                <a class="dropdown-item" href="#">Small Finds</a>
+              </div>
+            </div>
 
 
             <div class="dropdown show">
