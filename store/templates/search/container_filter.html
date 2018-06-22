@@ -11,13 +11,8 @@
     <div class="row">
 
       <div class="form-group col-sm-4 col-md-3">
-        a
-        {{ response.paginator.filtered_qs.container_type.label_tag }}
-        b
-        {% render_field response.paginator.filtered_qs.container_type.container_type class="form-control" %}
-        c
-        {{ filtered_qs.filters.container_type.label_tag }}
-        {% render_field filtered_qs.container_type %}
+        {{ response.form.container_type.label_tag }}
+        {% render_field response.container_type class="form-control" %}
       </div>
 
 

@@ -18,13 +18,10 @@
         </div>
 
         <div class="form-group col-sm-4 col-md-3">
+          Model.objects.filter(table_name__contains=what_you_want)
           {{ response.paginator.filtered_qs.form.container_type.label_tag }}
           {% render_field response.paginator.filtered_qs.container_type class="form-control" %}
         </div>
-
-
-
-
       </div>
       <button type="submit" class="btn btn-primary">
         <span class="glyphicon glyphicon-search"></span> Search

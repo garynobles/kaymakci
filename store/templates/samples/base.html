@@ -28,6 +28,32 @@
             <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
             <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
             <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
+            <a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
+
+
+
+
+
+
+            <div class="dropdown show">
+              <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
+              <div class="dropdown-menu " aria-labelledby="samplesdropdown">
+                <a class="dropdown-item" href="{% url 'allsamples' %}">Samples</a>
+                <hr />
+                <a class="dropdown-item" href="#">Faunal</a>
+                <a class="dropdown-item" href="#">Conservation</a>
+                <a class="dropdown-item" href="#">Ceramics</a>
+                <a class="dropdown-item" href="#">Small Finds</a>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
             <div class="dropdown show">
 
               <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

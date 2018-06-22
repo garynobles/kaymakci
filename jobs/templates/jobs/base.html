@@ -43,28 +43,58 @@
 
           <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
           <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
-          <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
-          
-          {% if user.is_group %}
-      user group - add in here drop downs based on the users credentials, eg, ceramics input only for ceramics is_group
-      keep accessible the ability to view/search all the data
-          {% endif %}
 
 
           <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user pr-2"></i>{{ user.get_username }}
-            </a>
-
-            <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+            <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
+            <div class="dropdown-menu " aria-labelledby="samplesdropdown">
+              <a class="dropdown-item" href="{% url 'allsamples' %}">Samples</a>
+              <hr />
+              
+              <a class="dropdown-item" href="#">Faunal</a>
+              <a class="dropdown-item" href="#">Ceramics</a>
+              <a class="dropdown-item" href="#">Small Finds</a>
+              <a class="dropdown-item" href="#">Soil</a>
+              <a class="dropdown-item" href="#">mud brick</a>
+              <a class="dropdown-item" href="#">lithics</a>
+              <a class="dropdown-item" href="#">carbon</a>
+              <a class="dropdown-item" href="#">Conservation</a>
             </div>
-
-
           </div>
+<a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
+
+<div class="dropdown show">
+  <a class="dropdown-toggle" href="{% url 'contextpage' %}" id="excavationdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Excavation</a>
+  <div class="dropdown-menu " aria-labelledby="excavationdropdown">
+    <a class="dropdown-item" href="{% url 'contextpage' %}">Excavation</a>
+    <hr />
+
+    <a class="dropdown-item" href="#">Context</a>
+    <a class="dropdown-item" href="#"></a>
+    <a class="dropdown-item" href="#"></a>
+    <a class="dropdown-item" href="#"></a>
+    <a class="dropdown-item" href="#"></a>
+    <a class="dropdown-item" href="#"></a>
+    <a class="dropdown-item" href="#"></a>
+    <a class="dropdown-item" href="#"></a>
+  </div>
+</div>
+
+
+
+
+
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-user pr-2"></i>{{ user.get_username }}
+  </a>
+  <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    <a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+  </div>
+</div>
 
           {% else %}
           <a href="{% url 'login'%}?next={{request.path}}">Login</a>
