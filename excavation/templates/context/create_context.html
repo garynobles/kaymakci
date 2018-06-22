@@ -1,0 +1,30 @@
+{% extends 'context/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container">
+    <h1>Context</h1>
+    <div class="col-sm-3">
+    <form method="POST" class="post-form">{% csrf_token %}
+        <!--  {{ form.as_p }}   -->
+        Container Name{{ form.context_id|add_class:"form-control"}}<br />
+        Container Type{{ form.area_easting|add_class:"form-control"}}<br />
+        Location ID{{ form.area_northing|add_class:"form-control"}}<br />
+
+        Location ID{{ form.context_number|add_class:"form-control"}}<br />
+        Location ID{{ form.context_type|add_class:"form-control"}}<br />
+        Location ID{{ form.description|add_class:"form-control"}}<br />
+        Location ID{{ form.deposition_interpretation|add_class:"form-control"}}<br />
+        Location ID{{ form.subtable|add_class:"form-control"}}<br />
+        Location ID{{ form.chronology|add_class:"form-control"}}<br />
+        Location ID{{ form.chronology_source|add_class:"form-control"}}<br />
+        Location ID{{ form.stratigraphic_narrative|add_class:"form-control"}}<br />
+
+
+      <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+<!--    |append_attr:"placeholder:Username"   -->
