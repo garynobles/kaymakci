@@ -16,6 +16,7 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('excavation/', include('excavation.urls')),
     path('spatial/', include('spatial.urls')),
+    path('spatial3d/', include('spatial3d.urls')),
     #path('samples/', include('samples.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

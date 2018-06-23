@@ -1,0 +1,110 @@
+{% extends 'spatial3d/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+
+
+
+
+
+<div class="container-fluid pt-3">
+  <div class="pagination">
+    <span class="step-links">
+      {% if response.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ response.previous_page_number }}">previous</a>
+      {% endif %}
+      <span class="current">
+        Page {{ response.number }} of {{response.paginator.num_pages}}.
+      </span>
+      {% if response.has_next %}
+      <a href="?page={{ response.next_page_number }}">next</a>
+      <a href="?page={{ response.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Photobatch</th>
+        <th>E.N.C</th>
+        <th>Aligned</th>
+        <th>Targets</th>
+        <th>Mesh</th>
+        <th>Texture</th>
+        <th>DEM</th>
+        <th>Orthomosaic</th>
+        <th>Export</th>
+        <th>Completed</th>
+
+        <th>actions</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for paginator in response %}
+
+      <tr>
+        <td>{{ paginator.photobatch_id }}-{{ paginator.prefix }}</td>
+        {% if paginator.folder_processed %}<td class="table-success">{% elif paginator.imported_photoscan %}<td class="table-warning">{% endif %}{{ paginator.area_easting }}.{{ paginator.area_northing }}.{{ paginator.context_number }}</td>
+
+
+
+
+        {% if paginator.aligned %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.aligned|yesno:"yes,no" }}</td>
+
+        {% if paginator.detected_targets %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.detected_targets|yesno:"yes,no"  }}</td>
+
+        {% if paginator.mesh %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.mesh|yesno:"yes,no"}}</td>
+
+        {% if paginator.texture %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.texture|yesno:"yes,no"  }}</td>
+        {% if paginator.dem %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.dem|yesno:"yes,no"  }}</td>
+        {% if paginator.orthomosaic %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.orthomosaic|yesno:"yes,no"  }}</td>
+        {% if paginator.export_dem_geodatabase %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.export_dem_geodatabase|yesno:"yes,no"  }}</td>
+        {% if paginator.folder_processed %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.folder_processed|yesno:"yes,no" }}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+
+            <a href="{% url 'editprocessing3d' pk=paginator.pk %}" class="btn btn-primary" role="button">edit</a>
+            <a href="% url 'detailprocessing3d' pk=paginator.pk %" class="btn btn-warning" role="button">details</a>
+            <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-secondary" role="button">assign</a>
+          </div>
+        </td>
+
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No data</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <span class="step-links">
+      {% if response.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ response.previous_page_number }}">previous</a>
+      {% endif %}
+      <span class="current">
+        Page {{ response.number }} of {{response.paginator.num_pages}}.
+      </span>
+      {% if response.has_next %}
+      <a href="?page={{ response.next_page_number }}">next</a>
+      <a href="?page={{ response.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
