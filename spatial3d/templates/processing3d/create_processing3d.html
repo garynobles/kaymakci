@@ -23,6 +23,12 @@
               <label for="inputFirstname">Prefix</label>
               {% render_field form.prefix class="form-control" %}
             </div>
+			
+			<div class="">
+              <label for="inputFirstname">Processed By</label>
+              {% render_field form.created_by class="form-control" %}
+            </div>
+			
           </div>
         </div>
 
@@ -257,6 +263,8 @@
             </div>
           </div>
         </div>
+		
+
 		
 <button type="submit" class="save btn btn-default float-right">Save</button>
       </form>

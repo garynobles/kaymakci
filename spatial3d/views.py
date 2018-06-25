@@ -11,7 +11,7 @@ from . import filters
 def processing3dpage(request):
     processing3d_list = Processing3d.objects.all()
     filtered_qs = filters.Processing3dFilter(request.GET, queryset=processing3d_list).qs
-    paginator = Paginator(filtered_qs, 10)
+    paginator = Paginator(filtered_qs, 8)
 
     page = request.GET.get('page')
     try:
@@ -48,9 +48,9 @@ def createprocessing3d(request):
         form = Processing3dForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            #post.created_by = request.user
+            post.created_by = request.user
             #post.modified_by = request.user
-            #post.datetime = datetime.datetime.now()
+            post.datetime = datetime.datetime.now()
             post.save()
             return redirect('processing3dpage')
     else:

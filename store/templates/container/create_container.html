@@ -17,6 +17,26 @@
   </div>
 </div>
 
+
+<div class="container">
+    <h1>Container</h1>
+    <div class="col-sm-3">
+    <form method="POST" class="post-form">{% csrf_token %}
+        <!--  {{ form.as_p }}   -->
+        Container Name{{ form.container_id.sample_id|add_class:"form-control"}}<br />
+        Container Type{{ form.container_type|add_class:"form-control"}}<br />
+        Location ID{{ form.location_id|add_class:"form-control"}}<br />
+
+
+        Current Location TMP{{ form.current_location_tmp|add_class:"form-control disabled" |attr:"disabled"}}<br />
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  </div>
+</div>
+
+
+
 {% endblock %}
+
 
 <!--    |append_attr:"placeholder:Username"   -->

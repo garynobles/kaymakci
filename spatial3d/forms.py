@@ -56,6 +56,6 @@ class Processing3dForm(forms.ModelForm):
         'folder_processed',
         'processing_notes',
         #'image',
-        ##created_timestamp',
-        #'created_by'
+        #'created_timestamp',
+        'created_by'
         )
