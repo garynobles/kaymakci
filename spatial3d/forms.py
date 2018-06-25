@@ -6,7 +6,7 @@ class Processing3dForm(forms.ModelForm):
     class Meta:
         model = Processing3d
         fields = (
-        'id',
+        #'id',
         'photobatch_id',
         'prefix',
         'area_easting',
@@ -18,6 +18,7 @@ class Processing3dForm(forms.ModelForm):
         'processed_by',
         'camera_model',
         'imported_photoscan',
+		
         'aligned',
         'align_accuracy',
         'align_pair_selection',
@@ -33,7 +34,8 @@ class Processing3dForm(forms.ModelForm):
         'mesh_type',
         'mesh_face_count',
         'mesh_interpolation',
-        'texture',
+        
+		'texture',
         'texture_defaults',
         'dem',
         'dem_coordinate_system',
@@ -45,14 +47,15 @@ class Processing3dForm(forms.ModelForm):
         'export_points',
         'export_points_filename',
         'export_points_offsets',
-        'export_report_pdf',
+        
+		'export_report_pdf',
         'export_orthophoto',
         'export_dem',
         'export_dem_pixel_size',
         'export_dem_geodatabase',
         'folder_processed',
         'processing_notes',
-        'image',
-        #created_timestamp',
-        'created_by'
+        #'image',
+        ##created_timestamp',
+        #'created_by'
         )

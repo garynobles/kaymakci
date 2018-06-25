@@ -45,7 +45,7 @@ class Store(models.Model):
     modified_by = models.CharField(max_length=200,editable=True)
     modified_timestamp = models.DateTimeField(auto_now=True)
     #default="user_not_defined"
-    image = models.ImageField(upload_to='images/icons/' )
+    image = models.ImageField(upload_to='images/icons/', blank=True, null=True)
     orderby = models.IntegerField(blank=True, null=True)
 
 

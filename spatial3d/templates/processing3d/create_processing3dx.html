@@ -1,0 +1,19 @@
+{% extends 'processing3d/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container">
+    <h1>Store</h1>
+    <div class="col-sm-3">
+    <form method="POST" class="post-form">{% csrf_token %}
+        <!--  {{ form.as_p }}   -->
+
+        {{ form.detected_targets}}<br />
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  </div>
+
+
+</div>
+  {% endblock %}
