@@ -1,4 +1,4 @@
-{% extends 'spatial3d/base.html' %}
+{% extends 'processing3d/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
 
@@ -49,7 +49,7 @@
       {% for paginator in response %}
 
       <tr>
-        <td>{{ paginator.photobatch_id }}-{{ paginator.prefix }}</td>
+        <td><a href="{% url 'editprocessing3d' pk=paginator.pk %}">{{ paginator.photobatch_id }}-{{ paginator.prefix }}</a></td>
         {% if paginator.folder_processed %}<td class="table-success">{% elif paginator.imported_photoscan %}<td class="table-warning">{% endif %}{{ paginator.area_easting }}.{{ paginator.area_northing }}.{{ paginator.context_number }}</td>
 
 
@@ -71,9 +71,13 @@
 
             <a href="{% url 'editprocessing3d' pk=paginator.pk %}" class="btn btn-primary" role="button">edit</a>
             <a href="% url 'detailprocessing3d' pk=paginator.pk %" class="btn btn-warning" role="button">details</a>
-            <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-secondary" role="button">assign</a>
+
+
           </div>
+          <br /><span style = "font-size:0.7em;">{{ paginator.created_by }}</span>
+          <span style = "font-size:0.7em;">{{ paginator.created_timestamp }}</span>
         </td>
+
 
       </tr>
       {% empty %}

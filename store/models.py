@@ -2,10 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
-
-
-# Create your models here.
 class Storage(models.Model):
     #id = models.IntegerField(default=0)
     store_id = models.AutoField(primary_key=True)
@@ -32,13 +28,8 @@ class Storage(models.Model):
         ordering = ["orderby"]
         verbose_name_plural = "stores"
 
-
-
-
-
 #store
 class Store(models.Model):
-
     #id = models.IntegerField(default=0)
     store_id = models.AutoField(primary_key=True)
     store_name = models.CharField(max_length=200, default='')

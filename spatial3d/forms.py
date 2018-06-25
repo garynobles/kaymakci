@@ -51,5 +51,8 @@ class Processing3dForm(forms.ModelForm):
         'export_dem_pixel_size',
         'export_dem_geodatabase',
         'folder_processed',
-        'processing_notes'
+        'processing_notes',
+        'image',
+        #created_timestamp',
+        'created_by'
         )
