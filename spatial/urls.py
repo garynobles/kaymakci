@@ -5,7 +5,9 @@ from . import views
 
 urlpatterns = [
     #store
-    path('spatial/', views.allspatial, name='allspatial'),
+    #path('spatial/', views.allspatial, name='allspatial'),
+    url(r'^spatial/$', views.allspatial, name='allspatial'),
+    #path('', views.allblogs, name='allblogs'),
 #    path('<int:store_id>/', views.detailstore, name='detailstore'),
 
 #    url(r'^createstore/$', views.createstore, name='createstore'),

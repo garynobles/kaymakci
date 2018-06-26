@@ -25,18 +25,21 @@ class WorldBorder(models.Model):
     def __str__(self):
         return self.name
 
+unit_srid = 4326
+#32635
+
 class Trench_99_528(models.Model):
     gid = models.AutoField(primary_key=True)
-    contextkey = models.CharField(primary_key=True, max_length=20)
-    type = models.CharField(max_length=50)
-    shape_leng = models.IntegerField()
-    shape_area = models.IntegerField()
-    phase = models.IntegerField()
-    geom = models.MultiPolygonField()
+    #contextkey = models.CharField(primary_key=False, max_length=20)
+    #type = models.CharField(max_length=50)
+    #shape_leng = models.IntegerField()
+    #shape_area = models.IntegerField()
+    #phase = models.IntegerField()
+    geom = models.MultiPolygonField(srid=unit_srid)
 
     class Meta:
         #unique_together = (("area_easting", "area_northing", "context_number"))
         db_table = 'excavation\".\"gis_99_526_polygon'
         managed = False
         #ordering = ["container_name"]
-        verbose_name_plural = "Trench 99 526"
+        #verbose_name_plural = "Trench 99 526"
