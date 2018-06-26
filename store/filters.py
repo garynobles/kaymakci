@@ -10,7 +10,7 @@ class ContainerFilter(django_filters.FilterSet):
         'container_name',
         'container_type',
         'location_id',
-        'sample_id',
+        #'sample_id',
         'current_location_tmp',
         ]
 
@@ -18,7 +18,7 @@ class SamplesFilter(django_filters.FilterSet):
     class Meta:
         model = Samples
         fields = [
-        'sample_id',
+        #'sample_id',
         'area_easting',
         'area_northing',
         'context_number',
@@ -48,7 +48,7 @@ class SamplesFilter(django_filters.FilterSet):
         'subjective_significance',
         'museum_inventory_number',
         'bureaucratic_status_identifier',
-        'container_id',
+        #'container_id',
 
 
     ]

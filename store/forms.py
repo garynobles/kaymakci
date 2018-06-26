@@ -6,7 +6,7 @@ class SamplesForm(forms.ModelForm):
     class Meta:
         model = Samples
         fields = (
-        'sample_id',
+        #'sample_id',
         'area_easting',
         'area_northing',
         'context_number',
@@ -36,7 +36,7 @@ class SamplesForm(forms.ModelForm):
         'subjective_significance',
         'museum_inventory_number',
         'bureaucratic_status_identifier',
-        'container_id'
+        #'container_id'
 
         )
 
@@ -96,6 +96,6 @@ class ContainerForm(forms.ModelForm):
         'container_name',
         'container_type',
         'location_id',
-        'sample_id',
+        #'sample_id',
         'current_location_tmp'
         )

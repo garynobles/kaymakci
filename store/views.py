@@ -98,8 +98,25 @@ def editlocation(request, pk):
 
 #allcontainers
 def allcontainer(request):
-    allcontainer = Container.objects
-    return render(request, 'container/allcontainer.html', {'container':allcontainer})
+    #allcontainer = Container.objects
+    #return render(request, 'container/allcontainer.html', {'container':allcontainer})
+
+    # BTW you do not need .all() after a .filter()
+    # local_url.objects.filter(global_url__id=1) will do
+    container_list = Container.objects.all()
+    filtered_qs = filters.ContainerFilter(request.GET, queryset=container_list).qs
+    paginator = Paginator(filtered_qs, 10)
+
+    page = request.GET.get('page')
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    return render(request,'container/allcontainer.html',{'response': response})
+    #store = Store.objects
+    #return render(request, 'store/allstore.html', {'containerpage':containerpage})
 
 def detailcontainer(request, container_id):
     detailcontainer = get_object_or_404(Container, pk=container_id)

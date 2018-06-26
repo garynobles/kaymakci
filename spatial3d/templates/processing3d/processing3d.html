@@ -32,6 +32,7 @@
         <th>E.N.C</th>
         <th>Aligned</th>
         <th>Targets</th>
+        <th>Pointcloud</th>
         <th>Mesh</th>
         <th>Texture</th>
         <th>DEM</th>
@@ -58,6 +59,8 @@
         {% if paginator.aligned %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.aligned|yesno:"yes,no" }}</td>
 
         {% if paginator.detected_targets %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.detected_targets|yesno:"yes,no"  }}</td>
+
+        {% if paginator.dense_pointcloud %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.dense_pointcloud|yesno:"yes,no"}}</td>
 
         {% if paginator.mesh %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ paginator.mesh|yesno:"yes,no"}}</td>
 

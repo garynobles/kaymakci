@@ -24,7 +24,7 @@
     <div class="col-sm-3">
     <form method="POST" class="post-form">{% csrf_token %}
         <!--  {{ form.as_p }}   -->
-        Container Name{{ container.container_id.sample_number|add_class:"form-control"}}<br />
+        Container Name{{ container.container_id|add_class:"form-control"}}<br />
         Container Type{{ form.container_type|add_class:"form-control"}}<br />
         Location ID{{ form.location_id|add_class:"form-control"}}<br />
 

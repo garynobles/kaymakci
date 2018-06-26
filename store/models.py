@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.db.models.deletion import CASCADE, DO_NOTHING
+from compositefk.fields import (
+    CompositeForeignKey,
+    RawFieldValue,
+    LocalFieldValue,
+    CompositeOneToOneField,
+    FunctionBasedFieldValue,
+)
+
 # Create your models here.
 class Storage(models.Model):
     #id = models.IntegerField(default=0)
@@ -92,12 +101,18 @@ class Location(models.Model):
 
 class Container(models.Model):
     location_id = models.ForeignKey(Location, db_column='location_id', on_delete = models.PROTECT)
-    container_id = models.AutoField(primary_key=True)
+    container_id = models.IntegerField(primary_key=True)
     container_name = models.CharField(max_length=50, blank=True, null=True)
     container_type = models.CharField(max_length=50, blank=True, null=True)
     #location_id = models.IntegerField(blank=True, null=True)
-    sample_id = models.IntegerField(blank=True, null=True)
+    #sample_id = models.IntegerField(blank=True, null=True)
     current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
+    area_easting = models.IntegerField()
+    area_northing = models.IntegerField()
+    context_number = models.IntegerField()
+    sample_number = models.IntegerField()
+
+
 
     def __str__(self):
         return self.container_name
@@ -107,18 +122,20 @@ class Container(models.Model):
         db_table = 'samples\".\"container'
         ordering = ["container_name"]
         verbose_name_plural = "containers"
+        unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
+
 
 class Samples(models.Model):
 
-    container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
-    sample_id = models.AutoField(primary_key=True)
+    #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
+    #sample_id = models.AutoField(primary_key=True)
 
     #container_id = models.IntegerField()
 
     area_easting = models.IntegerField()
     area_northing = models.IntegerField()
     context_number = models.IntegerField()
-    sample_number = models.IntegerField()
+    sample_number = models.AutoField(primary_key=True)
 
     material = models.CharField(max_length=25)
     specific_material = models.CharField(max_length=50, blank=True, null=True)
@@ -146,6 +163,17 @@ class Samples(models.Model):
     museum_inventory_number = models.IntegerField(blank=True, null=True)
     bureaucratic_status_identifier = models.CharField(max_length=100, blank=True, null=True)
 
+    #VirtualField
+    necs = CompositeForeignKey(
+        Container,
+        on_delete=DO_NOTHING,
+        related_name='containers',
+        to_fields={
+            "area_easting": "area_easting",
+            "area_northing": "area_northing",
+            "context_number": "context_number",
+            "sample_number": "sample_number" })
+
     #sample_id = models.AutoField(unique=True)
 
     def __int__(self):
@@ -153,10 +181,10 @@ class Samples(models.Model):
 
     class Meta:
         db_table = 'samples\".\"samples'
-        ordering = ["sample_id"]
+        #ordering = ["sample_id"]
         managed = False
         verbose_name_plural = "samples"
-        #unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
+        unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
 
 #to track who does what
 class Tracking(models.Model):
