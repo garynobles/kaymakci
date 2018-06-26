@@ -17,6 +17,11 @@ NORTHING_CHOICES = (
     (3, 1)
 )
 
+COMPUTER_CHOICES = (
+    ("Struthas", "Struthas"),
+    ("Pissuthnes", "Pissuthnes"),
+)
+
 #boolfield = forms.ChoiceField(choices = TRUE_FALSE_CHOICES, label="Some Label", initial='', widget=forms.Select(), required=True)
 class Processing3d(models.Model):
     id = models.AutoField(primary_key=True)
@@ -30,9 +35,9 @@ class Processing3d(models.Model):
 
     number_of_photos = models.IntegerField(blank=True, null=True)
     number_targets = models.IntegerField(blank=True, null=True)
-    processed_on = models.CharField(max_length=200, default='', blank=True, null=True)
+    processed_on = models.CharField(max_length=200, default='', blank=True, null=True, choices = COMPUTER_CHOICES)
     processed_by = models.CharField(max_length=200, default='', blank=True, null=True)
-    camera_model = models.CharField(max_length=200, default='', blank=True, null=True)
+    camera_model = models.CharField(max_length=200, default='samsung', blank=True, null=True)
     imported_photoscan = models.NullBooleanField()
 
     aligned = models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
@@ -55,7 +60,7 @@ class Processing3d(models.Model):
     mesh_interpolation = models.CharField(max_length=200, default="disabled")
 
     texture = models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
-    texture_defaults = models.IntegerField(blank=True, null=True)
+    texture_defaults = models.IntegerField(blank=True, null=True, default=8500)
     dem = models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     dem_coordinate_system = models.IntegerField(default= 32635)
     dem_source_data= models.CharField(max_length=200, default="dense cloud")
@@ -63,7 +68,7 @@ class Processing3d(models.Model):
 
     orthomosaic= models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     orthomosaic_type = models.CharField(max_length=200, default="geographic")
-    orthomosaic_pixel_size = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
+    orthomosaic_pixel_size = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True, default = 0.005)
 
     export_points= models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     export_points_filename = models.CharField(max_length=100, default="", blank=True, null=True)
@@ -72,7 +77,7 @@ class Processing3d(models.Model):
     export_report_pdf= models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     export_orthophoto= models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     export_dem = models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
-    export_dem_pixel_size = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=6 )
+    export_dem_pixel_size = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=6, default=0.005 )
     export_dem_geodatabase = models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     folder_processed = models.NullBooleanField(choices = TRUE_FALSE_CHOICES)
     processing_notes = models.TextField(blank=True, null=True)

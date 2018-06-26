@@ -1,34 +1,76 @@
-{% extends 'container/base.html' %}
-{% block content%}
-<div class="container">
-  <div class="album py-5 ">
-    <div class="nav pb-1">
-      <span class="pr-1"><a class = "btn btn-info" href="{% url 'containersearch' %}">Filters</a></span>
-      <span class="pr-1"><a class = "btn btn-info" href="#">Table</a></span>
-      <span class="pr-1"><a class = "btn btn-info" href="#">Grid</a></span>
-    </div>
-    <div class="row">
-      {% for container in container.all %}
-      <a class="text-light" href="{% url 'detailcontainer' container.container_id %}">
-        <div class="col-md-4">
-          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <!--div class="card-header">{{ store.store_name }}</div-->
-            <div class="card-body"  style="height: 230px;">
-              <h5 class="card-title text-center">{{ container.container_name }}</h5>
-              <img class="card-img-top p-3" src="{{ store.image.url }}" /></a>
-              <div class="card-text" style = "font-size:0.7em;">
-                <ul>
-                  <li>  Container Type: {{ container.container_type }} </li>
-                  <li>Container Location?: {{ container.current_location_tmp }}</li>
-                  <li>Container Location: {{container.location_id.location_name}}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+{% extends 'search/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<form action="" method="get">
+  {{ response.filter.container_name }}
+  <input type="submit" />
+</form>
+
+  <form method="get">
+    <div class="well container">
+      <h4 style="margin-top: 0">Filter</h4>
+      <div class="row">
+
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.sample_id.label_tag }}
+          {% render_field filter.form.sample_id class="form-control" %}
         </div>
-      </a>
-      {% endfor %}
+
+        <div class="form-group col-sm-4 col-md-3">
+          Model.objects.filter(table_name__contains=what_you_want)
+          {{ response.paginator.filtered_qs.form.container_type.label_tag }}
+          {% render_field response.paginator.filtered_qs.container_type class="form-control" %}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+      <a href="{% url 'containersearch' %}">
+      <button type="submit" class="btn btn-secondary">
+        <span class="glyphicon glyphicon-search"></span> Reset
+      </button>
+    </a>
     </div>
-  </div>
+  </form>
+<div class="container-fluid pt-3">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Location(id)</th>
+        <th>Container(id)</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Sample(id)</th>
+        <th>Current Location (tmp)</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for container in filter.qs %}
+        <tr>
+          <td>{{ container.location_id }}</td>
+          <td>{{ container.container_id }}</td>
+          <td>{{ container.container_name }}</td>
+          <td>{{ container.container_type }}</td>
+          <td>{{ container.sample_id }}</td>
+          <td>{{ container.current_location_tmp }}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+          <a href="{% url 'editcontainersearch' pk=container.pk %}" class="btn btn-primary" role="button">edit</a>
+          <a href="{% url 'editcontainersearch' pk=container.pk %}" class="btn btn-secondary" role="button">take out</a>
+          <a href="{% url 'editcontainersearch' pk=container.pk %}" class="btn btn-secondary" role="button">request</a>
+          </div>
+          </td>
+
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}

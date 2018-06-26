@@ -20,10 +20,11 @@
 
 <div class="container">
     <h1>Container</h1>
+	Sample Number{{ container.location_id.location_name }}<br />
     <div class="col-sm-3">
     <form method="POST" class="post-form">{% csrf_token %}
         <!--  {{ form.as_p }}   -->
-        Container Name{{ form.container_id.sample_id|add_class:"form-control"}}<br />
+        Container Name{{ container.container_id.sample_number|add_class:"form-control"}}<br />
         Container Type{{ form.container_type|add_class:"form-control"}}<br />
         Location ID{{ form.location_id|add_class:"form-control"}}<br />
 
