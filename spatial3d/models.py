@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 TRUE_FALSE_CHOICES = (
@@ -91,5 +92,5 @@ class Processing3d(models.Model):
     class Meta():
         managed=False
         db_table = 'excavation\".\"photobatch_processing'
-        ordering = ["-folder_processed","-created_timestamp", "photobatch_id"]
+        ordering = ["-folder_processed", "photobatch_id"]
 #verbose_name_plural = "stores"
