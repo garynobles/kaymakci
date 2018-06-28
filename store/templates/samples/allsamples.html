@@ -9,7 +9,12 @@
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
-.M7_5YR-6-4 {background: red ;}
+.M2_5Y-7-2 {background: #BFA99F ;}
+
+.M2_5YR-6-2	 {background: #A68F85 ;}
+
+
+.M7_5YR-6-4 {background: #B08D6D ;}
 
 .M5YR-1-4 {background: ;}
 .M5YR-2-4 {background: ;}
@@ -25,8 +30,15 @@
 .M5YR-10-4 {background: ;}
 
 
+
+.M7_5YR-7-2	{background: #BEAA99 ;}
+
+
+.M7_5YR-6-2 {background: #A49080 ;}
+
 .M10YR-6-2 {background: #A1917D ;}
 
+.M10YR-7-2 {background: #BCAB96 ;}
 
 </style>
 
@@ -44,6 +56,10 @@
       <div class="form-group col-sm-4 col-md-3">
         {{ response.form.samples_type.label_tag }}
         {% render_field response.samples_type class="form-control" %}
+        {{ filter.form.area_easting.label_tag }}
+        {% render_field filter.form.area_easting class="form-control" %}
+        {{ response.filter.area_easting.label_tag }}
+        {% render_field response.form.area_easting class="form-control" %}
       </div>
 
 
@@ -58,7 +74,17 @@
   </a>
   </div>
 </form>
-<div class="container-fluid pt-3">
+
+
+
+
+{% if filter.form %}<form action="." method="GET">{% for field in filter.form %}{{ field }}{% endfor %}</form>{% endif %}</span>
+<ul class="">
+  {% for o in object_list %}
+  <li>{{ o.name }}, {{ o.code }}</li>
+  {% endfor %}
+</ul>
+
 
 
 
@@ -123,9 +149,9 @@
         <td>{{ paginator.area_easting }}.{{ paginator.area_northing }}.{{ paginator.context_number }}.{{ paginator.sample_number }}</td>
         <td>{{ paginator.material}}</td>
 <td>{{ paginator.specific_material}}</td>
-<td>{{ paginator.exterior_color_hue}}/{{ paginator.exterior_color_lightness_value|floatformat:0}}/{{ paginator.exterior_color_chroma}} <div class="munsell M{{ paginator.exterior_color_hue}}-{{ paginator.exterior_color_lightness_value|floatformat:0}}-{{ paginator.exterior_color_chroma}}"></div></td>
+<td>{{ paginator.exterior_color_hue}}/{{ paginator.exterior_color_lightness_value|floatformat:0}}/{{ paginator.exterior_color_chroma}} <div class="munsell M{{ paginator.exterior_color_hue|point_to_underscore}}-{{ paginator.exterior_color_lightness_value|floatformat:0}}-{{ paginator.exterior_color_chroma}}"></div></td>
 
-<td>{{ paginator.interior_color_hue}}/{{ paginator.interior_color_lightness_value|floatformat:0}}/{{ paginator.interior_color_chroma}}<div class="munsell M{{ paginator.interior_color_hue}}-{{ paginator.interior_color_lightness_value|floatformat:0}}-{{ paginator.interior_color_chroma}}"></div></td>
+<td>{{ paginator.interior_color_hue}}/{{ paginator.interior_color_lightness_value|floatformat:0}}/{{ paginator.interior_color_chroma}}<div class="munsell M{{ paginator.interior_color_hue|point_to_underscore}}-{{ paginator.interior_color_lightness_value|floatformat:0}}-{{ paginator.interior_color_chroma}}"></div></td>
 
 <td>{{ paginator.weight_kilograms}}</td>
 <td>{{ paginator.sample_description}}</td>

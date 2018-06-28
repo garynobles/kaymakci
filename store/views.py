@@ -165,14 +165,16 @@ def allsamples(request):
         response = paginator.page(1)
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
+    qs_filter = SamplesFilter(request.GET, samples_list)
     return render(request,'samples/allsamples.html',{'response': response})
 
 
 
 
 
-    #samples = Samples.objects
-    #return render(request, 'samples/allsamples.html', {'samples':samples})
+
+
+
 
 def detailsamples(request, sample_id):
     detailsamples = get_object_or_404(Samples, pk=sample_id)
