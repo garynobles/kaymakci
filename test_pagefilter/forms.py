@@ -5,15 +5,15 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from test_pagefilter.models import Location
+from test_pagefilter.models import Samples
 from filters.views import FilterMixin
 
 
 
 
-class LocationFilterForm(forms.ModelForm):
+class SamplesFilterForm(forms.ModelForm):
     class Meta:
-        model = Location
+        model = Samples
         fields = (
         #'sample_id',
         'location_id',

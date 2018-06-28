@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     #store
-    path('test/', views.LocationListView, name='LocationListView'),
+    path('test/', views.SamplesListView, name='SamplesListView'),
     #url(r'^$', CurrencyListView.as_view()),
     #url(r'^createstore/$', views.createstore, name='createstore'),
 ]

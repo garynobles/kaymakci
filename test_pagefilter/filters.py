@@ -5,15 +5,15 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from test_pagefilter.models import Location
+from test_pagefilter.models import Samples
 from filters.views import FilterMixin
 
 #from .forms LocationFilterForm
 
-class LocationFilter(django_filters.FilterSet):
+class SamplesFilter(django_filters.FilterSet):
 
     def __init__(self, data={}, *args, **kwargs):
-        super(LocationFilterForm, self).__init__(data, *args, **kwargs)  # NOQA
+        super(SamplesFilterForm, self).__init__(data, *args, **kwargs)  # NOQA
         try:
             self.fields[ORDER_BY_FIELD].widget.attrs = {
                 'onchange': "this.form.submit();",
@@ -22,8 +22,8 @@ class LocationFilter(django_filters.FilterSet):
             pass
 
     class Meta:  # pylint: disable=C1001
-        form = LocationFilterForm
-        model = Location
+        form = SamplesFilterForm
+        model = Samples
         fields = [
         'location_id',
         'location_identifier',

@@ -78,12 +78,18 @@
 
 
 
-{% if filter.form %}<form action="." method="GET">{% for field in filter.form %}{{ field }}{% endfor %}</form>{% endif %}</span>
-<ul class="">
-  {% for o in object_list %}
-  <li>{{ o.name }}, {{ o.code }}</li>
-  {% endfor %}
-</ul>
+
+
+
+{% if filter.form %}
+<form action="" method="get">
+  {{ filter.form.as_table }}
+  <!-- {% for field in filter.form %}
+  {{ field }}
+  {% endfor %} -->
+  <input type="submit" />
+</form>
+{% endif %}
 
 
 

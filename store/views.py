@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, render_to_response, redirect
-from store.models import Store, Container, Location,  Samples, Storage
+from store.models import Store, Container, Samples,  Samples, Storage
 import datetime
-from .forms import StoreForm, ContainerForm, LocationForm, StorageForm, SamplesForm
+from .forms import StoreForm, ContainerForm, SamplesForm, StorageForm, SamplesForm
 from .filters import ContainerFilter, SamplesFilter
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from . import filters
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 
 #https://tutorial.djangogirls.org/en/django_forms/
 
@@ -60,7 +61,7 @@ def alllocation(request):
     return render(request, 'location/alllocation.html', {'location':alllocation})
 
 def detaillocation(request, location_id):
-    detaillocation = get_object_or_404(Location, pk=location_id)
+    detaillocation = get_object_or_404(location, pk=location_id)
     return render(request, 'location/detaillocation.html', {'location':detaillocation})
 
 def createlocation(request):
@@ -78,7 +79,7 @@ def createlocation(request):
     return render(request, 'location/create_location.html', {'form': form})
 
 def editlocation(request, pk):
-    post = get_object_or_404(Location, pk=pk)
+    post = get_object_or_404(location, pk=pk)
     if request.method == "POST":
         form = LocationForm(request.POST, instance=post)
         if form.is_valid():
@@ -376,3 +377,56 @@ def listing(request):
     page = request.GET.get('page')
     contacts = paginator.get_page(page)
     return render(request, 'allsamples_paged.html', {'contacts': contacts})
+
+
+
+#filtering & paging
+
+
+from django.shortcuts import render
+from django import forms
+from django.utils.translation import ugettext
+import django_filters
+from django_filters.filterset import ORDER_BY_FIELD
+# Create your views here.
+
+#from test_pagefilter.models import Samples
+from filters.views import FilterMixin
+
+#from .forms import LocationFilterForm
+
+class SamplesFilterForm(forms.ModelForm):
+    class Meta:
+        model = Samples
+        fields = (
+        #'sample_id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'material',
+
+        )
+
+class SamplesFilter(django_filters.FilterSet):
+
+    class Meta:  # pylint: disable=C1001
+        form = SamplesFilterForm
+        model = Samples
+        fields = [
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'material',
+
+        ]
+        order_by = (
+            ('sample_number', ugettext("A-Z")),
+            ('-sample_number', ugettext("Z-A")),
+        )
+
+class SamplesListView(FilterMixin, django_filters.views.FilterView):
+    model = Samples
+    paginate_by = 22
+    filterset_class = SamplesFilter

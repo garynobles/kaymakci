@@ -5,43 +5,91 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from test_pagefilter.models import Location
+from test_pagefilter.models import Samples
 from filters.views import FilterMixin
 
 #from .forms import LocationFilterForm
 
-class LocationFilterForm(forms.ModelForm):
+class SamplesFilterForm(forms.ModelForm):
     class Meta:
-        model = Location
+        model = Samples
         fields = (
         #'sample_id',
-        'location_id',
-        'location_identifier',
-        'location_name',
-        'location_type',
-        'current_location_tmp',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'material',
+        'specific_material',
+        'exterior_color_hue',
+        'exterior_color_lightness_value',
+        'exterior_color_chroma',
+        'interior_color_hue',
+        'interior_color_lightness_value',
+        'interior_color_chroma',
+        'weight_kilograms',
+        'sample_description',
+        'category',
+        'subcategory',
+        'count',
+        'current_location',
+        'recovery_type',
+        'problems',
+        'image_files',
+        'number_3d_files',
+        'chronology',
+        'analysis_request',
+        'detailed_sample_description',
+        'bureaucratic_status',
+        'subjective_significance',
+        'museum_inventory_number',
+        'bureaucratic_status_identifier',
 
         )
 
-class LocationFilter(django_filters.FilterSet):
+class SamplesFilter(django_filters.FilterSet):
 
     class Meta:  # pylint: disable=C1001
-        form = LocationFilterForm
-        model = Location
+        form = SamplesFilterForm
+        model = Samples
         fields = [
-        'location_id',
-        'location_identifier',
-        'location_name',
-        'location_type',
-        'current_location_tmp',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'material',
+        'specific_material',
+        'exterior_color_hue',
+        'exterior_color_lightness_value',
+        'exterior_color_chroma',
+        'interior_color_hue',
+        'interior_color_lightness_value',
+        'interior_color_chroma',
+        'weight_kilograms',
+        'sample_description',
+        'category',
+        'subcategory',
+        'count',
+        'current_location',
+        'recovery_type',
+        'problems',
+        'image_files',
+        'number_3d_files',
+        'chronology',
+        'analysis_request',
+        'detailed_sample_description',
+        'bureaucratic_status',
+        'subjective_significance',
+        'museum_inventory_number',
+        'bureaucratic_status_identifier',
 
         ]
         order_by = (
-            ('location_name', ugettext("A-Z")),
-            ('-location_name', ugettext("Z-A")),
+            ('sample_number', ugettext("A-Z")),
+            ('-sample_number', ugettext("Z-A")),
         )
 
-class LocationListView(FilterMixin, django_filters.views.FilterView):
-    model = Location
+class SamplesListView(FilterMixin, django_filters.views.FilterView):
+    model = Samples
     paginate_by = 22
-    filterset_class = LocationFilter
+    filterset_class = SamplesFilter
