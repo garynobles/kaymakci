@@ -2,13 +2,20 @@ from django.db import models
 #from django.contrib.auth.models import User
 
 # Create your models here.
+SELECTED = (
+    ("Hand Selected", "Hand Selected"),
+    ("Floatation", "Floatation"),
+    ("Preflotation","Preflotation"),
+    ("Sieve","Sieve"),
+)
+
 class Qnisp(models.Model):
     qnisp_id = models.AutoField(primary_key=True)
     area_easting = models.IntegerField()
     area_northing = models.IntegerField()
     context_number = models.IntegerField()
     sample_number = models.IntegerField()
-    collection_method = models.CharField(max_length=10, default='')
+    collection_method = models.CharField(max_length=25, default='', choices =  SELECTED)
     mandible_with_teeth  = models.BooleanField(default=False)
     bt         = models.IntegerField(blank=True, null=True)
     ss         = models.IntegerField(blank=True, null=True)
@@ -27,7 +34,7 @@ class Qnisp(models.Model):
     landsnail  = models.IntegerField(blank=True, null=True)
     shell_other    = models.IntegerField(blank=True, null=True)
     rodent     = models.IntegerField(blank=True, null=True)
-    comments = models.TextField(max_length=500, default='')
+    comments = models.TextField(max_length=500, default='', blank=True, null=True)
     ursus      = models.IntegerField(blank=True, null=True)
     big_feline_lynx_size = models.IntegerField(blank=True, null=True)
 
