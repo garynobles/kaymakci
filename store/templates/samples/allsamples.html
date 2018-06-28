@@ -1,47 +1,187 @@
+
+
+<style>
+.munsell {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.M7_5YR-6-4 {background: red ;}
+
+.M5YR-1-4 {background: ;}
+.M5YR-2-4 {background: ;}
+.M5YR-3-4 {background: ;}
+.M5YR-4-4 {background: ;}
+
+.M5YR-5-4 {background: #92744F;}
+.M5YR-6-4 {background: #AC8F67;}
+
+.M5YR-7-4 {background: ;}
+.M5YR-8-4 {background: ;}
+.M5YR-9-4 {background: ;}
+.M5YR-10-4 {background: ;}
+
+
+.M10YR-6-2 {background: #A1917D ;}
+
+
+</style>
+
+
+
+
 {% extends 'samples/base.html' %}
-{% block content%}
+{% load widget_tweaks %}
+{% block content %}
+<form method="get">
+  <div class="well container">
+    <h4 style="margin-top: 0">Filter</h4>
+    <div class="row">
 
-<div class="container">
-<div class="album py-5 ">
-  <section>
-    <div class="float-right col-sm-1">
-      <div>
-        <a href="{% url 'createsample' %}">
-          <button  type="button" class="btn btn-primary">Add new sample</button>
-        </a>
-
+      <div class="form-group col-sm-4 col-md-3">
+        {{ response.form.samples_type.label_tag }}
+        {% render_field response.samples_type class="form-control" %}
       </div>
-    </div>
-  </section>
-  <div class="row">
-    {% for samples in samples.all %}
-<!-- |slice:":10" -->
-    <a class="text-light" href="{% url 'detailsamples' samples.sample_id %}">
-    <div class="col-md-4">
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <!--div class="card-header">{{ store.store_name }}</div-->
-        <div class="card-body"  style="height: 230px;">
-          <h5 class="card-title text-center"> {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</h5>
-          <img class="card-img-top p-3" src="{{ store.image.url }}" /></a>
-          <div class="card-text" style = "font-size:0.7em;">
-            <ul>
 
-            <li>Sample Identifier: {{ samples.area_easting }}.{{ samples.area_northing }}.{{ samples.context_number }}.{{ samples.sample_number }}</li>
 
-          </ul>
-          </div>
-        </div>
-      </div>
     </div>
+    <button type="submit" class="btn btn-primary">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+    <a href="{% url 'containersearch' %}">
+    <button type="submit" class="btn btn-secondary">
+      <span class="glyphicon glyphicon-search"></span> Reset
+    </button>
   </a>
+  </div>
+</form>
+<div class="container-fluid pt-3">
 
 
 
+
+
+
+<div class="container-fluid pt-3">
+  <div class="pagination">
+    <span class="step-links">
+      {% if response.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ response.previous_page_number }}">previous</a>
+      {% endif %}
+      <span class="current">
+        Page {{ response.number }} of {{response.paginator.num_pages}}.
+      </span>
+      {% if response.has_next %}
+      <a href="?page={{ response.next_page_number }}">next</a>
+      <a href="?page={{ response.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>contextkey (N.E.C.S)</th>
+        <th>material</th>
+<th>specific_material</th>
+<th>Munsell exterior</th>
+
+<th>Munsell interior</th>
+
+<th>weight_kilograms</th>
+<th>sample_description</th>
+<th>category</th>
+<th>subcategory</th>
+<th>count</th>
+<th>current_location</th>
+<th>recovery_type</th>
+<th>problems</th>
+<th>image_files</th>
+<th>number_3d_files</th>
+<th>chronology</th>
+<th>analysis_request</th>
+<th>detailed_sample_description</th>
+<th>bureaucratic_status</th>
+<th>subjective_significance</th>
+<th>museum_inventory_number</th>
+<th>bureaucratic_status_identifier</th>
+<th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+      {% for paginator in response %}
+
+
+      <tr>
+{% load point_to_underscore %}
+        <td>{{ paginator.area_easting }}.{{ paginator.area_northing }}.{{ paginator.context_number }}.{{ paginator.sample_number }}</td>
+        <td>{{ paginator.material}}</td>
+<td>{{ paginator.specific_material}}</td>
+<td>{{ paginator.exterior_color_hue}}/{{ paginator.exterior_color_lightness_value|floatformat:0}}/{{ paginator.exterior_color_chroma}} <div class="munsell M{{ paginator.exterior_color_hue}}-{{ paginator.exterior_color_lightness_value|floatformat:0}}-{{ paginator.exterior_color_chroma}}"></div></td>
+
+<td>{{ paginator.interior_color_hue}}/{{ paginator.interior_color_lightness_value|floatformat:0}}/{{ paginator.interior_color_chroma}}<div class="munsell M{{ paginator.interior_color_hue}}-{{ paginator.interior_color_lightness_value|floatformat:0}}-{{ paginator.interior_color_chroma}}"></div></td>
+
+<td>{{ paginator.weight_kilograms}}</td>
+<td>{{ paginator.sample_description}}</td>
+<td>{{ paginator.category}}</td>
+<td>{{ paginator.subcategory}}</td>
+<td>{{ paginator.count}}</td>
+<td>{{ paginator.current_location}}</td>
+<td>{{ paginator.recovery_type}}</td>
+<td>{{ paginator.problems}}</td>
+<td>{{ paginator.image_files}}</td>
+<td>{{ paginator.number_3d_files}}</td>
+<td>{{ paginator.chronology}}</td>
+<td>{{ paginator.analysis_request}}</td>
+<td>{{ paginator.detailed_sample_description}}</td>
+<td>{{ paginator.bureaucratic_status}}</td>
+<td>{{ paginator.subjective_significance}}</td>
+<td>{{ paginator.museum_inventory_number}}</td>
+<td>{{ paginator.bureaucratic_status_identifier}}</td>
+
+
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+
+            <a href="{% url 'editsamplesearch' pk=paginator.pk %}" class="btn btn-primary" role="button">edit</a>
+            <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-secondary" role="button">take out</a>
+            <a href="{% url 'editcontainersearch' pk=paginator.pk %}" class="btn btn-secondary" role="button">request</a>
+          </div>
+        </td>
+
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No data</td>
+      </tr>
       {% endfor %}
+    </tbody>
+  </table>
 
+  <div class="pagination">
+    <span class="step-links">
+      {% if response.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ response.previous_page_number }}">previous</a>
+      {% endif %}
+      <span class="current">
+        Page {{ response.number }} of {{response.paginator.num_pages}}.
+      </span>
+      {% if response.has_next %}
+      <a href="?page={{ response.next_page_number }}">next</a>
+      <a href="?page={{ response.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
   </div>
 </div>
-</div>
+
+
 
 
 

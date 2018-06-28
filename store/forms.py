@@ -52,7 +52,8 @@ class LocationForm(forms.ModelForm):
         'store_id',
         'location_type',
         'current_location_tmp',
-        'location_name'
+        'location_name',
+        'icon_desc'
         )
 
 class StorageForm(forms.ModelForm):
@@ -69,6 +70,8 @@ class StorageForm(forms.ModelForm):
         'zip',
         'city',
         'country',
+        'icon_desc',
+
         )
 
 class StoreForm(forms.ModelForm):
@@ -84,7 +87,9 @@ class StoreForm(forms.ModelForm):
         'region',
         'zip',
         'city',
-        'country'
+        'country',
+        'icon_desc',
+
         )
 
 class ContainerForm(forms.ModelForm):
@@ -97,5 +102,6 @@ class ContainerForm(forms.ModelForm):
         'container_type',
         'location_id',
         #'sample_id',
-        'current_location_tmp'
+        'current_location_tmp',
+        'icon_desc'
         )

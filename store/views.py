@@ -154,8 +154,25 @@ def editcontainer(request, pk):
 
 #all samples
 def allsamples(request):
-    samples = Samples.objects
-    return render(request, 'samples/allsamples.html', {'samples':samples})
+    samples_list = Samples.objects.all()
+    filtered_qs = filters.SamplesFilter(request.GET, queryset=samples_list).qs
+    paginator = Paginator(filtered_qs, 10)
+
+    page = request.GET.get('page')
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+    return render(request,'samples/allsamples.html',{'response': response})
+
+
+
+
+
+    #samples = Samples.objects
+    #return render(request, 'samples/allsamples.html', {'samples':samples})
 
 def detailsamples(request, sample_id):
     detailsamples = get_object_or_404(Samples, pk=sample_id)

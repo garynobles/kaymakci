@@ -26,7 +26,7 @@
       <div class="card-header">{{ location.location_name }}</div>
       <div class="card-body align-content-lg-center"  style="height: 250px;">
         <h5 class="card-title text-center"></h5>
-        <img class="card-img-top p-3" style="margin-left: auto; margin-right: auto; width: 75%; display: block;" src="{{ location.icon.url }}" />
+        <img class="card-img-top p-3" style="margin-left: auto; margin-right: auto; width: 75%; display: block;" src="{{ location.icon_desc.icon.url }}" />
       </a>
         <ul class="list-unstyled">
         <li class="card-text list-inline-item" style = "font-size:0.7em;">Location Type: {{ location.location_type }}, <a href="{% url 'detailstore' location.store_id.store_id %}">{{ location.store_id.store_name }}</a> {{ store.city }} {{ store.region }} {{ store.zip }} {{ store.country }}</li>
