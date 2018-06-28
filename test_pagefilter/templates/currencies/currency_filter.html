@@ -1,10 +1,20 @@
 {% extends "currencies/base.html" %}
 
 {% block content %}
-{% if filter.form %}<form action="." method="GET">{% for field in filter.form %}{{ field }}{% endfor %}</form>{% endif %}</span>
+{% if filter.form %}
+<form action="" method="get">
+  {{ filter.form.as_table }}
+  <!-- {% for field in filter.form %}
+  {{ field }}
+  {% endfor %} -->
+  <input type="submit" />
+</form>
+{% endif %}
+
 <ul class="">
   {% for o in object_list %}
-  <li>{{ o.location_id }}, {{ o.location_name }}</li>
+  <li>{{ o.location_id }}, {{ o.location_identifier }}, {{ o.location_name }}, {{ o.location_type }}, {{ o.current_location_tmp }}</li>
+
   {% endfor %}
 </ul>
 <div class="pagination">

@@ -8,22 +8,18 @@ from django_filters.filterset import ORDER_BY_FIELD
 from test_pagefilter.models import Location
 from filters.views import FilterMixin
 
-#from .forms import LocationFilterForm
-
-class LocationFilterForm(forms.ModelForm):
-    class Meta:
-        model = Location
-        fields = (
-        #'sample_id',
-        'location_id',
-        'location_identifier',
-        'location_name',
-        'location_type',
-        'current_location_tmp',
-
-        )
+#from .forms LocationFilterForm
 
 class LocationFilter(django_filters.FilterSet):
+
+    def __init__(self, data={}, *args, **kwargs):
+        super(LocationFilterForm, self).__init__(data, *args, **kwargs)  # NOQA
+        try:
+            self.fields[ORDER_BY_FIELD].widget.attrs = {
+                'onchange': "this.form.submit();",
+            }
+        except KeyError:
+            pass
 
     class Meta:  # pylint: disable=C1001
         form = LocationFilterForm
@@ -40,8 +36,3 @@ class LocationFilter(django_filters.FilterSet):
             ('location_name', ugettext("A-Z")),
             ('-location_name', ugettext("Z-A")),
         )
-
-class LocationListView(FilterMixin, django_filters.views.FilterView):
-    model = Location
-    paginate_by = 22
-    filterset_class = LocationFilter
