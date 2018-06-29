@@ -7,13 +7,14 @@ from depot.views import SamplesListView
 
 urlpatterns = [
     #samples
-    path('test/', views.SamplesListView, name='SamplesListView'),
+    #path('samples/', views.SamplesListView, name='SamplesListView'),
+    url(r'^samples/$', SamplesListView.as_view(template_name="samples/allsamples.html"), name='SamplesListView'),
+
     #url(r'^$', CurrencyListView.as_view()),
     #url(r'^createstore/$', views.createstore, name='createstore'),
 
     #url(r'^samples/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
 
-    url(r'^samples/$', SamplesListView.as_view(template_name="samples/allsamples.html")),
 
 
 
