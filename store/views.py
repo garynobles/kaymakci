@@ -15,9 +15,9 @@ from django.contrib.auth.models import User
 
 
 #stores
-def allstore(request):
+def allstorage(request):
     store = Store.objects
-    return render(request, 'store/allstore.html', {'store':store})
+    return render(request, 'store/allstorage.html', {'store':store})
 
 def detailstore(request, store_id):
     detailstore = get_object_or_404(Store, pk=store_id)
@@ -46,7 +46,7 @@ def editstore(request, pk):
             #post.user = request.user
             #post.datetime = datetime.datetime.now()
             post.save()
-            return redirect('allstore')
+            return redirect('allstorage')
             #, pk=post.pk)
     else:
         form = StoreForm(instance=post)
@@ -117,7 +117,7 @@ def allcontainer(request):
         response = paginator.page(paginator.num_pages)
     return render(request,'container/allcontainer.html',{'response': response})
     #store = Store.objects
-    #return render(request, 'store/allstore.html', {'containerpage':containerpage})
+    #return render(request, 'store/allstorage.html', {'containerpage':containerpage})
 
 def detailcontainer(request, container_id):
     detailcontainer = get_object_or_404(Container, pk=container_id)
@@ -341,9 +341,9 @@ def index(request):
 
 
 
-#def allstore(request):
+#def allstorage(request):
 #    store = Store.objects
-#    return render(request, 'store/allstore.html', {'store':store})
+#    return render(request, 'store/allstorage.html', {'store':store})
 def samplesearch(request):
     sample_list = Samples.objects.all()
     sample_filter = SamplesFilter(request.GET, queryset=sample_list)
@@ -366,7 +366,7 @@ def containerpage(request):
         response = paginator.page(paginator.num_pages)
     return render(request,'search/container_filter.html',{'response': response})
     #store = Store.objects
-    #return render(request, 'store/allstore.html', {'containerpage':containerpage})
+    #return render(request, 'store/allstorage.html', {'containerpage':containerpage})
 
 
 

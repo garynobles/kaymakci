@@ -1,15 +1,62 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+class Icon(models.Model):
+    #icon_id              = models.AutoField(primary_key=True)
+    icon_desc            = models.CharField(primary_key=True,max_length=50)
+    #container_id         = models.IntegerField(blank=True, null=True)
+    #location_id          = models.IntegerField(blank=True, null=True)
+    #icon_id             = models.IntegerField(blank=True, null=True)
+    icon                 = models.ImageField(upload_to='images/icons/')
+
+    def __str__(self):
+        return self.icon_desc
+
+    class Meta:
+        db_table = 'samples\".\"icon'
+        #ordering = ["sample_id"]
+        managed = False
+        verbose_name_plural = "icons"
+
+class Storage(models.Model):
+    #id = models.IntegerField(default=0)
+    store_id = models.AutoField(primary_key=True)
+    store_name = models.CharField(max_length=200, default='')
+    address_1 = models.CharField(max_length=200, default='')
+    address_2 = models.CharField(max_length=200, default='')
+    region = models.CharField(max_length=200, default='')
+    city = models.CharField(max_length=200, default='')
+    zip = models.CharField(max_length=200, default='')
+    country = models.CharField(max_length=200, default="Turkey")
+    created_by = models.CharField(max_length=200)
+    #created_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    #created_timestamp = models.DateTimeField(auto_now_add=True)
+    #modified_by = models.CharField(max_length=200,editable=True)
+    #modified_timestamp = models.DateTimeField(auto_now=True)
+    #default="user_not_defined"
+    #icon_id             = models.IntegerField(blank=True, null=True)
+    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT)
+    orderby = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.store_name
+
+    class Meta():
+        managed=False
+        db_table = 'samples\".\"store'
+        ordering = ["orderby"]
+        verbose_name_plural = "stores"
+
 class Location(models.Model):
-    #store_id = models.ForeignKey(Store, db_column='store_id', on_delete = models.PROTECT)
+    store_id = models.ForeignKey(Storage, db_column='store_id', on_delete = models.PROTECT)
     location_id = models.AutoField(primary_key=True)
     location_identifier = models.IntegerField(blank=True, null=True)
     #store_id = models.IntegerField(blank=True, null=True)
     location_type = models.CharField(max_length=100, blank=True, null=True)
     current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
     location_name = models.CharField(max_length=100, blank=True, null=True)
-    #icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
+    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
      #these should become an individual table outside of the main db
     orderby = models.IntegerField(blank=True, null=True)
 
@@ -26,7 +73,7 @@ class Location(models.Model):
 
 class Container(models.Model):
     location_id = models.ForeignKey(Location, db_column='location_id', on_delete = models.PROTECT)
-    ##icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT)
+    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT)
     container_id = models.IntegerField(primary_key=True)
     container_name = models.CharField(max_length=50, blank=True, null=True)
     container_type = models.CharField(max_length=50, blank=True, null=True)

@@ -27,7 +27,7 @@ def allqnisp(request):
         response = paginator.page(paginator.num_pages)
     return render(request,'qnisp/allqnisp.html',{'response': response})
     #store = Store.objects
-    #return render(request, 'store/allstore.html', {'containerpage':containerpage})
+    #return render(request, 'store/allstorage.html', {'containerpage':containerpage})
 
 def detailqnisp(request, qnisp_id):
     detailqnisp = get_object_or_404(Qnisp, pk=qnisp_id)

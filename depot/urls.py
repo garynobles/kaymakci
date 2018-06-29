@@ -9,7 +9,6 @@ urlpatterns = [
     #samples
     #path('samples/', views.SamplesListView, name='SamplesListView'),
     url(r'^samples/$', SamplesListView.as_view(template_name="samples/allsamples.html"), name='allsamples'),
-
     url(r'^container/$', ContainerListView.as_view(template_name="container/allcontainer.html"), name='allcontainer'),
     url(r'^location/$', LocationListView.as_view(template_name="location/alllocation.html"), name='alllocation'),
 
@@ -19,37 +18,27 @@ urlpatterns = [
     #url(r'^samples/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
 
 
-
-
-    url(r'^currencies/edit/(?P<pk>\d+)/edit/$', views.editsample, name='editsample'),
-
-
-
-
-
-
     #url(r'^samples/$', views.allsamples, name='allsamples'),
     path('samples/<int:sample_id>/', views.detailsamples, name='detailsamples'),
-
-    url(r'^currencies/createsample/$', views.createsample, name='createsample'),
+    url(r'^samples/edit/(?P<pk>\d+)/edit/$', views.editsample, name='editsample'),
+    url(r'^samples/createsample/$', views.createsample, name='createsample'),
 
 
 
 
     #store
-    path('store/', views.allstore, name='allstore'),
-    path('<int:store_id>/', views.detailstore, name='detailstore'),
-
-    url(r'^createstore/$', views.createstore, name='createstore'),
-    url(r'^editstore/(?P<pk>\d+)/editstore/$', views.editstore, name='editstore'),
+    # path('store/', views.allstorage, name='allstorage'),
+    # path('<int:store_id>/', views.detailstore, name='detailstore'),
+    #
+    # url(r'^createstore/$', views.createstore, name='createstore'),
+    # url(r'^editstore/(?P<pk>\d+)/editstore/$', views.editstore, name='editstore'),
 
     #locations
     url(r'^location/$', views.alllocation, name='alllocation'),
     path('location/<int:location_id>/', views.detaillocation, name='detaillocation'),
-
     url(r'^createlocation/$', views.createlocation, name='createlocation'),
+    #url(r'^location/edit/(?P<pk>\d+)/edit/$', views.editlocation, name='editlocation'),
     url(r'^location/edit/(?P<pk>\d+)/edit/$', views.editlocation, name='editlocation'),
-
     #container
     url(r'^container/$', views.allcontainer, name='allcontainer'),
     path('container/<int:container_id>/', views.detailcontainer, name='detailcontainer'),

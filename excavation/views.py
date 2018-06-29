@@ -37,7 +37,7 @@ def contextpage(request):
         response = paginator.page(paginator.num_pages)
     return render(request,'context/context_page.html',{'response': response})
     #store = Store.objects
-    #return render(request, 'store/allstore.html', {'containerpage':containerpage})
+    #return render(request, 'store/allstorage.html', {'containerpage':containerpage})
 
 
 

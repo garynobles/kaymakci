@@ -41,7 +41,7 @@
             <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
-            <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
+            <a class="nav-item nav-link" href="{% url 'allstorage' %}">Store</a>
             <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
             <a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
 
@@ -115,8 +115,8 @@
 
       <div class="navbar navbar-custom navbar-inverse navbar-static-top navbar-dark bg-dark" id="nav2">
         <div class="navbar-inner">
-          <a href="{% url 'createstore' %}">
-            <button  type="button" class="btn btn-success">Add new Depot</button>
+          <a href="{% url 'createsample' %}">
+            <button  type="button" class="btn btn-secondary">Add new Sample</button>
           </a>
           <a href="{% url 'allsamples' %}">
             <button  type="button" class="btn btn-info">Samples</button>
@@ -128,7 +128,7 @@
             <button  type="button" class="btn btn-info">Locations</button>
           </a>
           <a href="{% url 'allstorage' %}">
-            <button  type="button" class="btn btn-outline-info">Depots</button>
+            <button  type="button" class="btn btn-info">Depots</button>
           </a>
         </div>
       </div>
@@ -138,7 +138,7 @@
   <main role="main">
     <section class="jumbotron text-center">
       <div class="container">
-        
+
         <!--a href="#" class="btn btn-primary my-2">Main call to action</a-->
       </div>
     </section>

@@ -5,25 +5,9 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from depot.models import Samples
+
+from .models import Storage, Container, Location, Samples
 from filters.views import FilterMixin
-
-
-
-
-class SamplesFilterForm(forms.ModelForm):
-    class Meta:
-        model = Samples
-        fields = (
-        #'sample_id',
-        'location_id',
-        'location_identifier',
-        'location_name',
-        'location_type',
-        'current_location_tmp',
-
-        )
-
 
 class SamplesForm(forms.ModelForm):
 
@@ -62,4 +46,54 @@ class SamplesForm(forms.ModelForm):
         'bureaucratic_status_identifier',
         #'container_id'
 
+        )
+
+
+class LocationForm(forms.ModelForm):
+
+    class Meta:
+        model = Location
+        fields = (
+        #'id',
+        'location_id',
+        'location_identifier',
+        'store_id',
+        'location_type',
+        'current_location_tmp',
+        'location_name',
+        'icon_desc'
+        )
+
+class StorageForm(forms.ModelForm):
+
+    class Meta:
+        model = Storage
+        fields = (
+        #'id',
+        'store_id',
+        'store_name',
+        'address_1',
+        'address_2',
+        'region',
+        'zip',
+        'city',
+        'country',
+        'icon_desc',
+
+        )
+
+
+
+class ContainerForm(forms.ModelForm):
+
+    class Meta:
+        model = Container
+        fields = (
+        'container_id',
+        'container_name',
+        'container_type',
+        'location_id',
+        #'sample_id',
+        'current_location_tmp',
+        'icon_desc'
         )
