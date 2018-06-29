@@ -33,7 +33,8 @@ urlpatterns = [
     #path('samples/', include('samples.urls')),
     #path('test/', include('test_pagefilter.urls')),
 
-    url(r'^test_pagefilter/test_filter/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
+    #url(r'^test_pagefilter/test_filter/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
+    url(r'^depot/samples/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
     #specialist
 
 

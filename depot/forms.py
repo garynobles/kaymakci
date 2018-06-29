@@ -5,7 +5,7 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from test_pagefilter.models import Samples
+from depot.models import Samples
 from filters.views import FilterMixin
 
 
