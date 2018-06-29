@@ -2,20 +2,38 @@ from django.db import models
 #from django.contrib.auth.models import User
 
 # Create your models here.
-SELECTED = (
+
+TRUE_FALSE_CHOICES = (
+    (True, 'Yes'),
+    (False, 'No')
+)
+EASTING_CHOICES = (
+    (99, 99),
+    (108, 108),
+    (109, 109)
+)
+NORTHING_CHOICES = (
+    (523, 523),
+    (526, 526),
+    
+)
+
+SELECTED_CHOICES = (
     ("Hand Selected", "Hand Selected"),
     ("Floatation", "Floatation"),
     ("Preflotation","Preflotation"),
     ("Sieve","Sieve"),
 )
 
+
+
 class Qnisp(models.Model):
     qnisp_id = models.AutoField(primary_key=True)
-    area_easting = models.IntegerField()
-    area_northing = models.IntegerField()
+    area_easting = models.IntegerField(choices =  EASTING_CHOICES)
+    area_northing = models.IntegerField(choices =  NORTHING_CHOICES)
     context_number = models.IntegerField()
     sample_number = models.IntegerField()
-    collection_method = models.CharField(max_length=25, default='', choices =  SELECTED)
+    collection_method = models.CharField(max_length=25, default='', choices =  SELECTED_CHOICES)
     mandible_with_teeth  = models.BooleanField(default=False)
     bt         = models.IntegerField(blank=True, null=True)
     ss         = models.IntegerField(blank=True, null=True)

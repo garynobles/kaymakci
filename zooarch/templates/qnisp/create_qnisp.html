@@ -23,42 +23,54 @@ path {
   <h1>Quick NISP</h1>
   <h5>(Number of Identifable Species)</h5>
   <div class="row">
-    <div class="col-md-10 mx-auto ">
+    <div class="col-md-11 mx-auto ">
       <form method="POST" class="post-form">{% csrf_token %}
 
-        <div class="form-group row float-left ">
-          <div class="col-sm-10  border border-dark rounded pb-2">
+        <div class="row float-left ">
+          <div class="border border-dark rounded pb-5 pl-4 pr-5">
             <div class="">
               <label for="inputFirstname">Area Easting</label>
               {% render_field form.area_easting class="form-control" %}
             </div>
           </div>
         </div>
-        <div class="form-group row float-left">
-          <div class="col-sm-10 border border-dark rounded pb-2">
+        <div class="row float-left">
+          <div class="border border-dark rounded pb-5 pl-3 pr-4 ml-5">
             <div class="">
               <label for="inputFirstname">Area Northing</label>
               {% render_field form.area_northing class="form-control" %}
             </div>
           </div>
         </div>
-        <div class="form-group row float-left">
-          <div class="col-sm-10 border border-dark rounded pb-2">
+        <div class=" row float-left">
+          <div class="border border-dark rounded pb-5 pl-1 pr-1 ml-5">
             <div class="">
               <label for="inputFirstname">Context Number</label>
               {% render_field form.context_number class="form-control" %}
             </div>
           </div>
         </div>
-        <div class="form-group row float-left">
-          <div class="col-sm-10 border border-dark rounded pb-2">
+        <div class="row float-left">
+          <div class=" border border-dark rounded pb-5 pl-1 pr-1 ml-5">
             <div class="">
               <label for="inputFirstname">Sample Number</label>
               {% render_field form.sample_number class="form-control" %}
             </div>
           </div>
         </div>
-
+        <div class="form-group row float-left ">
+          <div class="col-sm-12 border border-dark rounded pb-1 pl-1 pr-1 ml-5">
+            <div class="">
+              <label for="inputFirstname">Method</label>
+              {% render_field form.collection_method class="form-control" %}
+            </div>
+            <div class="">
+              <label for="inputFirstname">Mandible with Teeth</label>
+              {% render_field form.mandible_with_teeth class="form-control" %}
+            </div>
+          </div>
+        </div>
+  <div class="clearfix">...</div>
 
         <div class="form-group row float-left">
           <div class="col-sm-10 border border-dark rounded pb-2">
@@ -140,27 +152,17 @@ path {
             </div>
           </div>
         </div>
-        <div class="form-group row float-left">
-          <div class=" border border-dark rounded pb-12">
+
+        <div class="form-group row float-left" style="width:81%;">
+          <div class=" border border-dark rounded pb-12" style="width:100%;">
             <div class="">
               <label for="inputFirstname">Comments</label>
-              {% render_field form.comments class="form-control" %}
+              {% render_field form.comments class="form-control " %}
             </div>
           </div>
         </div>
 
-        <div class="form-group row float-left ">
-          <div class="col-sm-10 border border-dark rounded pb-2 ml-5">
-            <div class="">
-              <label for="inputFirstname">Method</label>
-              {% render_field form.collection_method class="form-control" %}
-            </div>
-            <div class="">
-              <label for="inputFirstname">Mandible with Teeth</label>
-              {% render_field form.mandible_with_teeth class="form-control" %}
-            </div>
-          </div>
-        </div>
+
 
 
 
