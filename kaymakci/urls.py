@@ -11,7 +11,7 @@ import jobs.views
 
 
 
-from test_pagefilter.views import SamplesListView
+from depot.views import SamplesListView
 from django.conf.urls import url
 #import store.views
 #import zooarch.views
@@ -34,7 +34,7 @@ urlpatterns = [
     #path('test/', include('test_pagefilter.urls')),
 
     #url(r'^test_pagefilter/test_filter/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
-    url(r'^depot/samples/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
+    ##url(r'^depot/samples/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
     #specialist
 
 

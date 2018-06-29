@@ -162,7 +162,7 @@ $(document).ready(function() {
 
       <tr>
   {% load point_to_underscore %}
-        <td>{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</td>
+        <td><a href="{% url 'editsample' pk=o.pk %"}>{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</a></td>
         <td>{{ o.material}}</td>
   <td>{{ o.specific_material}}</td>
   <td>{{ o.exterior_color_hue}}/{{ o.exterior_color_lightness_value|floatformat:0}}/{{ o.exterior_color_chroma}} <div class="munsell M{{ o.exterior_color_hue|point_to_underscore}}-{{ o.exterior_color_lightness_value|floatformat:0}}-{{ o.exterior_color_chroma}}"></div></td>

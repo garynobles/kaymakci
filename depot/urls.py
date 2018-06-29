@@ -3,18 +3,31 @@ from django.conf.urls import url
 
 from . import views
 
+from depot.views import SamplesListView
+
 urlpatterns = [
     #samples
     path('test/', views.SamplesListView, name='SamplesListView'),
     #url(r'^$', CurrencyListView.as_view()),
     #url(r'^createstore/$', views.createstore, name='createstore'),
 
+    #url(r'^samples/$', SamplesListView.as_view(template_name="currencies/currency_filter.html")),
+
+    url(r'^samples/$', SamplesListView.as_view(template_name="samples/allsamples.html")),
+
+
+
+    url(r'^currencies/edit/(?P<pk>\d+)/edit/$', views.editsample, name='editsample'),
+
+
+
+
+
 
     #url(r'^samples/$', views.allsamples, name='allsamples'),
     path('samples/<int:sample_id>/', views.detailsamples, name='detailsamples'),
 
     url(r'^currencies/createsample/$', views.createsample, name='createsample'),
-    url(r'^currencies/edit/(?P<pk>\d+)/edit/$', views.editsample, name='editsample'),
 
 
 
