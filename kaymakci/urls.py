@@ -22,6 +22,8 @@ urlpatterns = [
     path('', jobs.views.home, name='home'),
     path('blog/', include('blog.urls')),
     path('store/', include('store.urls')),
+    path('depot/', include('depot.urls')),
+
     path('excavation/', include('excavation.urls')),
     path('spatial/', include('spatial.urls')),
     path('spatial3d/', include('spatial3d.urls')),
