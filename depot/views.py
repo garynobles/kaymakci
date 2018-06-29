@@ -5,7 +5,7 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from depot.models import Samples
+from depot.models import Samples, Container, Location
 from filters.views import FilterMixin
 
 #from .forms import LocationFilterForm
@@ -222,6 +222,36 @@ class SamplesFilterForm(forms.ModelForm):
 
         )
 
+class ContainerFilterForm(forms.ModelForm):
+    class Meta:
+        model = Container
+        fields = (
+        'container_id',
+        'container_name',
+        'container_type',
+        #'location_id',
+        #'sample_id',
+        'current_location_tmp',
+        )
+
+class LocationFilterForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = (
+
+        'location_id',
+        'location_identifier',
+        #'store_id',
+        'location_type',
+        'current_location_tmp',
+        'location_name',
+        #'icon_desc'
+
+        )
+
+
+
+
 class SamplesFilter(django_filters.FilterSet):
 
     class Meta:  # pylint: disable=C1001
@@ -264,7 +294,51 @@ class SamplesFilter(django_filters.FilterSet):
             ('-sample_number', ugettext("Z-A")),
         )
 
+class ContainerFilter(django_filters.FilterSet):
+
+    class Meta:  # pylint: disable=C1001
+        form = ContainerFilterForm
+        model = Container
+        fields = [
+        'container_id',
+        'container_name',
+        'container_type',
+        #'location_id',
+        #'sample_id',
+        'current_location_tmp',
+        #'icon_desc'
+
+
+
+        ]
+class LocationFilter(django_filters.FilterSet):
+
+    class Meta:  # pylint: disable=C1001
+        form = LocationFilterForm
+        model = Location
+        fields = [
+        'location_id',
+        'location_identifier',
+        #'store_id',
+        'location_type',
+        'current_location_tmp',
+        'location_name',
+        #'icon_desc'
+
+        ]
+
+
 class SamplesListView(FilterMixin, django_filters.views.FilterView):
     model = Samples
-    paginate_by = 22
+    paginate_by = 16
     filterset_class = SamplesFilter
+
+class ContainerListView(FilterMixin, django_filters.views.FilterView):
+    model = Container
+    paginate_by = 16
+    filterset_class = ContainerFilter
+
+class LocationListView(FilterMixin, django_filters.views.FilterView):
+    model = Location
+    paginate_by = 16
+    filterset_class = LocationFilter

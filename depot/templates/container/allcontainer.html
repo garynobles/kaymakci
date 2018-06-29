@@ -65,6 +65,7 @@ $(document).ready(function() {
 <button id = "show" class="ml-3">Filter</button>
 
 
+
 <div class = "target position-absolute ml-5" style="box-shadow: 20px  20px 8px 0 rgba(0, 0, 0, 0.5); display:none;">
   <div class="card bg-light pb-3" style="">
     <div class="card-header">Filter
@@ -108,6 +109,7 @@ $(document).ready(function() {
 </div>
 
 
+
 <div class="container-fluid pt-3">
   <div class="pagination">
     <span class="step-links">
@@ -129,28 +131,12 @@ $(document).ready(function() {
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>contextkey (N.E.C.S)</th>
-        <th>material</th>
-        <th>specific_material</th>
-        <th>Munsell exterior</th>
-        <th>Munsell interior</th>
-        <th>weight_kilograms</th>
-        <th>sample_description</th>
-        <th>category</th>
-        <th>subcategory</th>
-        <th>count</th>
-        <th>current_location</th>
-        <th>recovery_type</th>
-        <th>problems</th>
-        <th>image_files</th>
-        <th>number_3d_files</th>
-        <th>chronology</th>
-        <th>analysis_request</th>
-        <th>detailed_sample_description</th>
-        <th>bureaucratic_status</th>
-        <th>subjective_significance</th>
-        <th>museum_inventory_number</th>
-        <th>bureaucratic_status_identifier</th>
+        <th style="color:red;">contextkey (N.E.C.S)</th>
+        <th>container_id</th>
+        <th>container name</th>
+        <th>container type</th>
+        <th style="color:red;">current location</th>
+
         <th>action</th>
       </tr>
     </thead>
@@ -161,31 +147,14 @@ $(document).ready(function() {
 
 
       <tr>
-  {% load point_to_underscore %}
+
         <td>{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</td>
-        <td>{{ o.material}}</td>
-  <td>{{ o.specific_material}}</td>
-  <td>{{ o.exterior_color_hue}}/{{ o.exterior_color_lightness_value|floatformat:0}}/{{ o.exterior_color_chroma}} <div class="munsell M{{ o.exterior_color_hue|point_to_underscore}}-{{ o.exterior_color_lightness_value|floatformat:0}}-{{ o.exterior_color_chroma}}"></div></td>
+        <td>{{ o.container_id}}</td>
+  <td>{{ o.container_name}}</td>
 
-  <td>{{ o.interior_color_hue}}/{{ o.interior_color_lightness_value|floatformat:0}}/{{ o.interior_color_chroma}}<div class="munsell M{{ o.interior_color_hue|point_to_underscore}}-{{ o.interior_color_lightness_value|floatformat:0}}-{{ o.interior_color_chroma}}"></div></td>
+  <td>{{ o.container_type}}</td>
+  <td>{{ o.current_location_tmp}}</td>
 
-  <td>{{ o.weight_kilograms}}</td>
-  <td>{{ o.sample_description}}</td>
-  <td>{{ o.category}}</td>
-  <td>{{ o.subcategory}}</td>
-  <td>{{ o.count}}</td>
-  <td>{{ o.current_location}}</td>
-  <td>{{ o.recovery_type}}</td>
-  <td>{{ o.problems}}</td>
-  <td>{{ o.image_files}}</td>
-  <td>{{ o.number_3d_files}}</td>
-  <td>{{ o.chronology}}</td>
-  <td>{{ o.analysis_request}}</td>
-  <td>{{ o.detailed_sample_description}}</td>
-  <td>{{ o.bureaucratic_status}}</td>
-  <td>{{ o.subjective_significance}}</td>
-  <td>{{ o.museum_inventory_number}}</td>
-  <td>{{ o.bureaucratic_status_identifier}}</td>
 
 
         <td>

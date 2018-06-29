@@ -1,6 +1,56 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Location(models.Model):
+    #store_id = models.ForeignKey(Store, db_column='store_id', on_delete = models.PROTECT)
+    location_id = models.AutoField(primary_key=True)
+    location_identifier = models.IntegerField(blank=True, null=True)
+    #store_id = models.IntegerField(blank=True, null=True)
+    location_type = models.CharField(max_length=100, blank=True, null=True)
+    current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
+    location_name = models.CharField(max_length=100, blank=True, null=True)
+    #icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
+     #these should become an individual table outside of the main db
+    orderby = models.IntegerField(blank=True, null=True)
+
+    #ALTER TABLE samples."location" ADD CONSTRAINT fk_location_store FOREIGN KEY ( store_id ) REFERENCES samples.store( store_id );
+
+    def __str__(self):
+        return self.location_name
+
+    class Meta():
+        managed=False
+        db_table = 'samples\".\"location'
+        ordering = ["orderby"]
+        verbose_name_plural = "locations"
+
+class Container(models.Model):
+    location_id = models.ForeignKey(Location, db_column='location_id', on_delete = models.PROTECT)
+    ##icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT)
+    container_id = models.IntegerField(primary_key=True)
+    container_name = models.CharField(max_length=50, blank=True, null=True)
+    container_type = models.CharField(max_length=50, blank=True, null=True)
+    #location_id = models.IntegerField(blank=True, null=True)
+    #sample_id = models.IntegerField(blank=True, null=True)
+    current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
+    area_easting = models.IntegerField()
+    area_northing = models.IntegerField()
+    context_number = models.IntegerField()
+    sample_number = models.IntegerField()
+
+
+
+    def __str__(self):
+        return self.container_name
+
+    class Meta():
+        managed=False
+        db_table = 'samples\".\"container'
+        ordering = ["container_name"]
+        verbose_name_plural = "containers"
+        unique_together = [('area_easting', 'area_northing', 'context_number', 'sample_number'),]
+
+
 class Samples(models.Model):
 
     #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)

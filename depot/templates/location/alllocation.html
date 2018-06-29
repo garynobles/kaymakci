@@ -1,48 +1,4 @@
-<style>
-.munsell {
-  float: left;
-  width: 20px;
-  height: 20px;
-  margin: 5px;
-  border: 1px solid rgba(0, 0, 0, .2);
-}
-
-.M2_5Y-7-2 {background: #BFA99F ;}
-
-.M2_5YR-6-2	 {background: #A68F85 ;}
-
-
-.M7_5YR-6-4 {background: #B08D6D ;}
-
-.M5YR-1-4 {background: ;}
-.M5YR-2-4 {background: ;}
-.M5YR-3-4 {background: ;}
-.M5YR-4-4 {background: ;}
-
-.M5YR-5-4 {background: #92744F;}
-.M5YR-6-4 {background: #AC8F67;}
-
-.M5YR-7-4 {background: ;}
-.M5YR-8-4 {background: ;}
-.M5YR-9-4 {background: ;}
-.M5YR-10-4 {background: ;}
-
-
-
-.M7_5YR-7-2	{background: #BEAA99 ;}
-
-
-.M7_5YR-6-2 {background: #A49080 ;}
-
-.M10YR-6-2 {background: #A1917D ;}
-
-.M10YR-7-2 {background: #BCAB96 ;}
-
-</style>
-
-
-
-{% extends "currencies/base.html" %}
+{% extends "samples/base.html" %}
 {% block content %}
 
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -62,12 +18,12 @@ $(document).ready(function() {
 
 });
 </script>
-<button id = "show">Filter</button>
+<button id = "show" class="ml-3">Filter</button>
 
 
 
-<div class = "target position-absolute ml-5" style="box-shadow: 20px  20px 20px 0 rgba(0, 0, 0, 0.5); display:none;">
-  <div class="card bg-light mb-3" style="">
+<div class = "target position-absolute ml-5" style="box-shadow: 20px  20px 8px 0 rgba(0, 0, 0, 0.5); display:none;">
+  <div class="card bg-light pb-3" style="">
     <div class="card-header">Filter
     <div class="float-right">    <button id = "hide" >x</button> </div>
     </div>
@@ -81,10 +37,11 @@ $(document).ready(function() {
     <form method="get">
       <div class="well container">
         <!--h4 style="margin-top: 0">Filter Page Depot2!</h4-->
-        <div class="row px-5">
+        <div class="row px-3">
           {{ filter.form.as_table }}
         </div>
       </div>
+      <div class="float-right pr-3">
       <button type="submit" class="btn btn-primary">
         <span class="glyphicon glyphicon-search"></span> Search
       </button>
@@ -93,6 +50,7 @@ $(document).ready(function() {
           <span class="glyphicon glyphicon-search"></span> Reset
         </button>
       </a>
+    </div>
 
       <!-- {% for field in filter.form %}
       {{ field }}
@@ -129,28 +87,12 @@ $(document).ready(function() {
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>contextkey (N.E.C.S)</th>
-        <th>material</th>
-        <th>specific_material</th>
-        <th>Munsell exterior</th>
-        <th>Munsell interior</th>
-        <th>weight_kilograms</th>
-        <th>sample_description</th>
-        <th>category</th>
-        <th>subcategory</th>
-        <th>count</th>
-        <th>current_location</th>
-        <th>recovery_type</th>
-        <th>problems</th>
-        <th>image_files</th>
-        <th>number_3d_files</th>
-        <th>chronology</th>
-        <th>analysis_request</th>
-        <th>detailed_sample_description</th>
-        <th>bureaucratic_status</th>
-        <th>subjective_significance</th>
-        <th>museum_inventory_number</th>
-        <th>bureaucratic_status_identifier</th>
+        <th>Location ID</th>
+        <th>location_identifier</th>
+        <th>location_type</th>
+        <th style="color:red;">current location</th>
+        <th>location_name</th>
+
         <th>action</th>
       </tr>
     </thead>
@@ -161,31 +103,14 @@ $(document).ready(function() {
 
 
       <tr>
-  {% load point_to_underscore %}
-        <td><a href="{% url 'editsample' pk=o.pk %"}>{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</a></td>
-        <td>{{ o.material}}</td>
-  <td>{{ o.specific_material}}</td>
-  <td>{{ o.exterior_color_hue}}/{{ o.exterior_color_lightness_value|floatformat:0}}/{{ o.exterior_color_chroma}} <div class="munsell M{{ o.exterior_color_hue|point_to_underscore}}-{{ o.exterior_color_lightness_value|floatformat:0}}-{{ o.exterior_color_chroma}}"></div></td>
 
-  <td>{{ o.interior_color_hue}}/{{ o.interior_color_lightness_value|floatformat:0}}/{{ o.interior_color_chroma}}<div class="munsell M{{ o.interior_color_hue|point_to_underscore}}-{{ o.interior_color_lightness_value|floatformat:0}}-{{ o.interior_color_chroma}}"></div></td>
+        <td>{{ o.location_id }}</td>
+        <td>{{ o.location_identifier}}</td>
+  <td>{{ o.location_type}}</td>
 
-  <td>{{ o.weight_kilograms}}</td>
-  <td>{{ o.sample_description}}</td>
-  <td>{{ o.category}}</td>
-  <td>{{ o.subcategory}}</td>
-  <td>{{ o.count}}</td>
-  <td>{{ o.current_location}}</td>
-  <td>{{ o.recovery_type}}</td>
-  <td>{{ o.problems}}</td>
-  <td>{{ o.image_files}}</td>
-  <td>{{ o.number_3d_files}}</td>
-  <td>{{ o.chronology}}</td>
-  <td>{{ o.analysis_request}}</td>
-  <td>{{ o.detailed_sample_description}}</td>
-  <td>{{ o.bureaucratic_status}}</td>
-  <td>{{ o.subjective_significance}}</td>
-  <td>{{ o.museum_inventory_number}}</td>
-  <td>{{ o.bureaucratic_status_identifier}}</td>
+  <td>{{ o.current_location_tmp}}</td>
+  <td>{{ o.location_name}}</td>
+
 
 
         <td>

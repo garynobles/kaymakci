@@ -3,12 +3,15 @@ from django.conf.urls import url
 
 from . import views
 
-from depot.views import SamplesListView
+from depot.views import SamplesListView, ContainerListView, LocationListView
 
 urlpatterns = [
     #samples
     #path('samples/', views.SamplesListView, name='SamplesListView'),
-    url(r'^samples/$', SamplesListView.as_view(template_name="samples/allsamples.html"), name='SamplesListView'),
+    url(r'^samples/$', SamplesListView.as_view(template_name="samples/allsamples.html"), name='allsamples'),
+
+    url(r'^container/$', ContainerListView.as_view(template_name="container/allcontainer.html"), name='allcontainer'),
+    url(r'^location/$', LocationListView.as_view(template_name="location/alllocation.html"), name='alllocation'),
 
     #url(r'^$', CurrencyListView.as_view()),
     #url(r'^createstore/$', views.createstore, name='createstore'),
