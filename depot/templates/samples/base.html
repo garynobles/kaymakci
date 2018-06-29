@@ -42,11 +42,11 @@
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
             <a class="nav-item nav-link" href="{% url 'allstore' %}">Store</a>
-            <a class="nav-item nav-link" href="{% url 'SamplesListView' %}">Samples</a>
+            <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
             <a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
 
             <div class="dropdown show">
-              <a class="dropdown-toggle" href="{% url 'SamplesListView' %}" id="spatial3d" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">3D Spatial</a>
+              <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="spatial3d" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">3D Spatial</a>
               <div class="dropdown-menu " aria-labelledby="spatial3d">
                 <a class="dropdown-item" href="{% url 'processing3dpage' %}">Photobatch</a>
                 <hr />
@@ -72,9 +72,9 @@
 
 
             <div class="dropdown show">
-              <a class="dropdown-toggle" href="{% url 'SamplesListView' %}" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
+              <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
               <div class="dropdown-menu " aria-labelledby="samplesdropdown">
-                <a class="dropdown-item" href="{% url 'SamplesListView' %}">Samples</a>
+                <a class="dropdown-item" href="{% url 'allsamples' %}">Samples</a>
                 <hr />
                 <a class="dropdown-item" href="#">Faunal</a>
                 <a class="dropdown-item" href="#">Conservation</a>
@@ -118,7 +118,7 @@
           <a href="{% url 'createstore' %}">
             <button  type="button" class="btn btn-success">Add new Depot</button>
           </a>
-          <a href="{% url 'SamplesListView' %}">
+          <a href="{% url 'allsamples' %}">
             <button  type="button" class="btn btn-info">Samples</button>
           </a>
           <a href="{% url 'allcontainer' %}">
@@ -138,7 +138,7 @@
   <main role="main">
     <section class="jumbotron text-center">
       <div class="container">
-
+        
         <!--a href="#" class="btn btn-primary my-2">Main call to action</a-->
       </div>
     </section>
