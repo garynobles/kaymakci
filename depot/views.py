@@ -5,8 +5,8 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from .forms import ContainerForm, SamplesForm, StorageForm, SamplesForm, LocationForm
-from depot.models import Samples, Container, Location, Storage
+from .forms import ContainerForm, SamplesForm, StorageForm, SamplesForm, LocationForm, JoinSampleContainerForm
+from depot.models import Samples, Container, Location, Storage, JoinSampleContainer
 from filters.views import FilterMixin
 
 #from .forms import LocationFilterForm
@@ -76,6 +76,40 @@ def editlocation(request, pk):
 
 
 
+def create_join_sample_container(request):
+    if request.method == "POST":
+        form = JoinSampleContainerForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+
+            post.save()
+            return redirect('all_sample_container_joins')
+    else:
+        form = JoinSampleContainerForm()
+    return render(request, 'join_sample_container/create_join_sample_container.html', {'form': form})
+
+def edit_join_sample_container(request, pk):
+    post = get_object_or_404(Container, pk=pk)
+    if request.method == "POST":
+        form = JoinSampleContainerForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('all_sample_container_joins')
+            #, pk=post.pk)
+    else:
+        form = JoinSampleContainerForm(instance=post)
+    return render(request, 'join_sample_container/create_join_sample_container.html', {'form': form})
+
+
+
+
+
+
 
 
 def allcontainer(request):
@@ -84,6 +118,9 @@ def allcontainer(request):
 def detailcontainer(request, container_id):
     detailcontainer = get_object_or_404(Container, pk=container_id)
     return render(request, 'container/detailcontainer.html', {'container':detailcontainer})
+
+
+
 
 def createcontainer(request):
     if request.method == "POST":
@@ -356,6 +393,19 @@ class LocationFilterForm(forms.ModelForm):
 
 
 
+class JoinSampleContainerFilterForm(forms.ModelForm):
+    class Meta:
+        model = JoinSampleContainer
+        fields = (
+        'id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'container_id',
+        )
+
+
 class SamplesFilter(django_filters.FilterSet):
 
     class Meta:  # pylint: disable=C1001
@@ -432,6 +482,21 @@ class LocationFilter(django_filters.FilterSet):
         ]
 
 
+
+class JoinSampleContainerFilter(django_filters.FilterSet):
+
+    class Meta:  # pylint: disable=C1001
+        form = JoinSampleContainerFilterForm
+        model = JoinSampleContainer
+        fields = [
+        'id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'container_id',
+        ]
+
 class SamplesListView(FilterMixin, django_filters.views.FilterView):
     model = Samples
     paginate_by = 16
@@ -451,3 +516,8 @@ class LocationGridView(FilterMixin, django_filters.views.FilterView):
     model = Location
     paginate_by = 16
     filterset_class = LocationFilter
+
+class JoinSampleContainerListView(FilterMixin, django_filters.views.FilterView):
+    model = JoinSampleContainer
+    paginate_by = 5
+    filterset_class = JoinSampleContainerFilter

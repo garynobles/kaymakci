@@ -6,8 +6,14 @@ from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
 
-from .models import Storage, Container, Location, Samples
+from .models import Storage, Container, Location, Samples, JoinSampleContainer
 from filters.views import FilterMixin
+
+
+
+
+
+
 
 class SamplesForm(forms.ModelForm):
 
@@ -96,4 +102,19 @@ class ContainerForm(forms.ModelForm):
         #'sample_id',
         'current_location_tmp',
         'icon_desc'
+        )
+
+
+class JoinSampleContainerForm(forms.ModelForm):
+
+    class Meta:
+        model = JoinSampleContainer
+        fields = (
+        'id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
+        'container_id',
         )

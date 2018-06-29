@@ -98,6 +98,26 @@ class Container(models.Model):
         unique_together = [('area_easting', 'area_northing', 'context_number', 'sample_number'),]
 
 
+class JoinSampleContainer(models.Model):
+    id = models.AutoField(primary_key=True)
+    area_easting = models.IntegerField()
+    area_northing = models.IntegerField()
+    context_number = models.IntegerField()
+    sample_number = models.IntegerField()
+    container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
+    #container_id = models.IntegerField()
+
+    def __int__(self):
+        return self.container_id
+
+    class Meta():
+        managed=False
+        db_table = 'samples\".\"join_sample_container'
+        #ordering = ["container_id","id"]
+        #verbose_name_plural = "Sample Container Join"
+        #unique_together = [('area_easting', 'area_northing', 'context_number', 'sample_number'),]
+
+
 class Samples(models.Model):
 
     #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
