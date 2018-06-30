@@ -132,19 +132,19 @@ $(document).ready(function() {
         <th>contextkey (N.E.C.S)</th>
         <th>material</th>
         <th>specific_material</th>
-        <th>Munsell exterior</th>
-        <th>Munsell interior</th>
+        <!-- <th>Munsell exterior</th>
+        <th>Munsell interior</th> -->
         <th>weight_kilograms</th>
         <th>sample_description</th>
         <th>category</th>
         <th>subcategory</th>
         <th>count</th>
         <th>current_location</th>
-        <th>recovery_type</th>
+        <!-- <th>recovery_type</th>
         <th>problems</th>
         <th>image_files</th>
         <th>number_3d_files</th>
-        <th>chronology</th>
+        <th>chronology</th> -->
         <th>analysis_request</th>
         <th>detailed_sample_description</th>
         <th>bureaucratic_status</th>
@@ -165,9 +165,9 @@ $(document).ready(function() {
         <td><a href="{% url 'editsample' pk=o.pk %}">{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</a></td>
         <td>{{ o.material}}</td>
   <td>{{ o.specific_material}}</td>
-  <td>{{ o.exterior_color_hue}}/{{ o.exterior_color_lightness_value|floatformat:0}}/{{ o.exterior_color_chroma}} <div class="munsell M{{ o.exterior_color_hue|point_to_underscore}}-{{ o.exterior_color_lightness_value|floatformat:0}}-{{ o.exterior_color_chroma}}"></div></td>
+  <!-- <td>{{ o.exterior_color_hue}}/{{ o.exterior_color_lightness_value|floatformat:0}}/{{ o.exterior_color_chroma}} <div class="munsell M{{ o.exterior_color_hue|point_to_underscore}}-{{ o.exterior_color_lightness_value|floatformat:0}}-{{ o.exterior_color_chroma}}"></div></td>
 
-  <td>{{ o.interior_color_hue}}/{{ o.interior_color_lightness_value|floatformat:0}}/{{ o.interior_color_chroma}}<div class="munsell M{{ o.interior_color_hue|point_to_underscore}}-{{ o.interior_color_lightness_value|floatformat:0}}-{{ o.interior_color_chroma}}"></div></td>
+  <td>{{ o.interior_color_hue}}/{{ o.interior_color_lightness_value|floatformat:0}}/{{ o.interior_color_chroma}}<div class="munsell M{{ o.interior_color_hue|point_to_underscore}}-{{ o.interior_color_lightness_value|floatformat:0}}-{{ o.interior_color_chroma}}"></div></td> -->
 
   <td>{{ o.weight_kilograms}}</td>
   <td>{{ o.sample_description}}</td>
@@ -175,11 +175,11 @@ $(document).ready(function() {
   <td>{{ o.subcategory}}</td>
   <td>{{ o.count}}</td>
   <td>{{ o.current_location}}</td>
-  <td>{{ o.recovery_type}}</td>
+  <!-- <td>{{ o.recovery_type}}</td>
   <td>{{ o.problems}}</td>
   <td>{{ o.image_files}}</td>
   <td>{{ o.number_3d_files}}</td>
-  <td>{{ o.chronology}}</td>
+  <td>{{ o.chronology}}</td> -->
   <td>{{ o.analysis_request}}</td>
   <td>{{ o.detailed_sample_description}}</td>
   <td>{{ o.bureaucratic_status}}</td>

@@ -28,7 +28,7 @@ class Processing3d(models.Model):
     id = models.AutoField(primary_key=True)
     #id = models.IntegerField(blank=True, null=True)
     photobatch_id = models.CharField(max_length=200, default='', blank=True, null=True)
-    prefix = models.CharField(max_length=200, default='', blank=True, null=True)\
+    prefix = models.CharField(max_length=200, blank=True, null=True)\
 
     area_easting = models.IntegerField(null=False, choices = EASTING_CHOICES)
     area_northing= models.IntegerField(null=False, choices = NORTHING_CHOICES)
