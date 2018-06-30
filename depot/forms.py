@@ -100,7 +100,7 @@ class ContainerForm(forms.ModelForm):
         'container_type',
         'location_id',
         #'sample_id',
-        'current_location_tmp',
+        #'current_location_tmp',
         'icon_desc'
         )
 

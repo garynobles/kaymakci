@@ -370,7 +370,7 @@ class ContainerFilterForm(forms.ModelForm):
         'container_id',
         'container_name',
         'container_type',
-        'current_location_tmp',
+        #'current_location_tmp',
         'location_id',
         'icon_desc',
 
@@ -459,7 +459,7 @@ class ContainerFilter(django_filters.FilterSet):
         'container_name',
         'container_type',
         'location_id',
-        'current_location_tmp',
+        #'current_location_tmp',
         'icon_desc'
 
 
