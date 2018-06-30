@@ -74,14 +74,11 @@ class Location(models.Model):
         verbose_name_plural = "locations"
 
 class Container(models.Model):
+    container_id = models.AutoField(primary_key=True)
     location_id = models.ForeignKey(Location, db_column='location_id', on_delete = models.PROTECT)
     icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT)
-    container_id = models.AutoField(primary_key=True)
     container_name = models.CharField(max_length=50, blank=True, null=True)
     container_type = models.CharField(max_length=50, blank=True, null=True)
-
-
-
 
     def __str__(self):
         return self.container_name
@@ -100,11 +97,12 @@ class JoinSampleContainer(models.Model):
     area_northing = models.IntegerField()
     context_number = models.IntegerField()
     sample_number = models.IntegerField()
-    container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
     #container_id = models.IntegerField()
+    container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
+
 
     def __int__(self):
-        return self.container_id
+        return self.id
 
     class Meta():
         managed=False

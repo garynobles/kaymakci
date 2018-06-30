@@ -91,7 +91,7 @@ def create_join_sample_container(request):
     return render(request, 'join_sample_container/create_join_sample_container.html', {'form': form})
 
 def edit_join_sample_container(request, pk):
-    post = get_object_or_404(Container, pk=pk)
+    post = get_object_or_404(JoinSampleContainer, pk=pk)
     if request.method == "POST":
         form = JoinSampleContainerForm(request.POST, instance=post)
         if form.is_valid():
@@ -519,5 +519,5 @@ class LocationGridView(FilterMixin, django_filters.views.FilterView):
 
 class JoinSampleContainerListView(FilterMixin, django_filters.views.FilterView):
     model = JoinSampleContainer
-    paginate_by = 5
+    paginate_by = 10
     filterset_class = JoinSampleContainerFilter
