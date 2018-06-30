@@ -22,6 +22,7 @@ path {
 <div class="container">
   <h1>Quick NISP</h1>
   <h5>(Number of Identifable Species)</h5>
+  <br />
   <div class="row">
     <div class="col-md-11 mx-auto ">
       <form method="POST" class="post-form">{% csrf_token %}
@@ -94,6 +95,12 @@ path {
               <label for="inputFirstname">oa</label>
               {% render_field form.oa class="form-control" %}
             </div>
+
+          </div>
+          </div>
+            <div class="form-group row float-left">
+              <div class="col-sm-10 border border-dark rounded pb-2">
+
             <div class="">
               <label for="inputFirstname">equid</label>
               {% render_field form.equid class="form-control" %}
@@ -114,6 +121,12 @@ path {
               <label for="inputFirstname">pesc</label>
               {% render_field form.pesc class="form-control" %}
             </div>
+
+          </div>
+          </div>
+            <div class="form-group row float-left">
+              <div class="col-sm-10 border border-dark rounded pb-2">
+
             <div class="">
               <label for="inputFirstname">brd</label>
               {% render_field form.brd class="form-control" %}
@@ -134,6 +147,12 @@ path {
               <label for="inputFirstname">landsnail</label>
               {% render_field form.landsnail class="form-control" %}
             </div>
+
+          </div>
+          </div>
+            <div class="form-group row float-left">
+              <div class="col-sm-10 border border-dark rounded pb-2">
+
             <div class="">
               <label for="inputFirstname">shell_other</label>
               {% render_field form.shell_other class="form-control" %}
@@ -153,7 +172,7 @@ path {
           </div>
         </div>
 
-        <div class="form-group row float-left" style="width:81%;">
+        <div class="form-group row float-left" style="width:100%;">
           <div class=" border border-dark rounded pb-12" style="width:100%;">
             <div class="">
               <label for="inputFirstname">Comments</label>
