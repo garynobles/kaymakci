@@ -49,14 +49,16 @@ class Storage(models.Model):
         verbose_name_plural = "stores"
 
 class Location(models.Model):
-    store_id = models.ForeignKey(Storage, db_column='store_id', on_delete = models.PROTECT)
     location_id = models.AutoField(primary_key=True)
+    store_id = models.ForeignKey(Storage, db_column='store_id', on_delete = models.PROTECT)
+    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
+
     location_identifier = models.IntegerField(blank=True, null=True)
     #store_id = models.IntegerField(blank=True, null=True)
     location_type = models.CharField(max_length=100, blank=True, null=True)
     current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
     location_name = models.CharField(max_length=100, blank=True, null=True)
-    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
+
      #these should become an individual table outside of the main db
     orderby = models.IntegerField(blank=True, null=True)
 
@@ -74,16 +76,10 @@ class Location(models.Model):
 class Container(models.Model):
     location_id = models.ForeignKey(Location, db_column='location_id', on_delete = models.PROTECT)
     icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT)
-    container_id = models.IntegerField(primary_key=True)
+    container_id = models.AutoField(primary_key=True)
     container_name = models.CharField(max_length=50, blank=True, null=True)
     container_type = models.CharField(max_length=50, blank=True, null=True)
-    #location_id = models.IntegerField(blank=True, null=True)
-    #sample_id = models.IntegerField(blank=True, null=True)
-    current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
-    area_easting = models.IntegerField()
-    area_northing = models.IntegerField()
-    context_number = models.IntegerField()
-    sample_number = models.IntegerField()
+
 
 
 
@@ -95,7 +91,7 @@ class Container(models.Model):
         db_table = 'samples\".\"container'
         ordering = ["container_name"]
         verbose_name_plural = "containers"
-        unique_together = [('area_easting', 'area_northing', 'context_number', 'sample_number'),]
+        #unique_together = [('area_easting', 'area_northing', 'context_number', 'sample_number'),]
 
 
 class JoinSampleContainer(models.Model):

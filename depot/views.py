@@ -370,9 +370,10 @@ class ContainerFilterForm(forms.ModelForm):
         'container_id',
         'container_name',
         'container_type',
-        #'location_id',
-        #'sample_id',
         'current_location_tmp',
+        'location_id',
+        'icon_desc',
+
         )
 
 class LocationFilterForm(forms.ModelForm):
@@ -457,10 +458,9 @@ class ContainerFilter(django_filters.FilterSet):
         'container_id',
         'container_name',
         'container_type',
-        #'location_id',
-        #'sample_id',
+        'location_id',
         'current_location_tmp',
-        #'icon_desc'
+        'icon_desc'
 
 
 
