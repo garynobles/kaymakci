@@ -153,8 +153,6 @@ def editcontainer(request, pk):
 
 
 
-def editsamplesearch(request):
-    pass
 
 
 

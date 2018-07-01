@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Icon(models.Model):
     #icon_id              = models.AutoField(primary_key=True)
     icon_desc            = models.CharField(primary_key=True,max_length=50)

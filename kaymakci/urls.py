@@ -12,6 +12,7 @@ import jobs.views
 
 
 from depot.views import SamplesListView
+#from ceramics.views import CeramicsListView
 from django.conf.urls import url
 #import store.views
 #import zooarch.views
@@ -28,6 +29,8 @@ urlpatterns = [
     path('spatial/', include('spatial.urls')),
     path('spatial3d/', include('spatial3d.urls')),
     path('zooarch/', include('zooarch.urls')),
+
+    path('ceramics/', include('ceramics.urls')),
 
 
     #path('samples/', include('samples.urls')),

@@ -53,7 +53,6 @@ urlpatterns = [
     url(r'^container/search/edit/(?P<pk>\d+)/edit/$', views.editcontainersearch, name='editcontainersearch'),
 
 
-    url(r'^samples/search/edit/(?P<pk>\d+)/edit/$', views.editsamplesearch, name='editsamplesearch'),
 
     #storage
     url(r'^storage/$', views.allstorage, name='allstorage'),
