@@ -46,6 +46,8 @@ def detailceramics(request):
     pass
 
 
+
+
 class CeramicsFilterForm(forms.ModelForm):
     class Meta:
         model = Ceramics
@@ -128,7 +130,11 @@ class CeramicsFilter(django_filters.FilterSet):
         )
 
 
+
 class CeramicsListView(FilterMixin, django_filters.views.FilterView):
+    def get_queryset(self, *atgs, **kwargs):
+        object_list=Ceramics.objects.filter(material='Ceramic')
+        return object_list
     model = Ceramics
     paginate_by = 16
     filterset_class = CeramicsFilter
