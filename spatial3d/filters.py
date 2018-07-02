@@ -1,10 +1,28 @@
+from django.shortcuts import render
+from django import forms
+from django.utils.translation import ugettext
 import django_filters
-from .models import Processing3d
+from django_filters.filterset import ORDER_BY_FIELD
+# Create your views here.
 
-class Processing3dFilter(django_filters.FilterSet):
+from photobatch.models import Photobatch
+from filters.views import FilterMixin
+
+
+
+class PhotobatchFilter(django_filters.FilterSet):
+
+    def __init__(self, data={}, *args, **kwargs):
+        super(PhotobatchFilterForm, self).__init__(data, *args, **kwargs)  # NOQA
+        try:
+            self.fields[ORDER_BY_FIELD].widget.attrs = {
+                'onchange': "this.form.submit();",
+            }
+        except KeyError:
+            pass
 
     class Meta:
-        model = Processing3d
+        model = Photobatch
         fields = [
         'id',
         'photobatch_id',
@@ -53,3 +71,7 @@ class Processing3dFilter(django_filters.FilterSet):
         'folder_processed',
         'processing_notes'
         ]
+        order_by = (
+            ('photobatch_id, ugettext("A-Z")),
+            ('-photobatch_id', ugettext("Z-A")),
+        )

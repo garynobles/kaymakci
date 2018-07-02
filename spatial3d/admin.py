@@ -2,6 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Processing3d
+from .models import Photobatch
 
-admin.site.register(Processing3d)
+admin.site.register(Photobatch)

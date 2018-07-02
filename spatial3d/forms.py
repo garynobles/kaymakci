@@ -1,10 +1,18 @@
+from django.shortcuts import render
 from django import forms
-from .models import Processing3d
+from django.utils.translation import ugettext
+import django_filters
+from django_filters.filterset import ORDER_BY_FIELD
+# Create your views here.
 
-class Processing3dForm(forms.ModelForm):
+
+from .models import Photobatch
+from filters.views import FilterMixin
+
+class PhotobatchForm(forms.ModelForm):
 
     class Meta:
-        model = Processing3d
+        model = Photobatch
         fields = (
         #'id',
         'photobatch_id',
@@ -18,7 +26,7 @@ class Processing3dForm(forms.ModelForm):
         'processed_by',
         'camera_model',
         'imported_photoscan',
-		
+
         'aligned',
         'align_accuracy',
         'align_pair_selection',
@@ -34,7 +42,7 @@ class Processing3dForm(forms.ModelForm):
         'mesh_type',
         'mesh_face_count',
         'mesh_interpolation',
-        
+
 		'texture',
         'texture_defaults',
         'dem',
@@ -47,7 +55,7 @@ class Processing3dForm(forms.ModelForm):
         'export_points',
         'export_points_filename',
         'export_points_offsets',
-        
+
 		'export_report_pdf',
         'export_orthophoto',
         'export_dem',

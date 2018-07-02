@@ -3,10 +3,14 @@ from django.conf.urls import url
 
 from . import views
 
-urlpatterns = [
-    path('processing/', views.processing3dpage, name='processing3dpage'),
-    path('processing/<int:id>/', views.detailprocessing3d, name='detailprocessing3d'),
+from spatial3d.views import PhotobatchListView
 
-    url(r'^processing/create$', views.createprocessing3d, name='createprocessing3d'),
-    url(r'^processing/edit/(?P<pk>\d+)/edit/$', views.editprocessing3d, name='editprocessing3d'),
+urlpatterns = [
+    path('photobatch/', PhotobatchListView.as_view(template_name="photobatch/allphotobatch.html"), name='allphotobatch'),
+
+
+    path('photobatch/<int:id>/', views.detailphotobatch, name='detailphotobatch'),
+
+    url(r'^photobatch/create$', views.createphotobatch, name='createphotobatch'),
+    url(r'^photobatch/edit/(?P<pk>\d+)/edit/$', views.editphotobatch, name='editphotobatch'),
 ]

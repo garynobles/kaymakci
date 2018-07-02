@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -27,7 +27,7 @@ COMPUTER_CHOICES = (
 )
 
 #boolfield = forms.ChoiceField(choices = TRUE_FALSE_CHOICES, label="Some Label", initial='', widget=forms.Select(), required=True)
-class Processing3d(models.Model):
+class Photobatch(models.Model):
     id = models.AutoField(primary_key=True)
     #id = models.IntegerField(blank=True, null=True)
     photobatch_id = models.CharField(max_length=200, default='', blank=True, null=True)
