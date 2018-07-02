@@ -6,17 +6,20 @@ TRUE_FALSE_CHOICES = (
     (False, 'No')
 )
 EASTING_CHOICES = (
+    ('',''),
     (99, 99),
     (108, 108),
     (109, 109)
 )
 NORTHING_CHOICES = (
+    ('',''),
     (523, 523),
     (526, 526),
 
 )
 
 SELECTED_CHOICES = (
+    ('',''),
     ("Hand Selected", "Hand Selected"),
     ("Floatation", "Floatation"),
     ("Preflotation","Preflotation"),
@@ -97,7 +100,7 @@ class Qnisp(models.Model):
     context_number = models.IntegerField()
     sample_number = models.IntegerField()
     collection_method = models.CharField(max_length=25, default='', choices =  SELECTED_CHOICES)
-    mandible_with_teeth  = models.BooleanField(default=False)
+    mandible_with_teeth  = models.BooleanField(default=False, choices =  TRUE_FALSE_CHOICES)
     bt         = models.IntegerField(blank=True, null=True)
     ss         = models.IntegerField(blank=True, null=True)
     oc_tje     = models.IntegerField(blank=True, null=True)
@@ -125,5 +128,5 @@ class Qnisp(models.Model):
     class Meta():
         managed=False
         db_table = 'samples\".\"faunal_qnisp'
-        #ordering = ["orderby"]
+        ordering = ["-qnisp_id"]
         #verbose_name_plural = "stores"

@@ -45,50 +45,6 @@ def editzooarch(request, pk):
 def detailzooarch(request):
     pass
 
-
-
-
-
-
-
-
-# Create your views here.
-def createqnisp(request):
-    if request.method == "POST":
-        form = QnispForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            #post.user = request.user
-            #post.datetime = datetime.datetime.now()
-
-            post.save()
-            return redirect('allqnisp')
-    else:
-        form = QnispForm()
-    return render(request, 'qnisp/create_qnisp.html', {'form': form})
-
-
-def editqnisp(request, pk):
-    post = get_object_or_404(Qnisp, pk=pk)
-    if request.method == "POST":
-        form = QnispForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            #post.user = request.user
-            #post.datetime = datetime.datetime.now()
-            post.save()
-            return redirect('allqnisp')
-            #, pk=post.pk)
-    else:
-        form = QnispForm(instance=post)
-    return render(request, 'qnisp/create_qnisp.html', {'form': form})
-
-
-def detailqnisp(request):
-    pass
-
-
-
 class ZooarchFilterForm(forms.ModelForm):
     class Meta:
         model = Zooarch
@@ -130,7 +86,7 @@ class ZooarchFilterForm(forms.ModelForm):
 
 class ZooarchFilter(django_filters.FilterSet):
 
-    class Meta:  # pylint: disable=C1001
+    class Meta:
         form = ZooarchFilterForm
         model = Zooarch
         fields = [
@@ -170,6 +126,50 @@ class ZooarchFilter(django_filters.FilterSet):
             ('-sample_number', ugettext("Z-A")),
         )
 
+class ZooarchListView(FilterMixin, django_filters.views.FilterView):
+    def get_queryset(self, *atgs, **kwargs):
+        object_list=Zooarch.objects.filter(material='Organic', specific_material='Bone')
+        return object_list
+    model = Zooarch
+    paginate_by = 16
+    filterset_class = ZooarchFilter
+
+
+# Create your views here.
+def createqnisp(request):
+    if request.method == "POST":
+        form = QnispForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+
+            post.save()
+            return redirect('allqnisp')
+    else:
+        form = QnispForm()
+    return render(request, 'qnisp/create_qnisp.html', {'form': form})
+
+
+def editqnisp(request, pk):
+    post = get_object_or_404(Qnisp, pk=pk)
+    if request.method == "POST":
+        form = QnispForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('allqnisp')
+            #, pk=post.pk)
+    else:
+        form = QnispForm(instance=post)
+    return render(request, 'qnisp/create_qnisp.html', {'form': form})
+
+
+def detailqnisp(request):
+    pass
+
 class QnispFilterForm(forms.ModelForm):
     class Meta:
         model = Qnisp
@@ -201,6 +201,10 @@ class QnispFilterForm(forms.ModelForm):
         'comments',
         'ursus',
         'big_feline_lynx_size',
+        )
+        order_by = (
+            ('collection_method', ugettext("A-Z")),
+            ('-collection_method', ugettext("Z-A")),
         )
 
 class QnispFilter(django_filters.FilterSet):
@@ -239,13 +243,7 @@ class QnispFilter(django_filters.FilterSet):
         ]
 
 
-class ZooarchListView(FilterMixin, django_filters.views.FilterView):
-    def get_queryset(self, *atgs, **kwargs):
-        object_list=Zooarch.objects.filter(material='Organic', specific_material='Bone')
-        return object_list
-    model = Zooarch
-    paginate_by = 16
-    filterset_class = ZooarchFilter
+
 
 class QnispListView(FilterMixin, django_filters.views.FilterView):
     model = Qnisp

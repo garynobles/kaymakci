@@ -9,7 +9,7 @@ urlpatterns = [
     #ceramics
 
     #url(r'^""$', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='allceramics'),
-    path('', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='home'),
+    path('samples/', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='home'),
 
 
     path('ceramics/<int:sample_id>/', views.detailceramics, name='detailceramics'),

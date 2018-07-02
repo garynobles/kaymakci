@@ -19,8 +19,11 @@ NORTHING_CHOICES = (
 )
 
 COMPUTER_CHOICES = (
-    ("Struthas", "Struthas"),
+    ("",""),
+    ("Harpagus","Harpagus"),
     ("Pissuthnes", "Pissuthnes"),
+    ("Struthas", "Struthas"),
+    ("Tissaphernes","Tissaphernes"),
 )
 
 #boolfield = forms.ChoiceField(choices = TRUE_FALSE_CHOICES, label="Some Label", initial='', widget=forms.Select(), required=True)

@@ -5,7 +5,7 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from zooarch.models import Zooarch
+from zooarch.models import Zooarch,Qnisp
 from filters.views import FilterMixin
 
 

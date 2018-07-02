@@ -8,13 +8,13 @@ from zooarch.views import ZooarchListView, QnispListView
 urlpatterns = [
     #zooarch
 
-    path('', ZooarchListView.as_view(template_name="zooarch/allzooarch.html"), name='allzooarch'),
-    path('qnisp/', QnispListView.as_view(template_name="zooarch/allqnisp.html"), name='allqnisp'),
+    path('samples/', ZooarchListView.as_view(template_name="zooarch/allzooarch.html"), name='allzooarch'),
 
     path('zooarch/<int:sample_id>/', views.detailzooarch, name='detailzooarch'),
     url(r'^zooarch/edit/(?P<pk>\d+)/edit/$', views.editzooarch, name='editzooarch'),
     url(r'^zooarch/createzooarch/$', views.createzooarch, name='createzooarch'),
 
+    path('qnisp/', QnispListView.as_view(template_name="qnisp/allqnisp.html"), name='allqnisp'),
     #url(r'^qnisp/$', views.allqnisp, name='allqnisp'),
     path('qnisp/<int:sample_id>/', views.detailqnisp, name='detailqnisp'),
     url(r'^qnisp/createqnisp/$', views.createqnisp, name='createqnisp'),
