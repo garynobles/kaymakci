@@ -46,20 +46,20 @@
             <a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
 
             <div class="dropdown show">
-              <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="spatial3d" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">3D Spatial</a>
+              <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">3D Spatial</a>
               <div class="dropdown-menu " aria-labelledby="spatial3d">
                 <a class="dropdown-item" href="{% url 'processing3dpage' %}">Photobatch</a>
                 <hr />
-                <a class="dropdown-item" href="#">Faunal</a>
+                <!-- <a class="dropdown-item" href="#">Faunal</a>
                 <a class="dropdown-item" href="#">Conservation</a>
                 <a class="dropdown-item" href="#">Ceramics</a>
-                <a class="dropdown-item" href="#">Small Finds</a>
+                <a class="dropdown-item" href="#">Small Finds</a> -->
               </div>
             </div>
 
 
             <div class="dropdown show">
-              <a class="dropdown-toggle" href="% url 'allzooarch' %" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zooarch</a>
+              <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zooarch</a>
               <div class="dropdown-menu " aria-labelledby="samplesdropdown">
                 <a class="dropdown-item" href="{% url 'allzooarch' %}">Samples</a>
                 <hr />
@@ -73,27 +73,27 @@
 
 
             <div class="dropdown show">
-              <a class="dropdown-toggle" href="{% url 'allsamples' %}" id="samplesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
+              <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Samples</a>
               <div class="dropdown-menu " aria-labelledby="samplesdropdown">
                 <a class="dropdown-item" href="{% url 'allsamples' %}">Samples</a>
                 <hr />
-                <a class="dropdown-item" href="#">Faunal</a>
-                <a class="dropdown-item" href="#">Conservation</a>
+                <a class="dropdown-item" href="{% url 'allzooarch' %}">Faunal</a>
+                <!-- <a class="dropdown-item" href="#">Conservation</a>
                 <a class="dropdown-item" href="#">Ceramics</a>
-                <a class="dropdown-item" href="#">Small Finds</a>
+                <a class="dropdown-item" href="#">Small Finds</a> -->
               </div>
             </div>
 
 
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user pr-2"></i>{{ user.get_username }}
               </a>
 
               <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
+                <!-- <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Something else here</a> -->
                 <a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
               </div>
 
@@ -116,24 +116,16 @@
 
       <div class="navbar navbar-custom navbar-inverse navbar-static-top navbar-dark bg-dark" id="nav2">
         <div class="navbar-inner">
-          <a href="{% url 'createsample' %}">
+          <a href={% url 'createsample' %">
             <button  type="button" class="btn btn-secondary">Add new Sample</button>
           </a>
-          <a href="{% url 'allsamples' %}">
-            <button  type="button" class="btn btn-info">Samples</button>
+          <a href="{% url 'allzooarch' %}">
+            <button  type="button" class="btn btn-info">Faunal</button>
           </a>
-          <a href="{% url 'all_sample_container_joins' %}">
-            <button  type="button" class="btn btn-warning"><-join-></button>
+          <a href="{% url 'allqnisp' %}">
+            <button  type="button" class="btn btn-warning">Qnisp</button>
           </a>
-          <a href="{% url 'allcontainer' %}">
-            <button  type="button" class="btn btn-info">Containers</button>
-          </a>
-          <a href="{% url 'alllocation' %}">
-            <button  type="button" class="btn btn-info">Locations</button>
-          </a>
-          <a href="{% url 'allstorage' %}">
-            <button  type="button" class="btn btn-info">Depots</button>
-          </a>
+
         </div>
       </div>
     </div>
