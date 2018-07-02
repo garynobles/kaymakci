@@ -5,52 +5,93 @@ import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
-from .forms import CeramicsForm
-from ceramics.models import Ceramics
+from .forms import ZooarchForm, QnispForm
+from zooarch.models import Zooarch, Qnisp
 from filters.views import FilterMixin
 
 
 # Create your views here.
-def createceramics(request):
+def createzooarch(request):
     if request.method == "POST":
-        form = CeramicsForm(request.POST)
+        form = ZooarchForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             #post.user = request.user
             #post.datetime = datetime.datetime.now()
 
             post.save()
-            return redirect('allceramics')
+            return redirect('allzooarch')
     else:
-        form = CeramicsForm()
-    return render(request, 'ceramics/create_ceramics.html', {'form': form})
+        form = ZooarchForm()
+    return render(request, 'zooarch/create_zooarch.html', {'form': form})
 
 
-def editceramics(request, pk):
-    post = get_object_or_404(Ceramics, pk=pk)
+def editzooarch(request, pk):
+    post = get_object_or_404(Zooarch, pk=pk)
     if request.method == "POST":
-        form = CeramicsForm(request.POST, instance=post)
+        form = ZooarchForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             #post.user = request.user
             #post.datetime = datetime.datetime.now()
             post.save()
-            return redirect('allceramics')
+            return redirect('allzooarch')
             #, pk=post.pk)
     else:
-        form = CeramicsForm(instance=post)
-    return render(request, 'ceramics/create_ceramics.html', {'form': form})
+        form = ZooarchForm(instance=post)
+    return render(request, 'zooarch/create_zooarch.html', {'form': form})
 
 
-def detailceramics(request):
+def detailzooarch(request):
     pass
 
 
 
 
-class CeramicsFilterForm(forms.ModelForm):
+
+
+
+
+# Create your views here.
+def createqnisp(request):
+    if request.method == "POST":
+        form = QnispForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+
+            post.save()
+            return redirect('allqnisp')
+    else:
+        form = QnispForm()
+    return render(request, 'qnisp/create_qnisp.html', {'form': form})
+
+
+def editqnisp(request, pk):
+    post = get_object_or_404(Qnisp, pk=pk)
+    if request.method == "POST":
+        form = QnispForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('allqnisp')
+            #, pk=post.pk)
+    else:
+        form = QnispForm(instance=post)
+    return render(request, 'qnisp/create_qnisp.html', {'form': form})
+
+
+def detailqnisp(request):
+    pass
+
+
+
+class ZooarchFilterForm(forms.ModelForm):
     class Meta:
-        model = Ceramics
+        model = Zooarch
         fields = (
         #'sample_id',
         'area_easting',
@@ -87,11 +128,11 @@ class CeramicsFilterForm(forms.ModelForm):
 
 
 
-class CeramicsFilter(django_filters.FilterSet):
+class ZooarchFilter(django_filters.FilterSet):
 
     class Meta:  # pylint: disable=C1001
-        form = CeramicsFilterForm
-        model = Ceramics
+        form = ZooarchFilterForm
+        model = Zooarch
         fields = [
         'area_easting',
         'area_northing',
@@ -129,12 +170,84 @@ class CeramicsFilter(django_filters.FilterSet):
             ('-sample_number', ugettext("Z-A")),
         )
 
+class QnispFilterForm(forms.ModelForm):
+    class Meta:
+        model = Qnisp
+        fields = (
+        'qnisp_id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'collection_method',
+        'mandible_with_teeth',
+        'bt',
+        'ss',
+        'oc_tje',
+        'ch',
+        'oa',
+        'equid',
+        'cer',
+        'lp',
+        'meles',
+        'pesc',
+        'brd',
+        'canis',
+        'unio',
+        'cerastoderma',
+        'landsnail',
+        'shell_other',
+        'rodent',
+        'comments',
+        'ursus',
+        'big_feline_lynx_size',
+        )
+
+class QnispFilter(django_filters.FilterSet):
+
+    class Meta:  # pylint: disable=C1001
+        form = QnispFilterForm
+        model = Qnisp
+        fields = [
+        'qnisp_id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'collection_method',
+        'mandible_with_teeth',
+        'bt',
+        'ss',
+        'oc_tje',
+        'ch',
+        'oa',
+        'equid',
+        'cer',
+        'lp',
+        'meles',
+        'pesc',
+        'brd',
+        'canis',
+        'unio',
+        'cerastoderma',
+        'landsnail',
+        'shell_other',
+        'rodent',
+        'comments',
+        'ursus',
+        'big_feline_lynx_size',
+        ]
 
 
-class CeramicsListView(FilterMixin, django_filters.views.FilterView):
+class ZooarchListView(FilterMixin, django_filters.views.FilterView):
     def get_queryset(self, *atgs, **kwargs):
-        object_list=Ceramics.objects.filter(material='Ceramic')
+        object_list=Zooarch.objects.filter(material='Organic', specific_material='Bone')
         return object_list
-    model = Ceramics
+    model = Zooarch
     paginate_by = 16
-    filterset_class = CeramicsFilter
+    filterset_class = ZooarchFilter
+
+class QnispListView(FilterMixin, django_filters.views.FilterView):
+    model = Qnisp
+    paginate_by = 16
+    filterset_class = QnispFilter

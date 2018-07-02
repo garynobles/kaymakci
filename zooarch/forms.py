@@ -6,16 +6,16 @@ from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
 
-from .models import Ceramics
+from .models import Zooarch, Qnisp
 from filters.views import FilterMixin
 
 
-class CeramicsForm(forms.ModelForm):
+
+class ZooarchForm(forms.ModelForm):
 
     class Meta:
-        model = Ceramics
+        model = Zooarch
         fields = (
-        #'sample_id',
         'area_easting',
         'area_northing',
         'context_number',
@@ -45,6 +45,38 @@ class CeramicsForm(forms.ModelForm):
         'subjective_significance',
         'museum_inventory_number',
         'bureaucratic_status_identifier',
-        #'container_id'
+        )
 
+class QnispForm(forms.ModelForm):
+
+    class Meta:
+        model = Qnisp
+        fields = (
+        'qnisp_id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'collection_method',
+        'mandible_with_teeth',
+        'bt',
+        'ss',
+        'oc_tje',
+        'ch',
+        'oa',
+        'equid',
+        'cer',
+        'lp',
+        'meles',
+        'pesc',
+        'brd',
+        'canis',
+        'unio',
+        'cerastoderma',
+        'landsnail',
+        'shell_other',
+        'rodent',
+        'comments',
+        'ursus',
+        'big_feline_lynx_size',
         )
