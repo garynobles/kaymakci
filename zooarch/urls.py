@@ -3,10 +3,16 @@ from django.conf.urls import url
 
 from . import views
 
+from ceramics.views import CeramicsListView
+
 urlpatterns = [
-#qnisp
-    url(r'^qnisp/$', views.allqnisp, name='allqnisp'),
-    url(r'^qnisp/createqnisp/$', views.createqnisp, name='createqnisp'),
-    url(r'^qnisp/edit/(?P<pk>\d+)/edit/$', views.editqnisp, name='editqnisp'),
-    #url(r'^qnisp/search/edit/(?P<pk>\d+)/edit/$', views.editqnispsearch, name='editqnispsearch'),
+    #ceramics
+
+    url(r'^ceramics/$', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='allceramics'),
+
+    path('ceramics/<int:sample_id>/', views.detailceramics, name='detailceramics'),
+    url(r'^ceramics/edit/(?P<pk>\d+)/edit/$', views.editceramics, name='editceramics'),
+    url(r'^ceramics/createceramics/$', views.createceramics, name='createceramics'),
+
+
 ]

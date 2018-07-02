@@ -8,7 +8,9 @@ from ceramics.views import CeramicsListView
 urlpatterns = [
     #ceramics
 
-    url(r'^ceramics/$', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='allceramics'),
+    #url(r'^""$', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='allceramics'),
+    path('', CeramicsListView.as_view(template_name="ceramics/allceramics.html"), name='home'),
+
 
     path('ceramics/<int:sample_id>/', views.detailceramics, name='detailceramics'),
     url(r'^ceramics/edit/(?P<pk>\d+)/edit/$', views.editceramics, name='editceramics'),

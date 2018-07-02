@@ -1,63 +1,140 @@
 from django.shortcuts import render, get_object_or_404, render_to_response, redirect
-from zooarch.models import Qnisp
-import datetime
-from .forms import QnispForm
-from .filters import QnispFilter
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from . import filters
+from django import forms
+from django.utils.translation import ugettext
+import django_filters
+from django_filters.filterset import ORDER_BY_FIELD
+# Create your views here.
 
-#https://tutorial.djangogirls.org/en/django_forms/
+from .forms import CeramicsForm
+from ceramics.models import Ceramics
+from filters.views import FilterMixin
 
-#https://tutorial.djangogirls.org/en/django_forms/
-#from django.contrib.auth.models import User
 
 # Create your views here.
-#allqnisp's
-def allqnisp(request):
-    qnisp_list = Qnisp.objects.all()
-    filtered_qs = filters.QnispFilter(request.GET, queryset=qnisp_list).qs
-    paginator = Paginator(filtered_qs, 10)
-
-    page = request.GET.get('page')
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-    return render(request,'qnisp/allqnisp.html',{'response': response})
-    #store = Store.objects
-    #return render(request, 'store/allstorage.html', {'containerpage':containerpage})
-
-def detailqnisp(request, qnisp_id):
-    detailqnisp = get_object_or_404(Qnisp, pk=qnisp_id)
-    return render(request, 'qnisp/detailqnisp.html', {'qnisp':detailqnisp})
-
-def createqnisp(request):
+def createceramics(request):
     if request.method == "POST":
-        form = QnispForm(request.POST)
+        form = CeramicsForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             #post.user = request.user
             #post.datetime = datetime.datetime.now()
 
             post.save()
-            return redirect('allqnisp')
+            return redirect('allceramics')
     else:
-        form = QnispForm()
-    return render(request, 'qnisp/create_qnisp.html', {'form': form})
+        form = CeramicsForm()
+    return render(request, 'ceramics/create_ceramics.html', {'form': form})
 
-def editqnisp(request, pk):
-    post = get_object_or_404(Qnisp, pk=pk)
+
+def editceramics(request, pk):
+    post = get_object_or_404(Ceramics, pk=pk)
     if request.method == "POST":
-        form = QnispForm(request.POST, instance=post)
+        form = CeramicsForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             #post.user = request.user
             #post.datetime = datetime.datetime.now()
             post.save()
-            return redirect('allqnisp')
+            return redirect('allceramics')
             #, pk=post.pk)
     else:
-        form = QnispForm(instance=post)
-    return render(request, 'qnisp/create_qnisp.html', {'form': form})
+        form = CeramicsForm(instance=post)
+    return render(request, 'ceramics/create_ceramics.html', {'form': form})
+
+
+def detailceramics(request):
+    pass
+
+
+
+
+class CeramicsFilterForm(forms.ModelForm):
+    class Meta:
+        model = Ceramics
+        fields = (
+        #'sample_id',
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'material',
+        'specific_material',
+        'exterior_color_hue',
+        'exterior_color_lightness_value',
+        'exterior_color_chroma',
+        'interior_color_hue',
+        'interior_color_lightness_value',
+        'interior_color_chroma',
+        'weight_kilograms',
+        'sample_description',
+        'category',
+        'subcategory',
+        'count',
+        'current_location',
+        'recovery_type',
+        'problems',
+        'image_files',
+        'number_3d_files',
+        'chronology',
+        'analysis_request',
+        'detailed_sample_description',
+        'bureaucratic_status',
+        'subjective_significance',
+        'museum_inventory_number',
+        'bureaucratic_status_identifier',
+
+        )
+
+
+
+class CeramicsFilter(django_filters.FilterSet):
+
+    class Meta:  # pylint: disable=C1001
+        form = CeramicsFilterForm
+        model = Ceramics
+        fields = [
+        'area_easting',
+        'area_northing',
+        'context_number',
+        'sample_number',
+        'material',
+        'specific_material',
+        'exterior_color_hue',
+        'exterior_color_lightness_value',
+        'exterior_color_chroma',
+        'interior_color_hue',
+        'interior_color_lightness_value',
+        'interior_color_chroma',
+        'weight_kilograms',
+        'sample_description',
+        'category',
+        'subcategory',
+        'count',
+        'current_location',
+        'recovery_type',
+        'problems',
+        'image_files',
+        'number_3d_files',
+        'chronology',
+        'analysis_request',
+        'detailed_sample_description',
+        'bureaucratic_status',
+        'subjective_significance',
+        'museum_inventory_number',
+        'bureaucratic_status_identifier',
+
+        ]
+        order_by = (
+            ('sample_number', ugettext("A-Z")),
+            ('-sample_number', ugettext("Z-A")),
+        )
+
+
+
+class CeramicsListView(FilterMixin, django_filters.views.FilterView):
+    def get_queryset(self, *atgs, **kwargs):
+        object_list=Ceramics.objects.filter(material='Ceramic')
+        return object_list
+    model = Ceramics
+    paginate_by = 16
+    filterset_class = CeramicsFilter
