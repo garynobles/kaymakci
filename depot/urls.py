@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^join_sample_container/edit/(?P<pk>\d+)/edit/$', views.edit_join_sample_container, name='edit_join_sample_container'),
 
 
-
+    path('container/<int:container_id>/', views.detailcontainer, name='detailcontainer'),
 
     #store
     # path('store/', views.allstorage, name='allstorage'),

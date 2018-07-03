@@ -116,7 +116,7 @@ $(document).ready(function() {
           <div class="btn-group" role="group" aria-label="Basic example">
 
             <a href="{% url 'editcontainer' pk=o.pk %}" class="btn btn-primary" role="button">edit</a>
-            <a href="% url 'editcontainersearch' pk=o.pk %" class="btn btn-secondary" role="button">take out</a>
+            <a href="{% url 'detailcontainer' o.container_id %}" class="btn btn-warning" role="button">detail</a>
             <a href="% url 'editcontainersearch' pk=o.pk %" class="btn btn-secondary" role="button">request</a>
           </div>
         </td>
