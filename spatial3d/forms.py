@@ -9,12 +9,13 @@ from django_filters.filterset import ORDER_BY_FIELD
 from .models import Photobatch
 from filters.views import FilterMixin
 
+
 class PhotobatchForm(forms.ModelForm):
 
     class Meta:
         model = Photobatch
         fields = (
-        #'id',
+        #'sample_id',
         'photobatch_id',
         'prefix',
         'area_easting',
@@ -26,7 +27,7 @@ class PhotobatchForm(forms.ModelForm):
         'processed_by',
         'camera_model',
         'imported_photoscan',
-
+        #
         'aligned',
         'align_accuracy',
         'align_pair_selection',
@@ -42,8 +43,8 @@ class PhotobatchForm(forms.ModelForm):
         'mesh_type',
         'mesh_face_count',
         'mesh_interpolation',
-
-		'texture',
+        #
+        'texture',
         'texture_defaults',
         'dem',
         'dem_coordinate_system',
@@ -55,8 +56,8 @@ class PhotobatchForm(forms.ModelForm):
         'export_points',
         'export_points_filename',
         'export_points_offsets',
-
-		'export_report_pdf',
+        #
+        'export_report_pdf',
         'export_orthophoto',
         'export_dem',
         'export_dem_pixel_size',
@@ -64,6 +65,8 @@ class PhotobatchForm(forms.ModelForm):
         'folder_processed',
         'processing_notes',
         #'image',
-        #'created_timestamp',
+        # #'created_timestamp',
         'created_by'
+        # #'container_id'
+
         )

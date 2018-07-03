@@ -4,10 +4,13 @@ from django.utils.translation import ugettext
 import django_filters
 from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
+import datetime
+from django.contrib.auth.models import User
 
 from .forms import PhotobatchForm
 from spatial3d.models import Photobatch
 from filters.views import FilterMixin
+
 
 # Create your views here.
 def createphotobatch(request):
@@ -15,7 +18,7 @@ def createphotobatch(request):
         form = PhotobatchForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            #post.user = request.user
+            post.user = request.user
             #post.datetime = datetime.datetime.now()
 
             post.save()
@@ -31,9 +34,8 @@ def editphotobatch(request, pk):
         form = PhotobatchForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.created_by = request.user
-            #post.modified_by = request.user
-            post.datetime = datetime.datetime.now()
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
             post.save()
             return redirect('allphotobatch')
             #, pk=post.pk)
@@ -41,9 +43,12 @@ def editphotobatch(request, pk):
         form = PhotobatchForm(instance=post)
     return render(request, 'photobatch/create_photobatch.html', {'form': form})
 
-def detailphotobatch(request, id):
-    detailphotobatch = get_object_or_404(Photobatch, pk=id)
-    return render(request, 'photobatch/detailphotobatch.html', {'detailphotobatch':detailphotobatch})
+
+def detailphotobatch(request):
+    pass
+
+
+
 
 class PhotobatchFilterForm(forms.ModelForm):
     class Meta:
@@ -55,57 +60,60 @@ class PhotobatchFilterForm(forms.ModelForm):
         'area_northing',
         'context_number',
         'number_of_photos',
-        'number_targets',
-        'processed_on',
+        # 'number_targets',
+        # 'processed_on',
         'processed_by',
-        'camera_model',
+        # 'camera_model',
         'imported_photoscan',
-
+        #
         'aligned',
-        'align_accuracy',
-        'align_pair_selection',
-        'align_keypoint_limit',
-        'align_tiepoint_limit',
+        # 'align_accuracy',
+        # 'align_pair_selection',
+        # 'align_keypoint_limit',
+        # 'align_tiepoint_limit',
         'detected_targets',
-        'target_type',
-        'target_tolerance',
-        'target_origional_error',
-        'target_optimised_error',
+        # 'target_type',
+        # 'target_tolerance',
+        # 'target_origional_error',
+        # 'target_optimised_error',
         'dense_pointcloud',
         'mesh',
-        'mesh_type',
-        'mesh_face_count',
-        'mesh_interpolation',
-
+        # 'mesh_type',
+        # 'mesh_face_count',
+        # 'mesh_interpolation',
+        #
 		'texture',
-        'texture_defaults',
+        # 'texture_defaults',
         'dem',
-        'dem_coordinate_system',
-        'dem_source_data',
-        'dem_interpolation',
+        # 'dem_coordinate_system',
+        # 'dem_source_data',
+        # 'dem_interpolation',
         'orthomosaic',
-        'orthomosaic_type',
-        'orthomosaic_pixel_size',
-        'export_points',
-        'export_points_filename',
-        'export_points_offsets',
-
-		'export_report_pdf',
-        'export_orthophoto',
-        'export_dem',
-        'export_dem_pixel_size',
-        'export_dem_geodatabase',
+        # 'orthomosaic_type',
+        # 'orthomosaic_pixel_size',
+        # 'export_points',
+        # 'export_points_filename',
+        # 'export_points_offsets',
+        #
+		# 'export_report_pdf',
+        # 'export_orthophoto',
+        # 'export_dem',
+        # 'export_dem_pixel_size',
+        # 'export_dem_geodatabase',
         'folder_processed',
-        'processing_notes',
-        #'image',
-        #'created_timestamp',
+        # 'processing_notes',
+        # #'image',
+        # #'created_timestamp',
         'created_by'
+        # #'container_id'
+
         )
+
+
 
 class PhotobatchFilter(django_filters.FilterSet):
 
     class Meta:  # pylint: disable=C1001
-        form = PhotobatchFilterForm
         model = Photobatch
         fields = [
         'photobatch_id',
@@ -114,63 +122,62 @@ class PhotobatchFilter(django_filters.FilterSet):
         'area_northing',
         'context_number',
         'number_of_photos',
-        'number_targets',
-        'processed_on',
+        # 'number_targets',
+        # 'processed_on',
         'processed_by',
-        'camera_model',
+        # 'camera_model',
         'imported_photoscan',
-
+        #
         'aligned',
-        'align_accuracy',
-        'align_pair_selection',
-        'align_keypoint_limit',
-        'align_tiepoint_limit',
+        # 'align_accuracy',
+        # 'align_pair_selection',
+        # 'align_keypoint_limit',
+        # 'align_tiepoint_limit',
         'detected_targets',
-        'target_type',
-        'target_tolerance',
-        'target_origional_error',
-        'target_optimised_error',
+        # 'target_type',
+        # 'target_tolerance',
+        # 'target_origional_error',
+        # 'target_optimised_error',
         'dense_pointcloud',
         'mesh',
-        'mesh_type',
-        'mesh_face_count',
-        'mesh_interpolation',
-
+        # 'mesh_type',
+        # 'mesh_face_count',
+        # 'mesh_interpolation',
+        #
 		'texture',
-        'texture_defaults',
+        # 'texture_defaults',
         'dem',
-        'dem_coordinate_system',
-        'dem_source_data',
-        'dem_interpolation',
+        # 'dem_coordinate_system',
+        # 'dem_source_data',
+        # 'dem_interpolation',
         'orthomosaic',
-        'orthomosaic_type',
-        'orthomosaic_pixel_size',
-        'export_points',
-        'export_points_filename',
-        'export_points_offsets',
-
-		'export_report_pdf',
-        'export_orthophoto',
-        'export_dem',
-        'export_dem_pixel_size',
-        'export_dem_geodatabase',
+        # 'orthomosaic_type',
+        # 'orthomosaic_pixel_size',
+        # 'export_points',
+        # 'export_points_filename',
+        # 'export_points_offsets',
+        #
+		# 'export_report_pdf',
+        # 'export_orthophoto',
+        # 'export_dem',
+        # 'export_dem_pixel_size',
+        # 'export_dem_geodatabase',
         'folder_processed',
-        'processing_notes',
-        #'image',
-        #'created_timestamp',
+        # 'processing_notes',
+        # #'image',
+        # #'created_timestamp',
         'created_by'
-
+        # #'container_id'
 
         ]
-        order_by = (
-            ('sample_number', ugettext("A-Z")),
-            ('-sample_number', ugettext("Z-A")),
-        )
+        # order_by = (
+        #     ('sample_number', ugettext("A-Z")),
+        #     ('-sample_number', ugettext("Z-A")),
+        # )
+
+
 
 class PhotobatchListView(FilterMixin, django_filters.views.FilterView):
-    def get_queryset(self, *atgs, **kwargs):
-        object_list=Photobatch.objects.filter(material='Ceramic')
-        return object_list
     model = Photobatch
-    paginate_by = 16
+    paginate_by = 8
     filterset_class = PhotobatchFilter
