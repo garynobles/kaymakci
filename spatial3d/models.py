@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
+# from safedelete.models import SafeDeleteModel
+# from safedelete.models import HARD_DELETE_NOCASCADE
 
 TRUE_FALSE_CHOICES = (
     ("",""),
@@ -44,6 +47,9 @@ COMPUTER_CHOICES = (
 
 #boolfield = forms.ChoiceField(choices = TRUE_FALSE_CHOICES, label="Some Label", initial='', widget=forms.Select(), required=True)
 class Photobatch(models.Model):
+    # _safedelete_policy = HARD_DELETE_NOCASCADE
+    #_safedelete_visibility = DELETED_VISIBLE_BY_PK
+
     id = models.AutoField(primary_key=True)
     #id = models.IntegerField(blank=True, null=True)
     photobatch_id = models.CharField(max_length=200, default='', blank=True, null=True)
@@ -111,7 +117,16 @@ class Photobatch(models.Model):
     class Meta():
         managed=False
         db_table = 'excavation\".\"photobatch_processing'
-        ordering = ["-folder_processed", "created_timestamp"]
+        ordering = ["-folder_processed", "-created_timestamp"]
+
+    # def delete(self):
+    #     self.deleted_at = datetime.datetime.now()
+    #     self.save()
+    #
+    # def hard_delete(self):
+    #     super(SoftDeletionModel, self).delete()
+
+
 #verbose_name_plural = "stores"
     #VirtualField
     # necs = CompositeForeignKey(

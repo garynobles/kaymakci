@@ -64,6 +64,14 @@ $(document).ready(function() {
 </div>
 
 
+
+{% load has_group %}
+
+
+
+
+
+
 <div class="container-fluid pt-3">
   <div class="pagination">
     <span class="step-links">
@@ -129,19 +137,25 @@ $(document).ready(function() {
           {% if o.orthomosaic %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ o.orthomosaic|yesno:"yes,no"  }}</td>
           {% if o.export_dem_geodatabase %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ o.export_dem_geodatabase|yesno:"yes,no"  }}</td>
           {% if o.folder_processed %}<td class="table-success">{% else %}<td class="table-danger">{% endif %}{{ o.folder_processed|yesno:"yes,no" }}</td>
+
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
-
               <a href="{% url 'editphotobatch' pk=o.pk %}" class="btn btn-primary" role="button">edit</a>
               <a href="% url 'detailphotobatch' pk=o.pk %" class="btn btn-warning" role="button">details</a>
+              {% if request.user|has_group:"admin_photobatch"%}
+              <a href="{% url 'removephotobatch' pk=o.pk %}" class="btn btn-danger" role="button">delete</a>
+
+                    {% else %}
+              <a href="#" class="btn btn-secondary" role="button">delete</a>
+
+              {% endif %}
+
 
 
             </div>
             <br /><span style = "font-size:0.7em;">{{ o.created_by }}</span>
             <span style = "font-size:0.7em;">{{ o.created_timestamp }}</span>
           </td>
-
-
         </tr>
         {% empty %}
         <tr>

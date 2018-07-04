@@ -12,6 +12,8 @@ from spatial3d.models import Photobatch
 from filters.views import FilterMixin
 
 
+
+
 # Create your views here.
 def createphotobatch(request):
     if request.method == "POST":
@@ -47,8 +49,25 @@ def editphotobatch(request, pk):
 def detailphotobatch(request):
     pass
 
+# def remove_photobatch(request):
+#     if request.method == 'POST':
+#         form = PhotobatchForm()
+#         photobatch = Photobatch.objects.all()
+#         id = int(request.POST.get('id'))
+#         photobatch = Photobatch.objects.get(id=id)
+#         photobatch.delete()
+#
+# article1 = Article(name='article1')
+#
+#         return render_to_response('allphotobatch.html', {
+#             'form':form , 'photobatch':photobatch,
+#             }, RequestContext(request))
 
+#VeryImportantSomething.objects.get(pk=123).delete()
 
+def removephotobatch(request, pk):
+    Photobatch.objects.get(pk=pk).delete()
+    return redirect('/spatial3d/photobatch')
 
 class PhotobatchFilterForm(forms.ModelForm):
     class Meta:

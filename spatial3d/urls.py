@@ -16,5 +16,7 @@ urlpatterns = [
     url(r'^photobatch/edit/(?P<pk>\d+)/edit/$', views.editphotobatch, name='editphotobatch'),
     url(r'^photobatch/createphotobatch/$', views.createphotobatch, name='createphotobatch'),
 
-
+    #url(r'^photobatch/remove/(?P<pk>\d+)/remove/$', views.removephotobatch, name='removephotobatch'),
+    #path('photobatch/<int:pk>/delete/', views.removephotobach.as_view(), name='removephotobatch'),
+    url(r'^photobatch/(?P<pk>\d+)$', views.removephotobatch, name='removephotobatch'),
 ]
