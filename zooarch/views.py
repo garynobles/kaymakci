@@ -42,8 +42,15 @@ def editzooarch(request, pk):
     return render(request, 'zooarch/create_zooarch.html', {'form': form})
 
 
-def detailzooarch(request):
-    pass
+# def detailzooarch(request):
+#     pass
+
+
+
+
+def removeqnisp(request, pk):
+    Qnisp.objects.get(pk=pk).delete()
+    return redirect('/zooarch/qnisp')
 
 class ZooarchFilterForm(forms.ModelForm):
     class Meta:
@@ -167,8 +174,9 @@ def editqnisp(request, pk):
     return render(request, 'qnisp/create_qnisp.html', {'form': form})
 
 
-def detailqnisp(request):
-    pass
+def detailqnisp(request, qnisp_id):
+    detailqnisp = get_object_or_404(Qnisp, pk=qnisp_id)
+    return render(request, 'qnisp/detailqnisp.html', {'qnisp':detailqnisp})
 
 class QnispFilterForm(forms.ModelForm):
     class Meta:
