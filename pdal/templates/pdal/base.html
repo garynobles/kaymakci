@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+{% load widget_tweaks %}
 <!doctype html>
 <html lang="en">
 
@@ -11,7 +11,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../../../../favicon.ico">
 
-  <title>Gygaia AIS: store</title>
+  <title>Gygaia AIS: PDAL</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -27,18 +27,19 @@
 
 </head>
 <body>
-
-
   <main role="main">
-
     <section class="jumbotron text-center">
       <div class="container">
-
+        <!-- <h1 class="pt-5">Gygaia</h1>
+        <p class="lead text-muted">The Gygaia Archaeological Information System</p> -->
+        <!--a href="#" class="btn btn-primary my-2">Main call to action</a-->
       </div>
     </section>
-
-
     {% if user.is_authenticated %}
+
+
+
+
     {% block content %}
 
     {% endblock %}
@@ -52,9 +53,7 @@ to access the Gygaia Archaeological Information System.
 <p class="text-center">If you are experiencing problems or do not have an account contact Gary</p>
 </div>
     {% endif %}
-
   </main>
-
   <footer class="text-muted text-center">
     <div class="container">
       <p>&copy; Gary Nobles & Gygaia Projects {% now "Y" %}</p>

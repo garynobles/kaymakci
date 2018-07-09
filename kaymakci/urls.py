@@ -25,6 +25,8 @@ urlpatterns = [
     #path('store/', include('store.urls')),
     path('depot/', include('depot.urls')),
 
+    path('pdal/', include('pdal.urls')),
+
     path('excavation/', include('excavation.urls')),
     path('spatial/', include('spatial.urls')),
     path('spatial3d/', include('spatial3d.urls')),
@@ -32,7 +34,7 @@ urlpatterns = [
 
     path('ceramics/', include('ceramics.urls')),
 
-
+    url(r'^gallery/', include('gallery.urls')),
     #path('samples/', include('samples.urls')),
     #path('test/', include('test_pagefilter.urls')),
 
