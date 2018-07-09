@@ -1,6 +1,11 @@
 {% extends 'container/base.html' %}
 {% load widget_tweaks %}
+
+
+
 {% block content %}
+{% include "menu1.html" %}
+{% include "container/menu2.html" %}
 <div class="container">
     <h1>Container</h1>
     <div class="col-sm-3">
@@ -20,8 +25,7 @@
   </div>
 </div>
 
-Sample Number{{ container.location_id.location_name }}<br />
-	Line 23: 	Sample Number{{ container.location_id.location_name }}<br />
+
 
 {% endblock %}
 

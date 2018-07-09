@@ -43,8 +43,11 @@
 
 
 {% extends "samples/base.html" %}
-{% block content %}
 
+
+{% block content %}
+{% include "menu1.html" %}
+{% include "samples/menu2.html" %}
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 <script type = "text/javascript" language = "javascript">

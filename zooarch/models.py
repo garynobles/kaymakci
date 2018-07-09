@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
 TRUE_FALSE_CHOICES = (
     (True, 'Yes'),
     (False, 'No')
@@ -25,6 +27,7 @@ SELECTED_CHOICES = (
     ("Preflotation","Preflotation"),
     ("Sieve","Sieve"),
 )
+
 
 
 class Zooarch(models.Model):
@@ -93,7 +96,9 @@ class Zooarch(models.Model):
 
 
 
+
 class Qnisp(models.Model):
+
     qnisp_id = models.AutoField(primary_key=True)
     area_easting = models.IntegerField(choices =  EASTING_CHOICES)
     area_northing = models.IntegerField(choices =  NORTHING_CHOICES)

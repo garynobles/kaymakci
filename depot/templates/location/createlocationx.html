@@ -1,13 +1,11 @@
 {% extends 'location/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-{% include "menu1.html" %}
-{% include "location/menu2.html" %}
 <div class="container">
     <h1>Location</h1>
     <div class="col-sm-3">
     <form method="POST" class="post-form">{% csrf_token %}
-
+        <!--  {{ form.as_p }}   -->
 
         Location Identifier{{ form.location_identifier|add_class:"form-control"}}<br />
         Store ID{{ form.store_id|add_class:"form-control"}}<br />
@@ -22,5 +20,7 @@
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
   </div>
+
+
 </div>
-{% endblock %}
+{% endblock %}<!--    |append_attr:"placeholder:Username"   -->

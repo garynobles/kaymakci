@@ -10,11 +10,6 @@ from .models import Storage, Container, Location, Samples, JoinSampleContainer
 from filters.views import FilterMixin
 
 
-
-
-
-
-
 class SamplesForm(forms.ModelForm):
 
     class Meta:
@@ -50,6 +45,7 @@ class SamplesForm(forms.ModelForm):
         'subjective_significance',
         'museum_inventory_number',
         'bureaucratic_status_identifier',
+
         #'container_id'
 
         )
@@ -62,12 +58,14 @@ class LocationForm(forms.ModelForm):
         fields = (
         #'id',
         'location_id',
-        'location_identifier',
         'store_id',
+        'icon_desc',
+        'location_identifier',
         'location_type',
         'current_location_tmp',
         'location_name',
-        'icon_desc'
+        'orderby',
+
         )
 
 class StorageForm(forms.ModelForm):
@@ -99,8 +97,6 @@ class ContainerForm(forms.ModelForm):
         'container_name',
         'container_type',
         'location_id',
-        #'sample_id',
-        #'current_location_tmp',
         'icon_desc'
         )
 

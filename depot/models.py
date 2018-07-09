@@ -51,17 +51,11 @@ class Location(models.Model):
     location_id = models.AutoField(primary_key=True)
     store_id = models.ForeignKey(Storage, db_column='store_id', on_delete = models.PROTECT)
     icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
-
     location_identifier = models.IntegerField(blank=True, null=True)
-    #store_id = models.IntegerField(blank=True, null=True)
     location_type = models.CharField(max_length=100, blank=True, null=True)
     current_location_tmp = models.CharField(max_length=100, blank=True, null=True)
     location_name = models.CharField(max_length=100, blank=True, null=True)
-
-     #these should become an individual table outside of the main db
     orderby = models.IntegerField(blank=True, null=True)
-
-    #ALTER TABLE samples."location" ADD CONSTRAINT fk_location_store FOREIGN KEY ( store_id ) REFERENCES samples.store( store_id );
 
     def __str__(self):
         return self.location_name
