@@ -22,7 +22,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', jobs.views.home, name='home'),
     path('blog/', include('blog.urls')),
-    #path('store/', include('store.urls')),
+    path('botany/', include('botany.urls')),
     path('depot/', include('depot.urls')),
 
     path('pdal/', include('pdal.urls')),
