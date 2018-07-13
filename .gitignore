@@ -6,23 +6,17 @@ static/admin/css/
 static/
 
 blog/__pycache__/
-
 jobs/__pycache__/
-
 kaymakci/__pycache__/
-
 store/__pycache__/
 
 jobs/migrations/__pycache__/
-
 store/migrations/__pycache__/
 
-kaymakci/settings\.py
+kaymakci/settings.py
 
 blog/migrations/0001_initial\.py
-
 jobs/migrations/
-
 store/migrations/
 
 context/__init__\.py

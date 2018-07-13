@@ -35,6 +35,10 @@ urlpatterns = [
     path('ceramics/', include('ceramics.urls')),
 
     url(r'^gallery/', include('gallery.urls')),
+
+
+
+        # url(r'^photologue/', include('photologue.urls', namespace='photologue')),
     #path('samples/', include('samples.urls')),
     #path('test/', include('test_pagefilter.urls')),
 

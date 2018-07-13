@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^zooarch/createzooarch/$', views.createzooarch, name='createzooarch'),
 
 
-
+    path('zooarch/<int:sample_id>/', views.detailzooarch, name='detailzooarch'),
 
 #qnisp
     path('qnisp/', QnispListView.as_view(template_name="qnisp/allqnisp.html"), name='allqnisp'),

@@ -25,6 +25,7 @@ class ZooarchFilter(django_filters.FilterSet):
         form = ZooarchFilterForm
         model = Zooarch
         fields = [
+        'sample_id',
         'area_easting',
         'area_northing',
         'context_number',

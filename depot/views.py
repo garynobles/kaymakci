@@ -117,7 +117,16 @@ def allcontainer(request):
 
 def detailcontainer(request, container_id):
     detailcontainer = get_object_or_404(Container, pk=container_id)
-    return render(request, 'container/detailcontainer.html', {'container':detailcontainer})
+    #samples = Samples.objects.filter(sample_id__container_id=container.pk)
+    #samples = JoinSampleContainer.objects.filter(sample_id__container_id=container.pk)
+    #joinsamplecontainer = JoinSampleContainer.objects.filter(container_id = 4)
+    joinsamplecontainer = JoinSampleContainer.objects.filter(container_id = 4)
+    #samples = Samples.objects.filter(container__pk=samples.pk)
+    # location = location.container_set.all()
+    return render(request, 'container/detailcontainer.html',
+    {'container':detailcontainer,
+    'joinsamplecontainer':joinsamplecontainer
+    })
 
 
 
@@ -381,11 +390,11 @@ class LocationFilterForm(forms.ModelForm):
 
         'location_id',
         'location_identifier',
-        #'store_id',
+        'store_id',
         'location_type',
         'current_location_tmp',
         'location_name',
-        #'icon_desc'
+        'icon_desc'
 
         )
 

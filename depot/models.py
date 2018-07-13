@@ -108,6 +108,7 @@ class JoinSampleContainer(models.Model):
 class Samples(models.Model):
 
     #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
+    sample_id = models.IntegerField(blank=True, null=True)
     #sample_id = models.AutoField(primary_key=True)
 
     #container_id = models.IntegerField()
@@ -158,8 +159,8 @@ class Samples(models.Model):
 
     #sample_id = models.AutoField(unique=True)
 
-    def __int__(self):
-        return self.sample_number
+    def __str__(self):
+        return str(self.sample_number)
 
     class Meta:
         db_table = 'samples\".\"samples'

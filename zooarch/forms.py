@@ -16,6 +16,7 @@ class ZooarchForm(forms.ModelForm):
     class Meta:
         model = Zooarch
         fields = (
+        'sample_id',
         'area_easting',
         'area_northing',
         'context_number',

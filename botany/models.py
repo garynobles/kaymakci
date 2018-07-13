@@ -14,14 +14,14 @@ class Botany(models.Model):
     analyst = models.CharField(max_length=200, default='')
     notes = models.CharField(max_length=600, default='')
 
-    def __int__(self):
-        return self.botany_id
+    def __str__(self):
+        return str(self.botany_id)
 
     class Meta():
         managed=False
         db_table = 'samples\".\"botany'
         #ordering = ["orderby"]
-        verbose_name_plural = "botany"
+        verbose_name_plural = "Botany"
 
 
 class Fraction(models.Model):
@@ -33,14 +33,14 @@ class Fraction(models.Model):
     sample_weight = models.DecimalField(max_digits=15, decimal_places=4)
 
 
-    def __int__(self):
-        return self.fraction_id
+    def __str__(self):
+        return str(self.fraction_id)
 
     class Meta():
         managed=False
         db_table = 'samples\".\"fraction'
         #ordering = ["orderby"]
-        #verbose_name_plural = "stores"
+        verbose_name_plural = "Fraction"
 
 class FractionComposition(models.Model):
 
@@ -52,14 +52,14 @@ class FractionComposition(models.Model):
     whole_weight = models.DecimalField(max_digits=15, decimal_places=4)
     fragment_weight = models.DecimalField(max_digits=15, decimal_places=4)
 
-    def __int__(self):
-        return self.fract_comp_id
+    def __str__(self):
+        return str(self.fract_comp_id)
 
     class Meta():
         managed=False
         db_table = 'samples\".\"fraction_composition'
         #ordering = ["orderby"]
-        #verbose_name_plural = "stores"
+        verbose_name_plural = "Composition"
 
 class FractionMaterialsPresent(models.Model):
 
@@ -67,11 +67,11 @@ class FractionMaterialsPresent(models.Model):
     fraction_id = models.ForeignKey(Fraction, db_column='fraction_id', on_delete = models.PROTECT)
     material = models.CharField(max_length=200, default='')
 
-    def __int__(self):
-        return self.material_id
+    def __str__(self):
+        return str(self.material_id)
 
     class Meta():
         managed=False
         db_table = 'samples\".\"materials_present'
         #ordering = ["orderby"]
-        #verbose_name_plural = "stores"
+        verbose_name_plural = "Materials Present"

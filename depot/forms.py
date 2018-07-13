@@ -57,12 +57,12 @@ class LocationForm(forms.ModelForm):
         model = Location
         fields = (
         #'id',
-        'location_id',
+        #'location_id',
         'store_id',
         'icon_desc',
-        'location_identifier',
+        #'location_identifier',
         'location_type',
-        'current_location_tmp',
+        #'current_location_tmp',
         'location_name',
         'orderby',
 

@@ -33,14 +33,14 @@ SELECTED_CHOICES = (
 class Zooarch(models.Model):
 
     #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
-    #sample_id = models.AutoField(primary_key=True)
+    sample_id = models.AutoField(primary_key=True)
 
     #container_id = models.IntegerField()
 
     area_easting = models.IntegerField()
     area_northing = models.IntegerField()
     context_number = models.IntegerField()
-    sample_number = models.AutoField(primary_key=True)
+    sample_number = models.IntegerField()
 
     material = models.CharField(max_length=25)
     specific_material = models.CharField(max_length=50, blank=True, null=True)
@@ -70,7 +70,7 @@ class Zooarch(models.Model):
 
     #VirtualField
     # necs = CompositeForeignKey(
-    # #necs = CompositeOneToOneField(
+    # necs = CompositeOneToOneField(
     #     Container,
     #     on_delete=DO_NOTHING,
     #     #related_name='containers',
@@ -84,17 +84,41 @@ class Zooarch(models.Model):
     #sample_id = models.AutoField(unique=True)
 
     def __int__(self):
-        return self.sample_number
+        return self.sample_id
 
     class Meta:
         db_table = 'samples\".\"samples'
         #ordering = ["sample_id"]
         managed = False
         #verbose_name_plural = "samples"
-        #unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
+        unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
 
 
+class Zooarchsamples(models.Model):
+    area_easting = models.IntegerField()
+    area_northing = models.IntegerField()
+    context_number = models.IntegerField()
+    sample_number = models.IntegerField()
+    element = models.CharField(max_length=100, blank=True, null=True)
+    portion = models.CharField(max_length=100, blank=True, null=True)
+    side = models.CharField(max_length=100, blank=True, null=True)
+    sex = models.CharField(max_length=100, blank=True, null=True)
+    taxonomic_description = models.CharField(max_length=100, blank=True, null=True)
+    fusion = models.CharField(max_length=50, blank=True, null=True)
+    age_estimation = models.CharField(max_length=50, blank=True, null=True)
+    tooth_wear = models.CharField(max_length=25, blank=True, null=True)
+    status = models.CharField(max_length=50, blank=True, null=True)
+    sample_id = models.OneToOneField(Zooarch, db_column='sample_id', on_delete = models.PROTECT, related_name='zooarch_samples')
 
+    def __int__(self):
+        return self.sample_id
+
+    class Meta:
+        db_table = 'samples\".\"faunal_samples'
+        #ordering = ["sample_id"]
+        managed = False
+        #verbose_name_plural = "samples"
+        unique_together = (('area_easting', 'area_northing', 'context_number', 'sample_number'),)
 
 
 class Qnisp(models.Model):

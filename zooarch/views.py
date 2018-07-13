@@ -6,7 +6,7 @@ from django_filters.filterset import ORDER_BY_FIELD
 # Create your views here.
 
 from .forms import ZooarchForm, QnispForm
-from zooarch.models import Zooarch, Qnisp
+from zooarch.models import Zooarch, Qnisp #, Zooarchsamples
 from filters.views import FilterMixin
 
 
@@ -56,7 +56,7 @@ class ZooarchFilterForm(forms.ModelForm):
     class Meta:
         model = Zooarch
         fields = (
-        #'sample_id',
+        'sample_id',
         'area_easting',
         'area_northing',
         'context_number',
@@ -93,10 +93,20 @@ class ZooarchFilterForm(forms.ModelForm):
 
 class ZooarchFilter(django_filters.FilterSet):
 
+    # def __init__(self, data={}, *args, **kwargs):
+    #     super(ZooarchFilterForm, self).__init__(data, *args, **kwargs)  # NOQA
+    #     try:
+    #         self.fields[ORDER_BY_FIELD].widget.attrs = {
+    #             'onchange': "this.form.submit();",
+    #         }
+    #     except KeyError:
+    #         pass
+
     class Meta:
         form = ZooarchFilterForm
         model = Zooarch
         fields = [
+        'sample_id',
         'area_easting',
         'area_northing',
         'context_number',
@@ -129,17 +139,21 @@ class ZooarchFilter(django_filters.FilterSet):
 
         ]
         order_by = (
-            ('sample_number', ugettext("A-Z")),
-            ('-sample_number', ugettext("Z-A")),
+            ('sample_id', ugettext("A-Z")),
+            ('-sample_id', ugettext("Z-A")),
         )
 
 class ZooarchListView(FilterMixin, django_filters.views.FilterView):
-    def get_queryset(self, *atgs, **kwargs):
-        object_list=Zooarch.objects.filter(material='Organic', specific_material='Bone')
-        return object_list
     model = Zooarch
     paginate_by = 16
     filterset_class = ZooarchFilter
+    def get_queryset(self, *atgs, **kwargs):
+        object_list=Zooarch.objects.filter(material='Organic', specific_material='Bone')
+        return object_list
+
+
+
+
 
 
 # Create your views here.
@@ -257,3 +271,35 @@ class QnispListView(FilterMixin, django_filters.views.FilterView):
     model = Qnisp
     paginate_by = 16
     filterset_class = QnispFilter
+
+
+# class ZooarchsamplesFilterForm(forms.ModelForm):
+#     class Meta:
+#         model = Zooarchsamples
+#         fields = (
+#             'area_easting',
+#             'area_northing',
+#             'context_number',
+#             'sample_number',
+#             'element',
+#             'portion',
+#             'side',
+#             'sex',
+#             'fusion',
+#             'taxonomic_description',
+#             'age_estimation',
+#             'tooth_wear',
+#             'sample_id',
+#             'status',
+#         )
+
+
+# class ZooarchsamplesListView(FilterMixin, django_filters.views.FilterView):
+#     def get_queryset(self, *atgs, **kwargs):
+#         object_list2=Zooarchsamples.objects.filter(material='Organic', specific_material='Bone')
+#         return object_list2
+#     model = Zooarchsamples
+
+def detailzooarch(request, store_id):
+    detailzooarch = get_object_or_404(Zooarch, pk=sample_id)
+    return render(request, 'zooarch/detailzooarch.html', {'zooarch':detailzooarch})

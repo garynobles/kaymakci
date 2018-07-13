@@ -88,6 +88,7 @@ $(document).ready(function() {
     <thead>
       <tr>
         <th>qnisp</th>
+
         <th>E.N.C.S</th>
         <th>Collection Method</th>
         <th>Mandible with teeth</th>
@@ -126,6 +127,7 @@ $(document).ready(function() {
 
       <tr>
         <td>  <a href="{% url 'editqnisp' pk=o.pk %}">{{ o.qnisp_id }}</a></td>
+        
         <td>{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</td>
         <td>{{ o.collection_method }}</td>
         <td>{{ o.mandible_with_teeth }}</td>

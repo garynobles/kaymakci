@@ -1,0 +1,21 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+      	{% block extrahead %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/gallery.css' %}">
+		{% endblock %}
+    </head>
+    <body>
+        <div id="wrapper">
+        <nav>
+            <a href="/">Home</a>  :  <a href="/admin">Admin</a>
+        </nav>
+            <section>
+                {% block content %}{% endblock %}
+            </section>
+        </div>
+    </body>
+</html>
