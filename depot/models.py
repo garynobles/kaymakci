@@ -69,7 +69,7 @@ class Location(models.Model):
 class Container(models.Model):
     container_id = models.AutoField(primary_key=True)
     location_id = models.ForeignKey(Location, db_column='location_id', on_delete = models.PROTECT)
-    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT null=True, blank=True)
+    icon_desc = models.ForeignKey(Icon, db_column='icon_desc', on_delete = models.PROTECT, null=True, blank=True)
     container_name = models.CharField(max_length=50, blank=True, null=True)
     container_type = models.CharField(max_length=50, blank=True, null=True)
 
