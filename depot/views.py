@@ -120,7 +120,9 @@ def detailcontainer(request, container_id):
     #samples = Samples.objects.filter(sample_id__container_id=container.pk)
     #samples = JoinSampleContainer.objects.filter(sample_id__container_id=container.pk)
     #joinsamplecontainer = JoinSampleContainer.objects.filter(container_id = 4)
-    joinsamplecontainer = JoinSampleContainer.objects.filter(container_id = 4)
+    #joinsamplecontainer = JoinSampleContainer.objects.filter(container_id = 4)
+    joinsamplecontainer = JoinSampleContainer.objects.filter(container_id__container_id=container_id)
+    #joinsamplecontainer = JoinSampleContainer.objects.filter(container__id = container_id)
     #samples = Samples.objects.filter(container__pk=samples.pk)
     # location = location.container_set.all()
     return render(request, 'container/detailcontainer.html',

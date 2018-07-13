@@ -113,4 +113,5 @@ class JoinSampleContainerForm(forms.ModelForm):
         'sample_number',
         #container_id = models.ForeignKey(Container, db_column='container_id', on_delete = models.PROTECT)
         'container_id',
+    
         )

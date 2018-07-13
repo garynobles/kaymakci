@@ -100,7 +100,7 @@ class JoinSampleContainer(models.Model):
     class Meta():
         managed=False
         db_table = 'samples\".\"join_sample_container'
-        #ordering = ["container_id","id"]
+        ordering = ["container_id","id"]
         #verbose_name_plural = "Sample Container Join"
         #unique_together = [('area_easting', 'area_northing', 'context_number', 'sample_number'),]
 
