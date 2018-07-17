@@ -108,8 +108,20 @@ def edit_join_sample_container(request, pk):
 
 
 
-
-
+def checked_out(request, container_id):
+    post = get_object_or_404(Container, pk=pk)
+    if request.method == "POST":
+        form = ContainerForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            #post.user = request.user
+            #post.datetime = datetime.datetime.now()
+            post.save()
+            return redirect('allcontainer', pk=container.pk)
+            #, pk=post.pk)
+    else:
+        form = ContainerForm(instance=post)
+    return render(request, 'container/create_container.html', {'form': form})
 
 
 def allcontainer(request):

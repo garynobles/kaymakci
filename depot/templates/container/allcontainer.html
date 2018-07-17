@@ -121,7 +121,14 @@ $(document).ready(function() {
 
             <a href="{% url 'editcontainer' pk=o.pk %}" class="btn btn-primary" role="button">edit</a>
             <a href="{% url 'detailcontainer' o.container_id %}" class="btn btn-warning" role="button">detail</a>
-            <a href="% url 'editcontainersearch' pk=o.pk %" class="btn btn-secondary" role="button">request</a>
+            {% if o.checked_out is True %}
+            <a href="% url 'checkout' pk=o.pk %" class="btn btn-warning" role="button">Return</a>
+            <a href="% url 'checkout' pk=o.pk %" class="btn btn-success" role="button">Request</a>
+
+{% else %}
+<a href="% url 'checked_out' pk=o.pk %" class="btn btn-success" role="button">Checkout</a>
+
+{% endif %}
           </div>
         </td>
 

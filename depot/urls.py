@@ -31,6 +31,8 @@ urlpatterns = [
 
     path('container/<int:container_id>/', views.detailcontainer, name='detailcontainer'),
 
+    path('container/<int:container_id>/', views.checked_out, name='checked_out'),
+
     #store
     # path('store/', views.allstorage, name='allstorage'),
     # path('<int:store_id>/', views.detailstore, name='detailstore'),

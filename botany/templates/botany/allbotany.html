@@ -3,7 +3,7 @@
 
 {% block content %}
 {% include "menu1.html" %}
-{% include "container/menu2.html" %}
+{% include "botany/menu2.html" %}
 
 
 
@@ -43,6 +43,19 @@
       <td>{{ botany.notes }}</td>
 
       <td>{{ botany.botany_id.proportion_analysed }}</td>
+
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+          <a href="{% url 'createfraction' %}" class="btn btn-primary" role="button">Add Fraction</a>
+          <a href="{% url 'detailbotany' botany.botany_id %}" class="btn btn-warning" role="button">detail</a>
+          <a href="% url 'editcontainersearch' pk=o.pk %" class="btn btn-secondary" role="button">request</a>
+          <a href="{% url 'createfraction' %}" class="btn btn-primary" role="button">Add Fraction <br /> pass botany_id</a>
+        </div>
+      </td>
+
+<!--
+'editcontainer' pk=o.pk -->
 
     </tr>
     {% endfor %}
