@@ -16,6 +16,7 @@ from filters.views import FilterMixin
 
 # Create your views here.
 def createphotobatch(request):
+    # Photobatch.photobatchphotos_set.all()
     if request.method == "POST":
         form = PhotobatchForm(request.POST)
         if form.is_valid():
