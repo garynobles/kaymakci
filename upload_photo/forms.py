@@ -1,7 +1,7 @@
-from .models import Photo
 from django import forms
 
-class PhotoForm(forms.ModelForm):
-    class Meta:
-        model = Photo
-        fields = ('file', )
+from multiupload.fields import MultiFileField
+
+
+class UploadForm(forms.Form):
+    attachments = MultiFileField(min_num=1, max_num=3, max_file_size=1024*1024*5)

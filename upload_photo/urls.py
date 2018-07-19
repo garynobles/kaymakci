@@ -1,6 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
+
 from . import views
 
+
 urlpatterns = [
-    url(r'^photos/$', views.upload, name='upload'),
+    path('photo/', views.UploadView.as_view()),
 ]

@@ -1,1 +1,28 @@
-upload photo
+
+{% extends 'upload_photo/base.html' %}
+
+
+
+{% block content%}
+{% include "menu1.html" %}
+{% include "upload_photo/menu2.html" %}
+<div class="container">
+<h1 class = "text-center">Photobatch Upload</h1>
+<h4 class = "text-center"> (In Development)</h4>
+
+<div>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send" />
+</form>
+
+
+</div>
+
+
+
+</div>
+
+{% endblock %}
