@@ -34,7 +34,9 @@ urlpatterns = [
 
     path('ceramics/', include('ceramics.urls')),
 
-    url(r'^gallery/', include('gallery.urls')),
+    path('upload/', include('upload_photo.urls')),
+
+    # url(r'^gallery/', include('gallery.urls')),
 
 
 

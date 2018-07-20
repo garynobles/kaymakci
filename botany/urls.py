@@ -25,5 +25,5 @@ urlpatterns = [
     path('detailfractionmaterialpresent/<int:material_id>/', views.detailfractionmaterialpresent, name='detailfractionmaterialpresent'),
 
 
-    path('fraction/edit/(?P<pk>\d+)/edit/$', views.editfraction, name='editfraction'),
+    path('fraction/edit/(?P<pk>\d+)/edit/', views.editfraction, name='editfraction'),
 ]

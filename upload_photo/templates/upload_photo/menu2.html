@@ -1,12 +1,12 @@
 <div class="navbar navbar-custom navbar-inverse navbar-static-top navbar-dark bg-dark" id="nav2">
   <div class="navbar-inner">
-    <a href="% url 'createstorage' %">
-      <button  type="button" class="btn btn-success">Add new Depot</button>
+    <a href="{% url 'photo_upload' %}">
+      <button  type="button" class="btn btn-success">Add photos</button>
     </a>
-    <a href="% url 'allsamples' %">
-      <button  type="button" class="btn btn-info">Samples</button>
+    <a href="{% url 'allimages' %}">
+      <button  type="button" class="btn btn-info">View Photos</button>
     </a>
-    <a href="% url 'all_sample_container_joins' %">
+    <!-- <a href="% url 'all_sample_container_joins' %">
       <button  type="button" class="btn btn-warning"><-join-></button>
     </a>
     <a href="% url 'allcontainer' %">
@@ -17,7 +17,7 @@
     </a>
     <a href="% url 'allstorage' %">
       <button  type="button" class="btn btn-outline-info">Depots</button>
-    </a>
+    </a> -->
   </div>
 </div>
 </div>
