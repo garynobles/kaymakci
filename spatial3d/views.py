@@ -21,7 +21,7 @@ def createphotobatch(request):
         form = PhotobatchForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = request.user
+            post.created_by = request.user
             #post.datetime = datetime.datetime.now()
 
             post.save()
