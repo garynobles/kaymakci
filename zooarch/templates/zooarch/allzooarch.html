@@ -67,23 +67,7 @@ $(document).ready(function() {
 
 
 <h2>zooarchsamples</h2>
-{% for zooarchsamples in object_list.all %}
-   <li>{{zooarchsamples.sample_id.element}}, {{zooarchsamples.portion}}| {{zooarchsamples.area_easting}}, {{zooarchsamples.sample_id.element}}, {{z.element}}</li>
-{% endfor %}
 
-
-<h2>Testing {{zooarch.area_easting}} {{zooarchsamples.area_easting}}</h2>
-<ul>
-{% for o in object_list.all %}
-<li><a href="">{{o.area_easting}}.{{o.area_northing}}.{{o.sample_number}}.{{o.context_number}}| {{o.sample_id}}| {{o.sample_id.sample_id}}</a>
-<ul>
-   <h2>zooarchsamples</h2>
-   {% for sample in zooarchsamples.all %}
-      <li>{{sample.sample_id.element}}, {{sample.sample_id.portion}}, {{sample.sample_id}}, {{sample.sample_id.element}}, {{sample.element}}</li>
-   {% endfor %}
-</ul>
-{% endfor %}
-</ul>
 
 
 
@@ -110,7 +94,7 @@ $(document).ready(function() {
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>FK</th>
+        <!-- <th>FK</th> -->
         <th>Sample ID</th>
         <th>contextkey (N.E.C.S)</th>
         <th>material</th>
@@ -147,15 +131,15 @@ $(document).ready(function() {
 
       <tr>
   {% load point_to_underscore %}
-  <td>
+  <!-- <td>
     Sample_id{{ o.sample_id}} <br />
     Element {{ o.sample_id.element}} <br />
     Element {{ o.sample_id.sample_id.element}}
     element: {{ object.zooarchsamples.sample_id }}
 
-  </td>
+  </td> -->
   <td><a href="{% url 'editzooarch' pk=o.pk %}">{{ o.sample_id }}</a></td>
-        <td><a href="{% url 'detailzooarch' location.location_id %}">{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</a></td>
+        <td><a href="{% url 'detailzooarch' o.sample_id %}">{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</a></td>
         <td>{{ o.material}}</td>
   <td>{{ o.specific_material }}</td>
   <!-- <td>{{ o.exterior_color_hue|default:""}}/{{ o.exterior_color_lightness_value|floatformat:0}}/{{ o.exterior_color_chroma|default:""}} <div class="munsell M{{ o.exterior_color_hue|point_to_underscore}}-{{ o.exterior_color_lightness_value|floatformat:0}}-{{ o.exterior_color_chroma}}"></div></td>
@@ -188,6 +172,8 @@ $(document).ready(function() {
             <a href="% url 'editcontainersearch' pk=o.pk %" class="btn btn-secondary" role="button">take out</a>
             <a href="% url 'editcontainersearch' pk=o.pk %" class="btn btn-secondary" role="button">request</a>
           </div>
+          <br /><span style = "font-size:0.7em;">{{ o.created_by }}</span>
+          <span style = "font-size:0.7em;">{{ o.created_timestamp }}</span>
         </td>
 
       </tr>

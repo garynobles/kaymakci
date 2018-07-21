@@ -10,8 +10,23 @@
               <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
               {% if user.is_authenticated %}
               <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
-              <a class="nav-item nav-link" href="{% url 'allstorage' %}">Depot</a>
-              <a class="nav-item nav-link" href="{% url 'allsamples' %}">Samples</a>
+              <!-- <a class="nav-item nav-link" href="{% url 'allstorage' %}">Depot</a> -->
+
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Depot</a>
+                <div class="dropdown-menu " aria-labelledby="storage">
+                  <a class="dropdown-item" href="{% url 'allsamples' %}">Samples</a>
+                  <a class="dropdown-item" href="{% url 'allcontainer' %}">Containers</a>
+                  <a class="dropdown-item" href="{% url 'alllocation' %}">Locations</a>
+                  <a class="dropdown-item" href="{% url 'allstorage' %}">Depots</a>
+
+                  <!-- <a class="dropdown-item" href="#">Faunal</a>
+                  <a class="dropdown-item" href="#">Conservation</a>
+                  <a class="dropdown-item" href="#">Ceramics</a>
+                  <a class="dropdown-item" href="#">Small Finds</a> -->
+                </div>
+              </div>
+
               <a class="nav-item nav-link" href="{% url 'contextpage' %}">Excavation</a>
 
               <div class="dropdown show">
@@ -78,9 +93,48 @@
               </div>
 
 
+
+
+
+                <div class="dropdown show">
+                  <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-comments" style="color:grey;"></i> <span style="color:grey;">[0]</span></a>
+                  <div class="dropdown-menu " aria-labelledby="messagedropdown">
+                    <a class="dropdown-item" href="% url '' %">Chat</a>
+                    <hr />
+                    <a class="dropdown-item" href="% url '' %">Alerts</a>
+                    <a class="dropdown-item" href="% url '' %">Questions</a>
+
+                  </div>
+                </div>
+
+
+                  <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-envelope" style="color:grey;"></i> <span style="color:grey;">[0]</span></a>
+
+                    <div class="dropdown-menu " aria-labelledby="alertdropdown">
+                      <a class="dropdown-item" href="% url '' %">Messages</a>
+                      <hr />
+                      <a class="dropdown-item" href="% url '' %">Alerts</a>
+                      <a class="dropdown-item" href="% url '' %">Questions</a>
+
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle mr-2" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-user pr-2"></i>{{ user.get_username }}
+                  <i class="fas fa-user pr-2"></i>
+                  <!-- {{ user.get_username }} -->
+                  {{ user.get_full_name|default:user.username }}
                 </a>
 
                 <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">

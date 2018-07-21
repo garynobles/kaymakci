@@ -162,7 +162,7 @@ def createqnisp(request):
         form = QnispForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            #post.user = request.user
+            post.created_by= request.user
             #post.datetime = datetime.datetime.now()
 
             post.save()
@@ -300,6 +300,16 @@ class QnispListView(FilterMixin, django_filters.views.FilterView):
 #         return object_list2
 #     model = Zooarchsamples
 
-def detailzooarch(request, store_id):
+def detailzooarch(request, sample_id):
     detailzooarch = get_object_or_404(Zooarch, pk=sample_id)
     return render(request, 'zooarch/detailzooarch.html', {'zooarch':detailzooarch})
+
+
+
+# def detailzooarch(request, sample_id):
+#     detailzooarch = get_object_or_404(Zooarch, pk=sample_id)
+#     return render(request, 'zooarch/detailzooarch.html', {'zooarch':detailzooarch})
+#
+# def detailqnisp(request, qnisp_id):
+#     detailqnisp = get_object_or_404(Qnisp, pk=qnisp_id)
+#     return render(request, 'qnisp/detailqnisp.html', {'qnisp':detailqnisp})

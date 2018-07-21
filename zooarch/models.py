@@ -108,7 +108,7 @@ class Zooarchsamples(models.Model):
     age_estimation = models.CharField(max_length=50, blank=True, null=True)
     tooth_wear = models.CharField(max_length=25, blank=True, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
-    sample_id = models.OneToOneField(Zooarch, db_column='sample_id', on_delete = models.PROTECT, related_name='zooarch_samples')
+    sample_id = models.OneToOneField(Zooarch, db_column='sample_id', on_delete = models.PROTECT, related_name='zooarchsamples')
 
     def __int__(self):
         return self.sample_id
@@ -150,6 +150,9 @@ class Qnisp(models.Model):
     comments = models.TextField(max_length=500, default='', blank=True, null=True)
     ursus      = models.IntegerField(blank=True, null=True)
     big_feline_lynx_size = models.IntegerField(blank=True, null=True)
+
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=200, default="user_not_defined")
 
     def __str__(self):
         return self.qnisp_id

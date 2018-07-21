@@ -127,7 +127,7 @@ $(document).ready(function() {
 
       <tr>
         <td>  <a href="{% url 'editqnisp' pk=o.pk %}">{{ o.qnisp_id }}</a></td>
-        
+
         <td>{{ o.area_easting }}.{{ o.area_northing }}.{{ o.context_number }}.{{ o.sample_number }}</td>
         <td>{{ o.collection_method }}</td>
         <td>{{ o.mandible_with_teeth }}</td>
@@ -173,6 +173,8 @@ $(document).ready(function() {
 
 
           </div>
+          <br /><span style = "font-size:0.7em;">{{ o.created_by }}</span>
+          <span style = "font-size:0.7em;">{{ o.created_timestamp }}</span>
         </td>
 
       </tr>

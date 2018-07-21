@@ -45,12 +45,15 @@ COMPUTER_CHOICES = (
     ("Cyrus","Cyrus"),
 )
 
+
+
+
 #boolfield = forms.ChoiceField(choices = TRUE_FALSE_CHOICES, label="Some Label", initial='', widget=forms.Select(), required=True)
 class Photobatch(models.Model):
     # _safedelete_policy = HARD_DELETE_NOCASCADE
     #_safedelete_visibility = DELETED_VISIBLE_BY_PK
 
-    id = models.AutoField(primary_key=True)
+    pb_id = models.AutoField(primary_key=True)
     #id = models.IntegerField(blank=True, null=True)
     photobatch_id = models.CharField(max_length=200, default='', blank=True, null=True)
     prefix = models.CharField(max_length=200, default='', blank=True, null=True)
